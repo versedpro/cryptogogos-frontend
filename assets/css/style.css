@@ -1,0 +1,136 @@
+.main-body {
+    background: url("../images/background.jpg") no-repeat ;
+    background-size: cover;
+}
+.container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+body{
+    font-family: 'Bungee', cursive;
+    font-size:16px
+}
+.timer {
+    font-size: 12rem;
+    color: red;
+    text-shadow: 0px 0 20px lightsteelblue;
+    margin-top: -85rem;
+}
+.auto-img {
+    margin-top: 100px;
+}
+.join-text {
+    color: #fff;
+    font-size: 5rem;
+    line-height: 6rem;
+    margin-top: 14rem;
+    margin-bottom: 6rem;
+}
+
+input.subscribe-email {
+    width: 43.5rem;
+    height: 5rem;
+    border-radius: 10px;
+    padding-left: 1.5rem;
+    font-size: 1.5rem;
+    padding-top: 8px;
+}
+button.btn-primary {
+    width: 37.5rem;
+    height: 5rem;
+    border-radius: 35px;
+    padding-left: 1.5rem;
+    font-size: 1.5rem;
+    padding-top: 8px;
+    background: #FF00FF;
+    margin-top: 50px;
+}
+button.btn-primary:hover {
+    background:#fff;
+    color: #FF00FF;
+}
+.social-links {
+    display: block;
+    margin: 10rem auto;
+}
+.social-links li {
+    padding-right: 5rem;
+        display: inline-block;
+}
+
+
+@media (max-width:1600px) {
+    .timer{ 
+        margin-top: -74rem;
+    }
+}
+
+
+@media (max-width:1500px) {
+    .timer{ 
+        margin-top: -64rem;
+    }
+}
+
+@media (max-width:1200px) {
+    .timer{ 
+        margin-top: -54rem;
+        font-size:10rem;
+    }
+}
+
+
+@media (max-width:1040px) {
+    .timer{ 
+        margin-top: -44rem;
+        font-size: 8rem;
+    }
+}
+
+
+@media (max-width:900px) {
+    .timer{ 
+        margin-top: -34rem;
+        font-size: 5rem;
+    }
+    .join-text {
+        font-size:4rem;
+    }
+    input.subscribe-email {
+        width:37rem;
+        height:4rem;
+    }
+}
+
+@media (max-width:700px) {
+    .timer{ 
+        margin-top: -26rem;
+        font-size: 4rem;
+    }
+    .social-links li {
+        padding-right: 2rem;
+
+    }
+    .social-links li img {
+        width: 60px;
+    }
+}
+
+@media(max-width: 600px){
+    .timer {
+        margin-top: -21rem;
+        font-size: 4rem;
+    }
+    .join-text {
+        font-size: 2rem;
+        line-height: 3rem;
+    }
+    input.subscribe-email {
+        width: 21rem;
+        height: 4rem;
+    }
+    button.btn-primary {
+        width: 16rem;
+    }
+  
+}
