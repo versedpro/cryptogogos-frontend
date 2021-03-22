@@ -11,7 +11,7 @@ body{
     font-size:16px
 }
 .timer {
-    font-size: 12rem;
+    font-size: 10rem;
     color: red;
     text-shadow: 0px 0 20px lightsteelblue;
     margin-top: -85rem;
@@ -75,7 +75,7 @@ button.btn-primary:hover {
 @media (max-width:1200px) {
     .timer{ 
         margin-top: -54rem;
-        font-size:10rem;
+        font-size:8rem;
     }
 }
 
@@ -83,7 +83,7 @@ button.btn-primary:hover {
 @media (max-width:1040px) {
     .timer{ 
         margin-top: -44rem;
-        font-size: 8rem;
+        font-size: 6rem;
     }
 }
 
@@ -91,10 +91,10 @@ button.btn-primary:hover {
 @media (max-width:900px) {
     .timer{ 
         margin-top: -34rem;
-        font-size: 5rem;
+        font-size: 4rem;
     }
     .join-text {
-        font-size:4rem;
+        font-size:3rem;
     }
     input.subscribe-email {
         width:37rem;
@@ -105,7 +105,7 @@ button.btn-primary:hover {
 @media (max-width:700px) {
     .timer{ 
         margin-top: -26rem;
-        font-size: 4rem;
+        font-size: 3rem;
     }
     .social-links li {
         padding-right: 2rem;
@@ -119,7 +119,7 @@ button.btn-primary:hover {
 @media(max-width: 600px){
     .timer {
         margin-top: -21rem;
-        font-size: 4rem;
+        font-size: 3rem;
     }
     .join-text {
         font-size: 2rem;
@@ -145,7 +145,7 @@ button.btn-primary:hover {
 @media(max-width:450px) {
     .timer {
         margin-top: -18.5rem;
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     input.subscribe-email {
         width: 17rem;
@@ -157,6 +157,6 @@ button.btn-primary:hover {
 @media(max-width:370px) {
     .timer {
         margin-top: -15.5rem;
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 }
