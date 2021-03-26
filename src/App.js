@@ -11,6 +11,7 @@ import imgTwitter from './images/twitter.png'
 
 function App() {
     const [timerText, setTimerText] = useState("")
+
     useEffect(() => {
         // Set the date we're counting down to
         const countDownDate = new Date("Apr 01, 2021 18:00:00").getTime();
@@ -36,7 +37,7 @@ function App() {
             // If the count down is finished, write some text
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("timer").innerHTML = "EXPIRED";
+                setTimerText("EXPIRED")
             }
         }, 1000);
 
