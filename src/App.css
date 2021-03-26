@@ -1,5 +1,5 @@
 .main-body {
-    background: url("../images/background.jpg") no-repeat ;
+    background: url(./images/background.jpg) no-repeat ;
     background-size: cover;
 }
 .container-fluid {
@@ -55,25 +55,25 @@ button.btn-primary:hover {
 }
 .social-links li {
     padding-right: 5rem;
-        display: inline-block;
+    display: inline-block;
 }
 
 
 @media (max-width:1600px) {
-    .timer{ 
+    .timer{
         margin-top: -74rem;
     }
 }
 
 
 @media (max-width:1500px) {
-    .timer{ 
+    .timer{
         margin-top: -64rem;
     }
 }
 
 @media (max-width:1200px) {
-    .timer{ 
+    .timer{
         margin-top: -54rem;
         font-size:8rem;
     }
@@ -81,7 +81,7 @@ button.btn-primary:hover {
 
 
 @media (max-width:1040px) {
-    .timer{ 
+    .timer{
         margin-top: -44rem;
         font-size: 6rem;
     }
@@ -89,7 +89,7 @@ button.btn-primary:hover {
 
 
 @media (max-width:900px) {
-    .timer{ 
+    .timer{
         margin-top: -34rem;
         font-size: 4rem;
     }
@@ -103,7 +103,7 @@ button.btn-primary:hover {
 }
 
 @media (max-width:700px) {
-    .timer{ 
+    .timer{
         margin-top: -26rem;
         font-size: 3rem;
     }
@@ -139,7 +139,7 @@ button.btn-primary:hover {
     .social-links li img {
         width: 50px;
     }
-  
+
 }
 
 @media(max-width:450px) {
