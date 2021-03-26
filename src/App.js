@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import logo from './logo.svg'
 import './App.css'
 import imgLaunchpad from './images/launchpad.png'
 import imgDiscord from './images/discord.png'
@@ -79,23 +78,23 @@ function App() {
                     <div className="social-links">
                         <ul>
                             <li>
-                                <a href="https://discord.gg/X3nHcP3s" target="_blank">
+                                <a href="https://discord.gg/X3nHcP3s" target="_blank"  rel="noreferrer">
                                     <img src={imgDiscord} alt="" />
                                 </a>
                             </li>
                             <li>
-                                <a href="https://twitter.com/cryptogogos" target="_blank">
+                                <a href="https://twitter.com/cryptogogos" target="_blank"  rel="noreferrer">
                                     <img src={imgTwitter} alt="" />
                                 </a>
                             </li>
                             <li>
-                                <a href="https://www.instagram.com/crypto.gogos/" target="_blank">
+                                <a href="https://www.instagram.com/crypto.gogos/" target="_blank"  rel="noreferrer">
                                     <img src={imgInsta} alt="" />
                                 </a>
                             </li>
 
                             <li>
-                                <a href="https://t.me/cryptogogos" target="_blank">
+                                <a href="https://t.me/cryptogogos" target="_blank"  rel="noreferrer">
                                     <img src={imgTg} alt="" />
                                 </a>
                             </li>
