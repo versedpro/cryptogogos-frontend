@@ -78,7 +78,7 @@ function App() {
                     <div className="social-links">
                         <ul>
                             <li>
-                                <a href="https://discord.gg/X3nHcP3s" target="_blank"  rel="noreferrer">
+                                <a href="https://t.co/fC45qEFlIm?amp=1" target="_blank"  rel="noreferrer">
                                     <img src={imgDiscord} alt="" />
                                 </a>
                             </li>
