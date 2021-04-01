@@ -85,6 +85,7 @@ function App() {
                                     <Navbar.Collapse id="basic-navbar-nav">
 
                                         <Nav className="ml-auto">
+                                            <Nav.Link target="_blank" href="https://www.notion.so/The-CryptoGogo-Wiki-117f9f9e8fe44ee683df7554695799a1"><b>Wiki</b></Nav.Link>
                                             <Nav.Link href="#home">Draw & Trade</Nav.Link>
                                             <Nav.Link href="#link">OpenSea</Nav.Link>
                                             <Nav.Link href="#link">Gallery</Nav.Link>
@@ -267,6 +268,10 @@ function App() {
                             <Row>
                                 <Col lg="5">
                                     <ul>
+                                        <li>
+                                        <a target="_blank" href="https://www.notion.so/The-CryptoGogo-Wiki-117f9f9e8fe44ee683df7554695799a1"><b>Wiki</b></a>
+
+                                        </li>
                                         <li>
                                             <a href="#">Draw & Trade</a>   
                                         </li> 
