@@ -85,7 +85,7 @@ function App() {
                                     <Navbar.Collapse id="basic-navbar-nav">
 
                                         <Nav className="ml-auto">
-                                            <Nav.Link target="_blank" href="https://www.notion.so/The-CryptoGogo-Wiki-117f9f9e8fe44ee683df7554695799a1"><b>Wiki</b></Nav.Link>
+                                            <Nav.Link target="_blank" href="https://www.notion.so/The-CryptoGogo-Wiki-117f9f9e8fe44ee683df7554695799a1"><b>Wiki →</b></Nav.Link>
                                             <Nav.Link href="#home">Draw & Trade</Nav.Link>
                                             <Nav.Link href="#link">OpenSea</Nav.Link>
                                             <Nav.Link href="#link">Gallery</Nav.Link>
@@ -164,7 +164,7 @@ function App() {
                     <Row>
                         <Col xs="12" lg="3">
                             <div className="tx-box">
-                                <div className="box-text">Amount of CryptoGogos</div>
+                                <div className="box-text">Amount of CryptoGOGOs</div>
                                 <div className="box-number">0%</div>
                                 <div className="box-label red">Sold</div>
 
@@ -269,10 +269,6 @@ function App() {
                                 <Col lg="5">
                                     <ul>
                                         <li>
-                                        <a target="_blank" href="https://www.notion.so/The-CryptoGogo-Wiki-117f9f9e8fe44ee683df7554695799a1"><b>Wiki</b></a>
-
-                                        </li>
-                                        <li>
                                             <a href="#">Draw & Trade</a>   
                                         </li> 
                                         <li>
@@ -295,7 +291,7 @@ function App() {
                                             <a href="#">FAQ</a>   
                                         </li>  
                                         <li>
-                                            <a href="#">Wiki</a>   
+                                        <a target="_blank" href="https://www.notion.so/The-CryptoGogo-Wiki-117f9f9e8fe44ee683df7554695799a1"><b>Wiki</b></a>
                                         </li>   
                                     </ul>
                                 </Col>
