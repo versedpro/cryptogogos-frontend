@@ -13,7 +13,7 @@ function App() {
 
     useEffect(() => {
         // Set the date we're counting down to
-        const countDownDate = new Date("Apr 01, 2021 23:00:00").getTime();
+        const countDownDate = new Date("Apr 01, 2021 22:30:00").getTime();
 
 // Update the count down every 1 second
         const x = setInterval(function () {
