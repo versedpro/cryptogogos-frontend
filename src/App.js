@@ -164,8 +164,8 @@ function App() {
                     <Row>
                         <Col xs="12" lg="3">
                             <div className="tx-box">
-                                <div className="box-text">Amount of Pixls</div>
-                                <div className="box-number">63%</div>
+                                <div className="box-text">Amount of CryptoGogos</div>
+                                <div className="box-number">0%</div>
                                 <div className="box-label red">Sold</div>
 
                             </div>
@@ -173,7 +173,7 @@ function App() {
                         <Col xs="12"  lg="3"> 
                             <div className="tx-box">
                                 <div className="box-text">Max amount per tx</div>
-                                <div className="box-number">2</div>
+                                <div className="box-number">XX</div>
                                 <div className="box-label">Tier 1</div>
 
                             </div>
@@ -181,7 +181,7 @@ function App() {
                         <Col xs="12"  lg="3">
                             <div className="tx-box">
                                 <div className="box-text">Max amount per tx</div>
-                                <div className="box-number">10</div>
+                                <div className="box-number">XX</div>
                                 <div className="box-label">Tier 2</div>
 
                             </div>
@@ -189,7 +189,7 @@ function App() {
                         <Col xs="12"  lg="3">
                             <div className="tx-box">
                                 <div className="box-text">Max amount per tx</div>
-                                <div className="box-number">20</div>
+                                <div className="box-number">XX</div>
                                 <div className="box-label ">Tier 3-8</div>
 
                             </div>
