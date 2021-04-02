@@ -122,6 +122,7 @@ function App() {
                                     <Navbar.Collapse id="basic-navbar-nav">
 
                                         <Nav className="ml-auto">
+                                            <Nav.Link target="_blank" href="https://www.notion.so/The-CryptoGogo-Wiki-117f9f9e8fe44ee683df7554695799a1"><b>Wiki →</b></Nav.Link>
                                             <Nav.Link href="#home">Draw & Trade</Nav.Link>
                                             <Nav.Link href="#link">OpenSea</Nav.Link>
                                             <Nav.Link href="#link">Gallery</Nav.Link>
@@ -200,8 +201,8 @@ function App() {
                     <Row>
                         <Col xs="12" lg="3">
                             <div className="tx-box">
-                                <div className="box-text">Amount of Pixls</div>
-                                <div className="box-number">63%</div>
+                                <div className="box-text">Amount of CryptoGOGOs</div>
+                                <div className="box-number">0%</div>
                                 <div className="box-label red">Sold</div>
 
                             </div>
@@ -209,7 +210,7 @@ function App() {
                         <Col xs="12" lg="3">
                             <div className="tx-box">
                                 <div className="box-text">Max amount per tx</div>
-                                <div className="box-number">2</div>
+                                <div className="box-number">XX</div>
                                 <div className="box-label">Tier 1</div>
 
                             </div>
@@ -217,7 +218,7 @@ function App() {
                         <Col xs="12" lg="3">
                             <div className="tx-box">
                                 <div className="box-text">Max amount per tx</div>
-                                <div className="box-number">10</div>
+                                <div className="box-number">XX</div>
                                 <div className="box-label">Tier 2</div>
 
                             </div>
@@ -225,7 +226,7 @@ function App() {
                         <Col xs="12" lg="3">
                             <div className="tx-box">
                                 <div className="box-text">Max amount per tx</div>
-                                <div className="box-number">20</div>
+                                <div className="box-number">XX</div>
                                 <div className="box-label ">Tier 3-8</div>
 
                             </div>
@@ -446,8 +447,8 @@ function App() {
                                             <a href="#">FAQ</a>
                                         </li>
                                         <li>
-                                            <a href="#">Wiki</a>
-                                        </li>
+                                        <a target="_blank" href="https://www.notion.so/The-CryptoGogo-Wiki-117f9f9e8fe44ee683df7554695799a1"><b>Wiki</b></a>
+                                        </li>   
                                     </ul>
                                 </Col>
                                 <Col lg="5" className="right-footer">
