@@ -2,7 +2,7 @@ import React from 'react';
 
 function Gallery() {
 return(
-    <div class="draw-trade"> Draw trade</div>
+    <div class="draw-trade"> Gallery</div>
 );
 }
 
