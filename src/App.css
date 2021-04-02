@@ -364,10 +364,9 @@ button.btn-primary:hover {
 }
 .footer ul li {
     list-style-type: none;
-n
 }
 .footer ul li a {
-    color: #fff !important;
+    color: #ffffff !important;
     text-align: left;
     padding-bottom: 20px;
     display: block;
