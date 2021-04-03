@@ -1,4 +1,15 @@
-@import url(//db.onlinewebfonts.com/c/28f70728be1cb6dc87a8903182044dfd?family=Avenir+Next+Cyr+Medium);
+
+@font-face {
+	font-family: 'Avenir Next Cyr Medium';
+	src: url('./fonts/AvenirNextCyr-Medium.eot');
+	src: local('AvenirNextCyr-Medium'),
+		url('./fonts/AvenirNextCyr-Medium.eot?#iefix') format('embedded-opentype'),
+		url('./fonts/AvenirNextCyr-Medium.woff') format('woff'),
+		url('./fonts/AvenirNextCyr-Medium.woff2') format('woff2'),
+		url('./fonts/AvenirNextCyr-Medium.ttf') format('truetype');
+
+	font-style: normal;
+}
 
 @font-face {
 	font-family: 'HelveticaNeueCyr Medium';

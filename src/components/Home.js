@@ -332,9 +332,9 @@ function Home() {
                                         </div>
                                     </form>
                                 </div>
-                                <div class="bottom-img">
+                                <div className="bottom-img">
                                     <img
-                                        class="img-fluid"
+                                        className="img-fluid"
                                         src="./assets/images/cards-bottom.png"
                                         alt=""
                                     />
