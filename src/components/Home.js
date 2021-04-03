@@ -324,7 +324,7 @@ function Home() {
                                             />{' '}
                                             <br />
                                             <button
-                                                type="button"
+                                                type="submit"
                                                 className="btn btn-primary btn-lg">
                                                 Submit
                                             </button>
