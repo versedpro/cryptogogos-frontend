@@ -18,6 +18,7 @@ function App() {
     return (
         <Router>
             <div className="main-body text-center">
+            <div className="col-sm-12">
                 <Container fluid>
                     <Row>
                         <Container>
@@ -449,6 +450,8 @@ function App() {
                         </Row>
                     </Container>
                 </section>
+                </div>
+
             </div>
         </Router>
     )

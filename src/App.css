@@ -578,9 +578,11 @@ section.footer {
         text-align: left;
     }
     section.our-mission-section img {
-        margin-top: -30px;
+
         text-align: center;
         margin-left: -50px;
+        width: 310px;
+        margin: 30px auto;
     }
     h1 {
         font-size: 4rem;

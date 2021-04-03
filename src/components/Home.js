@@ -7,7 +7,6 @@ import shiller from '../images/shiller.png'
 import mushroom from '../images/mushroom.png'
 import lips from '../images/lips.png'
 import photosImg from '../images/photos.png'
-
 import maltahead from '../images/metalhead.png'
 import nftGold from '../images/nft-card-golden.png'
 import { Container, Row, Col, Navbar, Nav, Button, Image } from 'react-bootstrap'
@@ -331,13 +330,6 @@ function Home() {
                                             </button>
                                         </div>
                                     </form>
-                                </div>
-                                <div className="bottom-img">
-                                    <img
-                                        className="img-fluid"
-                                        src="./assets/images/cards-bottom.png"
-                                        alt=""
-                                    />
                                 </div>
                             </div>
                         </Col>
