@@ -95,7 +95,6 @@ const CustomLeftArrow = ({ onClick, ...rest }) => {
 function Home() {
     return (
         <S.HomeWrapper>
-            >
             <section className="heading-section">
                 <Container>
                     <Row>
