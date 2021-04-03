@@ -3,6 +3,8 @@ import { Container, Row, Col, Navbar, Nav, Button, Image } from 'react-bootstrap
 import "react-multi-carousel/lib/styles.css";
 import discord from "./images/discord.png"
 import instagram from "./images/instagram.png"
+import twitter from "./images/twitter.png"
+import telegram from "./images/tg.png"
 import wallet from "./images/wallet.png"
 import Home from './components/Home';
 
@@ -62,8 +64,10 @@ function App() {
                                     </svg>
                                     </Navbar.Brand>
                                     <ul className="header-links">
-                                        <li><a href="#home"><Image src={discord} /></a></li>
-                                        <li><a href="#home"><Image src={instagram} /></a></li>
+                                        <li><a href="https://discord.io/cryptogogos"><Image src={discord} /></a></li>
+                                        <li><a href="https://twitter.com/cryptogogos "><Image src={twitter} /></a></li>
+                                        <li><a href="https://www.instagram.com/crypto.gogos"><Image src={instagram} /></a></li>
+                                        <li><a href="https://t.me/cryptogogos"><Image src={telegram} /></a></li>
                                     </ul>
                                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                                     <Navbar.Collapse id="basic-navbar-nav">
@@ -184,8 +188,10 @@ function App() {
                                         <Image src={wallet} />My wallet</Button>{' '}
 
                                     <ul className="footer-links">
-                                        <li><a href="#home"><Image src={discord} /></a></li>
-                                        <li><a href="#home"><Image src={instagram} /></a></li>
+                                    <li><a href="https://discord.io/cryptogogos"><Image src={discord} /></a></li>
+                                        <li><a href="https://twitter.com/cryptogogos "><Image src={twitter} /></a></li>
+                                        <li><a href="https://www.instagram.com/crypto.gogos"><Image src={instagram} /></a></li>
+                                        <li><a href="https://t.me/cryptogogos"><Image src={telegram} /></a></li>
                                     </ul>
                                 </Col>
 

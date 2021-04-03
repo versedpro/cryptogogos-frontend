@@ -124,7 +124,7 @@ function Home() {
         </Row>
         <Row>
             <Col xs="12" lg="3">
-                <div className="tx-box">
+                <div className="tx-box extra-white">
                     <div className="box-text">Amount of CryptoGOGOs</div>
                     <div className="box-number">0%</div>
                     <div className="box-label red">Sold</div>
@@ -151,7 +151,7 @@ function Home() {
                 <div className="tx-box">
                     <div className="box-text">Max amount per tx</div>
                     <div className="box-number">XX</div>
-                    <div className="box-label ">Tier 3-8</div>
+                    <div className="box-label ">Tier 3-6</div>
 
                 </div>
             </Col>
@@ -160,15 +160,15 @@ function Home() {
 
         <Row className="distribution-row">
             <Col xs="12" lg="2">
-                <div className="nft-distribute active first-distribute">
+                <div className="nft-distribute active first-distribute extra-white">
                     <div className="distribute-bar">
 
                     </div>
                     <div className="neon-bar">
 
                     </div>
-                    <div className="nft-price">0.03 ETH</div>
-                    <div className="nft-numbers">75 NFTs</div>
+                    <div className="nft-price">0.05 ETH</div>
+                    <div className="nft-numbers">150 NFTs</div>
 
                 </div>
             </Col>
@@ -180,8 +180,8 @@ function Home() {
                     <div className="neon-bar">
 
                     </div>
-                    <div className="nft-price">0.03 ETH</div>
-                    <div className="nft-numbers">75 NFTs</div>
+                    <div className="nft-price">0.07 ETH</div>
+                    <div className="nft-numbers">150 NFTs</div>
 
                 </div>
             </Col>
@@ -190,8 +190,8 @@ function Home() {
                     <div className="distribute-bar">
 
                     </div>
-                    <div className="nft-price">0.03 ETH</div>
-                    <div className="nft-numbers">75 NFTs</div>
+                    <div className="nft-price">0.1 ETH</div>
+                    <div className="nft-numbers">850 NFTs</div>
 
                 </div>
             </Col>
@@ -200,18 +200,8 @@ function Home() {
                     <div className="distribute-bar">
 
                     </div>
-                    <div className="nft-price">0.03 ETH</div>
-                    <div className="nft-numbers">75 NFTs</div>
-
-                </div>
-            </Col>
-            <Col xs="12" lg="2">
-                <div className="nft-distribute active">
-                    <div className="distribute-bar">
-
-                    </div>
-                    <div className="nft-price">0.03 ETH</div>
-                    <div className="nft-numbers">75 NFTs</div>
+                    <div className="nft-price">0.15 ETH</div>
+                    <div className="nft-numbers">2000 NFTs</div>
 
                 </div>
             </Col>
@@ -220,8 +210,18 @@ function Home() {
                     <div className="distribute-bar">
 
                     </div>
-                    <div className="nft-price">0.03 ETH</div>
-                    <div className="nft-numbers">75 NFTs</div>
+                    <div className="nft-price">0.2 ETH</div>
+                    <div className="nft-numbers">4000 NFTs</div>
+
+                </div>
+            </Col>
+            <Col xs="12" lg="2">
+                <div className="nft-distribute">
+                    <div className="distribute-bar">
+
+                    </div>
+                    <div className="nft-price">1 ETH</div>
+                    <div className="nft-numbers">627 NFTs</div>
 
                 </div>
             </Col>

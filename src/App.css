@@ -204,6 +204,10 @@ ul.header-links li {
     float: left;
     margin-right: 10px;
 }
+
+.header-links img {
+    width: 20px;
+}
 nav.navbar.navbar-expand-lg.navbar-light {
     margin-top: 20px !important;
 }
@@ -280,13 +284,14 @@ section.our-mission-section img {
     margin-bottom: 50px;
 }
 .tx-box {
-    background: #fff;
+    background: rgba(255,255,255,.5);
     padding: 10px 20px 0;
     color: #000 !important;
     border-radius: 20px;
     text-align: left !important;
     position: relative; 
 }
+
 
 .box-text {
     font-family: 'HelveticaNeueCyr Bold';
@@ -327,6 +332,9 @@ section.our-mission-section img {
     line-height: 6rem;
     margin-top: 14rem;
     margin-bottom: 6rem;
+}
+.nft-distribute.extra-white .nft-price, .nft-distribute.extra-white .nft-numbers{
+    color: white !important;
 }
 
 input.subscribe-email {
@@ -373,8 +381,10 @@ button.btn-primary:hover {
 .right-footer .footer-links {
     margin-top: 80px;
     text-align: right;
-    margin-left: 84px;
+    margin-left: 40px;
 }
+
+.footer-links img {width: 20px;}
 .footer-copyright {
     margin-top: 70px;
     font-size: 14px;
@@ -382,7 +392,7 @@ button.btn-primary:hover {
 }
 .right-footer .footer-links li {
     float:left;
-    margin-left:15px;
+    margin-left:10px;
 }
 .recent-minted {
     margin-top: 150px;
