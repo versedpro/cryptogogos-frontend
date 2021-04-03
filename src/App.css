@@ -337,14 +337,6 @@ section.our-mission-section img {
     color: white !important;
 }
 
-input.subscribe-email {
-    width: 43.5rem;
-    height: 5rem;
-    border-radius: 10px;
-    padding-left: 1.5rem;
-    font-size: 1.5rem;
-    padding-top: 8px;
-}
 button.btn-primary {
     /* width: 10rem;
     height: 4rem; */
@@ -566,10 +558,7 @@ section.footer {
     .join-text {
         font-size:3rem;
     }
-    input.subscribe-email {
-        width:37rem;
-        height:4rem;
-    }
+ 
     .tx-box {
         margin-bottom: 20px;
     }
@@ -642,12 +631,7 @@ section.footer {
         font-size: 2rem;
         line-height: 3rem;
     }
-    input.subscribe-email {
-        width: 18rem;
-        height: 4rem;
-        font-size:1rem;
 
-    }
     button.btn-primary {
         width: 16rem;
         height:3.5rem;
@@ -664,10 +648,6 @@ section.footer {
         margin-top: -18.5rem;
         font-size: 2rem;
     }
-    input.subscribe-email {
-        width: 17rem;
-        height: 3.5rem;
-    }
 }
 
 
@@ -676,4 +656,15 @@ section.footer {
         margin-top: -15.5rem;
         font-size: 2rem;
     }
+}
+
+.subscribe-box {
+    margin-top: 250px;
+}
+
+.subscribe-box h2 {
+    
+        font-size: 40px;
+        line-height: 60px;
+    
 }
