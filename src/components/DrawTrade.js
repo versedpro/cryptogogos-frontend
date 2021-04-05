@@ -547,7 +547,7 @@ export default class DrawTrade extends React.Component {
                 "stateMutability": "view",
                 "type": "function"
             }
-        ], '0x0F029615ccC1623a419279d6ed089061A81a1Ede');
+        ], '0x0b375183648c6e73364fbd24b9b2c109f06c335b');
     }
 
     async drawCard() {
@@ -601,7 +601,7 @@ export default class DrawTrade extends React.Component {
         const supply = await window.contract.methods.totalSupply().call();
         if (file) {
 
-            const result = await window.contract.methods.getCard(this.state.account, `https://gateway.pinata.cloud/ipfs/${file.IpfsHash}`).send({ from: this.state.account });
+            const result = await window.contract.methods.privated(this.state.account, `https://gateway.pinata.cloud/ipfs/${file.IpfsHash}`).send({ from: this.state.account });
             console.log('result', result)
 
         }
