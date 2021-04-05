@@ -588,19 +588,19 @@ export default class DrawTrade extends React.Component {
             }
             this.addPurchase(obj);
         }
-        
+
         let cards = await this.getDrawCard();
-        
+
         if (cards.data.length === 0) {
             cards = await this.getDrawCard()
         }
         this.setState({ cardImage: cards.data[0].image })
-        // let file = await this.getFileHash(JSON.stringify(cards.data[0].id));
+        let file = await this.getFileHash(JSON.stringify(cards.data[0].id));
         window.contract = await this.loadContract();
 
         const supply = await window.contract.methods.totalSupply().call();
         if (file) {
-            
+
             const result = await window.contract.methods.getCard(this.state.account, `https://gateway.pinata.cloud/ipfs/${file.IpfsHash}`).send({ from: this.state.account });
             console.log('result', result)
 
