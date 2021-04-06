@@ -12,8 +12,12 @@ function MintCountown() {
             </div>
             <div className="content">
                 <h1 className="teaser">Secret Pre-sale countdown ⏱</h1>
+                <p>
+                    Please send your MetaMask Wallet address to info@cryptogogos.com to get access  (if you haven’t done so already).
+                    Deadline to share your MetaMask Wallet ends in
+                </p>
                 <h1 className="time">
-                    <Countdown date={new Date((1617734208 + 3600*3) * 1000)} />
+                    <Countdown date={new Date((1617734208 + 3600*5.5) * 1000)} />
                 </h1>
             </div>
         </S.Wrapper>

@@ -3,7 +3,13 @@ import styled from 'styled-components'
 export const Wrapper = styled.div`
     margin-top: 150px;
     position: relative;
-
+ p {
+        max-width: 600px;
+        margin:0 auto;
+        margin-top: 20px;
+        line-height: 24px;
+        margin-bottom: 40px;
+        }
     .particles {
         position: fixed;
         top: 0;
@@ -11,8 +17,11 @@ export const Wrapper = styled.div`
         right: 0;
         bottom: 0;
         
+       
         @media(max-width: 850px) {
         display: none;
+        
+        
         }
     }
 
@@ -34,6 +43,14 @@ export const Wrapper = styled.div`
     }
 
     @media (max-width: 600px) {
+     p {
+        max-width: auto;
+        padding: 0 20px;
+        margin:0 auto;
+        margin-top: 20px;
+        line-height: 24px;
+        margin-bottom: 40px;
+        }
         .teaser {
             font-size: 25px;
             line-height: 40px;
