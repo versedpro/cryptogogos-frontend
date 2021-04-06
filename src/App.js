@@ -1,6 +1,7 @@
 import './App.css'
 import { Container, Row, Col, Navbar, Nav, Button, Image } from 'react-bootstrap'
 import 'react-multi-carousel/lib/styles.css'
+import DrawAnimation from './components/DrawAnimation/DrawAnimation'
 import discord from './images/discord.png'
 import instagram from './images/instagram.png'
 import twitter from './images/twitter.png'
@@ -226,6 +227,7 @@ function App() {
                     <Route path="/faq" component={Faq} />
                     <Route path="/gallery" component={Gallery} />
                     <Route path="/leaderboard" component={Leaderboard} />
+                    <Route path="/animation-wip" component={DrawAnimation}/>
                 </Switch>
 
                 <section className="footer">
