@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import bg from '../images/draw-trade-bg.jpg'
 export const DrawTradeWrapper = styled.div`
+import Particles from 'react-particles-js';
 
  background: url(${bg}) no-repeat ;
     background-size: cover;

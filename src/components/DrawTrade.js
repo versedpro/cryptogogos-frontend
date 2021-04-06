@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import Particles from 'react-particles-js'
 import Web3 from 'web3'
 import rocket from '../images/rocket_cp_006.png'
 import { Container, Row, Col, Image } from 'react-bootstrap'
@@ -34,7 +35,8 @@ const DrawTrade = () => {
     const [user, setUser] = React.useState()
     const [account, setAccount] = React.useState()
     const [price, setPrice] = React.useState()
-    const [cardImg, setCardImg] = React.useState()
+    const [cardImg, setCardImg] = React.useState({  })
+    const [isOpening, setIsOpening] = React.useState(false)
     const loadAccount = async () => {
         const web3 = window.web3
 
@@ -50,10 +52,9 @@ const DrawTrade = () => {
         await loadAccount()
     }, [])
 
-
     useEffect(() => {
-        if(videoRef.current)
-        videoRef.current.play().then(() => console.log("playing video")).catch((e) => console.error(e))
+        // if (videoRef.current && videoRef.current.play)
+        //     videoRef.current.play().then(() => console.log('playing video')).catch((e) => console.error(e))
     }, [videoRef.current])
     const getDrawCard = async () => {
         const request = await axios.post('https://api.cryptogogos.com/api/v1/cards/draw', {
@@ -64,21 +65,16 @@ const DrawTrade = () => {
     }
 
     const getPackPrice = async () => {
-        const request = axios
-            .get('https://api.cryptogogos.com/api/v1/users/pack-price')
-            .catch(e => {
-                alert(e)
-            })
-        setPrice(request.data)
-        return request
+        const mintPrice = await window.contract.methods.getNFTPrice().call()
+
+        setPrice(mintPrice)
+        return mintPrice
     }
 
     const drawCard = async () => {
         const web3 = window.web3
         console.log('clicked')
-        const price = await getPackPrice()
-        const amount = JSON.stringify(price.data)
-        console.log('price', amount)
+
 
         let cards = await getDrawCard()
         console.log(cards)
@@ -92,21 +88,25 @@ const DrawTrade = () => {
 
         const supply = await window.contract.methods.totalSupply().call()
 
+        const price = await getPackPrice()
+        const amount = JSON.stringify(price.data)
+        console.log('price', amount)
+
         const result = await window.contract.methods
             .mint(cards_info.meta)
             .send({
                 from: account,
-                value: web3.utils.toWei(amount, 'ether'),
+                value: web3.utils.toWei(price, 'wei'),
             })
-            .on('transactionHash', function (transactionHash) {
+            .on('transactionHash', function(transactionHash) {
                 console.log('transactionHash')
-                setCardImg(videoWrap)
+                setIsOpening(true)
             })
-            .on('receipt', function (result) {
-                console.log('Your Received NFT Token')
+            .on('receipt', function(result) {
+                console.log('Your Received NFT Token', cards_info)
                 // window.open(cards[0].card.image, "_blank");
-                setCardImg(null)
-                setCardImg(cards_info.card.image)
+                setCardImg({})
+                setCardImg({url: cards_info.card.image})
 
                 console.log('Transactions: ', result)
 
@@ -128,7 +128,7 @@ const DrawTrade = () => {
                     tokenIds: [result.transactionIndex],
                 })
             })
-            .on('error', function (error, receipt) {
+            .on('error', function(error, receipt) {
                 console.log(error)
             })
 
@@ -188,98 +188,111 @@ const DrawTrade = () => {
             {account ? (
                 <S.DrawTradeWrapper>
 
-                        <div>
-                            <div className="video-card" style={{
-                                opacity: cardImg? 1: 0,
-                                zIndex: cardImg ? 5000: -20
-                            }}>
-                                <video
-                                    ref={videoRef}
-                                    src={cardImg}
-                                    width="800px"
-                                    controls={false}
-                                    playsInline
-                                    autoPlay={true}
-                                    muted
-                                    loop
-                                />
-                            </div>
-                            <section className="heading-section space-ship">
-                                <Container>
-                                    <Row>
-                                        <Col>
-                                            <h2 style={{ paddingTop: '5rem' }}>
-                                                CryptoGogo Spaceship
-                                            </h2>
-                                        </Col>
-                                    </Row>
-                                </Container>
-                            </section>
-                            <section className="rocket-section">
-                                <Container>
-                                    <Row>
-                                        <Col>
-                                            <div className="rocket-buttons">
-                                                <div className="card-draw">
-                                                    <img src={packet} />
-                                                </div>
+                    <div>
+                        <div className="video-card" style={{
+                            opacity: isOpening ? 1 : 0,
+                            zIndex: isOpening ? 5000 : -20,
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0
+                        }}>
+                            <Particles></Particles>
 
-                                                <div className="actions">
-                                                    <div className="drawButton">
-                                                        <img src={drawBtn} onClick={drawCard} />
-                                                    </div>
-                                                    <div className="tradeButton">
-                                                        <img src={tradeBtn} />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <Image style={{ paddingTop: '10rem' }} src={rocket} />
-                                        </Col>
-                                    </Row>
-                                </Container>
-                            </section>
-                            <section className="terms-section">
-                                <Container>
-                                    <Row>
-                                        <Col lg="1"></Col>
-                                        <Col lg="10" xs="12">
-                                            <div className="terms text-left">
-                                                <div className="terms-title">
-                                                    <h4>Terems</h4>
-                                                </div>
-                                                <div className="terms-content">
-                                                    <p>
-                                                        In 2021 the world became like in 1984. The
-                                                        human race got enslaved to nonsense NFT Art
-                                                        and bad Collectibles. Ugly Kitties and
-                                                        terrible Punks mesmerized humankind and
-                                                        stole their money. Seeking revenge for the
-                                                        unjust treatment of the true meaning of
-                                                        NFTs, the CryptoGOGOs are coming the far way
-                                                        from PLANET GOGO in the Metaverse to start a
-                                                        revolution. Alongside the GOGO-Rebellion
-                                                        (CryptoGOGO-Collectors), they bring back
-                                                        freedom and power to humankind by taking
-                                                        over the NFT WORLD.
-                                                    </p>
+                            {cardImg.url ? <video
+                                style={{zIndex: 5000, position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)'}}
+                                width="600px"
+                                playsInline
+                                muted
+                                loop
+                                controls={false}
+                                autoPlay={true}
 
-                                                    <p>
-                                                        In 2021 the world became like in 1984. The
-                                                        human race got enslaved to nonsense NFT Art
-                                                        and bad Collectibles. Ugly Kitties and
-                                                        terrible Punks mesmerized humankind and
-                                                        stole their money. Seeking revenge for the
-                                                        unjust treatment of the true meaning of
-                                                        NFTs,
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </Col>
-                                        <Col lg="1"></Col>
-                                    </Row>
-                                </Container>
-                            </section>
+
+                            >
+                                <source  src={cardImg.url} type={"video/mp4"}/>
+                            </video>: <div>
+                                <h2 style={{color:"white", position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)'}}>Bringing A GOGO to Planet Earth 🌍...</h2>
+                            </div>}
+
                         </div>
+                        <section className="heading-section space-ship">
+                            <Container>
+                                <Row>
+                                    <Col>
+                                        <h2 style={{ paddingTop: '5rem' }}>
+                                            CryptoGogo Spaceship
+                                        </h2>
+                                    </Col>
+                                </Row>
+                            </Container>
+                        </section>
+                        <section className="rocket-section">
+                            <Container>
+                                <Row>
+                                    <Col>
+                                        <div className="rocket-buttons">
+                                            <div className="card-draw">
+                                                <img src={packet} />
+                                            </div>
+
+                                            <div className="actions">
+                                                <div className="drawButton">
+                                                    <img src={drawBtn} onClick={drawCard} />
+                                                </div>
+                                                <div className="tradeButton">
+                                                    <img src={tradeBtn} />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <Image style={{ paddingTop: '10rem' }} src={rocket} />
+                                    </Col>
+                                </Row>
+                            </Container>
+                        </section>
+                        <section className="terms-section">
+                            <Container>
+                                <Row>
+                                    <Col lg="1"></Col>
+                                    <Col lg="10" xs="12">
+                                        <div className="terms text-left">
+                                            <div className="terms-title">
+                                                <h4>Terems</h4>
+                                            </div>
+                                            <div className="terms-content">
+                                                <p>
+                                                    In 2021 the world became like in 1984. The
+                                                    human race got enslaved to nonsense NFT Art
+                                                    and bad Collectibles. Ugly Kitties and
+                                                    terrible Punks mesmerized humankind and
+                                                    stole their money. Seeking revenge for the
+                                                    unjust treatment of the true meaning of
+                                                    NFTs, the CryptoGOGOs are coming the far way
+                                                    from PLANET GOGO in the Metaverse to start a
+                                                    revolution. Alongside the GOGO-Rebellion
+                                                    (CryptoGOGO-Collectors), they bring back
+                                                    freedom and power to humankind by taking
+                                                    over the NFT WORLD.
+                                                </p>
+
+                                                <p>
+                                                    In 2021 the world became like in 1984. The
+                                                    human race got enslaved to nonsense NFT Art
+                                                    and bad Collectibles. Ugly Kitties and
+                                                    terrible Punks mesmerized humankind and
+                                                    stole their money. Seeking revenge for the
+                                                    unjust treatment of the true meaning of
+                                                    NFTs,
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </Col>
+                                    <Col lg="1"></Col>
+                                </Row>
+                            </Container>
+                        </section>
+                    </div>
 
                 </S.DrawTradeWrapper>
             ) : (
