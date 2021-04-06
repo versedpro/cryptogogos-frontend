@@ -49,6 +49,12 @@ const DrawTrade = () => {
         await loadContract()
         await loadAccount()
     }, [])
+
+
+    useEffect(() => {
+        if(videoRef.current)
+        videoRef.current.play().then(() => console.log("playing video")).catch((e) => console.error(e))
+    }, [videoRef.current])
     const getDrawCard = async () => {
         const request = await axios.post('https://api.cryptogogos.com/api/v1/cards/draw', {
             addresss: '',
@@ -181,21 +187,23 @@ const DrawTrade = () => {
         <div className="draw-trade">
             {account ? (
                 <S.DrawTradeWrapper>
-                    {cardImg ? (
-                        <div className="video-card">
-                            <video
-                                ref={videoRef}
-                                src={cardImg}
-                                width="800px"
-                                controls={false}
-                                playsInline
-                                autoPlay={true}
-                                muted
-                                loop
-                            />
-                        </div>
-                    ) : (
+
                         <div>
+                            <div className="video-card" style={{
+                                opacity: cardImg? 1: 0,
+                                zIndex: cardImg ? 5000: -20
+                            }}>
+                                <video
+                                    ref={videoRef}
+                                    src={cardImg}
+                                    width="800px"
+                                    controls={false}
+                                    playsInline
+                                    autoPlay={true}
+                                    muted
+                                    loop
+                                />
+                            </div>
                             <section className="heading-section space-ship">
                                 <Container>
                                     <Row>
@@ -272,7 +280,7 @@ const DrawTrade = () => {
                                 </Container>
                             </section>
                         </div>
-                    )}
+
                 </S.DrawTradeWrapper>
             ) : (
                 <div className="no-meta-mask text-center">
