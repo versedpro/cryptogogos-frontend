@@ -82,18 +82,18 @@ export default class Distribution extends React.Component {
 
                     <Row className="distribution-row">
                         <Col xs="12" lg="2">
-                            <div className="nft-distribute active in-progress first-distribute extra-white">
+                            <div className="nft-distribute  in-progress first-distribute extra-white">
                                 <div className="distribute-bar"></div>
-                                <div className="progressed-bar"></div>
-                                <div className="milestone first">
-                                    <Image src={milestone} />
-                                </div>
-                                <div className="milestone">
-                                    <Image src={milestone} />
-                                </div>
-                                <div className="milestone progressed">
-                                    <Image src={milestonProgress} />
-                                </div>
+                                {/*<div className="progressed-bar"></div>*/}
+                                {/*<div className="milestone first">*/}
+                                {/*    <Image src={milestone} />*/}
+                                {/*</div>*/}
+                                {/*<div className="milestone">*/}
+                                {/*    <Image src={milestone} />*/}
+                                {/*</div>*/}
+                                {/*<div className="milestone progressed">*/}
+                                {/*    <Image src={milestonProgress} />*/}
+                                {/*</div>*/}
                                 <div className="nft-price">0.05 ETH</div>
                                 <div className="nft-numbers">150 NFTs</div>
                             </div>
