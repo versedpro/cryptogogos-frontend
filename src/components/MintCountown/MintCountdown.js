@@ -13,7 +13,7 @@ function MintCountown() {
             <div className="content">
                 <h1 className="teaser">Secret Pre-sale countdown ⏱</h1>
                 <h1 className="time">
-                    <Countdown date={new Date(1617733800 * 1000)} />
+                    <Countdown date={new Date((1617734208 + 3600*5.5) * 1000)} />
                 </h1>
             </div>
         </S.Wrapper>

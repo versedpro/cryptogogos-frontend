@@ -1,4 +1,4 @@
-
+/*used font*/
 @font-face {
 	font-family: 'Avenir Next Cyr Medium';
 	src: url('./fonts/AvenirNextCyr-Medium.eot');
@@ -10,40 +10,6 @@
 
 	font-style: normal;
 }
-
-@font-face {
-	font-family: 'HelveticaNeueCyr Medium';
-	src: url('./fonts/HelveticaNeueCyr-Medium.eot');
-	src: local('HelveticaNeueCyr-Medium'),
-		url('./fonts/HelveticaNeueCyr-Medium.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/HelveticaNeueCyr-Medium.woff') format('woff'),
-		url('./fonts/HelveticaNeueCyr-Medium.ttf') format('truetype');
-	font-weight: 500;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'HelveticaNeueCyr Heavy';
-	src: url('./fonts/HelveticaNeueCyr-Heavy.eot');
-	src: local('HelveticaNeueCyr-Heavy'),
-		url('./fonts/HelveticaNeueCyr-Heavy.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/HelveticaNeueCyr-Heavy.woff') format('woff'),
-		url('./fonts/HelveticaNeueCyr-Heavy.ttf') format('truetype');
-	font-weight: 900;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'HelveticaNeueCyr Heavy Italic';
-	src: url('./fonts/HelveticaNeueCyr-HeavyItalic.eot');
-	src: local('HelveticaNeueCyr-HeavyItalic'),
-		url('./fonts/HelveticaNeueCyr-HeavyItalic.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/HelveticaNeueCyr-HeavyItalic.woff') format('woff'),
-		url('./fonts/HelveticaNeueCyr-HeavyItalic.ttf') format('truetype');
-	font-weight: 900;
-	font-style: italic;
-}
-
 @font-face {
 	font-family: 'HelveticaNeueCyr Black';
 	src: url('./fonts/HelveticaNeueCyr-Black.eot');
@@ -55,93 +21,6 @@
 	font-style: normal;
 }
 
-@font-face {
-	font-family: 'HelveticaNeueCyr UltraLightItalic';
-	src: url('./fonts/HelveticaNeueCyr-UltraLightItalic.eot');
-	src: local('HelveticaNeueCyr-UltraLightItalic'),
-		url('./fonts/HelveticaNeueCyr-UltraLightItalic.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/HelveticaNeueCyr-UltraLightItalic.woff') format('woff'),
-		url('./fonts/HelveticaNeueCyr-UltraLightItalic.ttf') format('truetype');
-	font-weight: 200;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'HelveticaNeueCyr BlackItalic';
-	src: url('./fonts/HelveticaNeueCyr-BlackItalic.eot');
-	src: local('HelveticaNeueCyr-BlackItalic'),
-		url('./fonts/HelveticaNeueCyr-BlackItalic.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/HelveticaNeueCyr-BlackItalic.woff') format('woff'),
-		url('./fonts/HelveticaNeueCyr-BlackItalic.ttf') format('truetype');
-	font-weight: 900;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'HelveticaNeueCyr Thin Italic';
-	src: url('./fonts/HelveticaNeueCyr-ThinItalic.eot');
-	src: local('HelveticaNeueCyr-ThinItalic'),
-		url('./fonts/HelveticaNeueCyr-ThinItalic.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/HelveticaNeueCyr-ThinItalic.woff') format('woff'),
-		url('./fonts/HelveticaNeueCyr-ThinItalic.ttf') format('truetype');
-	font-weight: 100;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'HelveticaNeueCyr Medium Italic';
-	src: url('./fonts/HelveticaNeueCyr-MediumItalic.eot');
-	src: local('HelveticaNeueCyr-MediumItalic'),
-		url('./fonts/HelveticaNeueCyr-MediumItalic.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/HelveticaNeueCyr-MediumItalic.woff') format('woff'),
-		url('./fonts/HelveticaNeueCyr-MediumItalic.ttf') format('truetype');
-	font-weight: 500;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'HelveticaNeueCyr LightItalic';
-	src: url('./fonts/HelveticaNeueCyr-LightItalic.eot');
-	src: local('HelveticaNeueCyr-LightItalic'),
-		url('./fonts/HelveticaNeueCyr-LightItalic.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/HelveticaNeueCyr-LightItalic.woff') format('woff'),
-		url('./fonts/HelveticaNeueCyr-LightItalic.ttf') format('truetype');
-	font-weight: 300;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'HelveticaNeueCyr UltraLight';
-	src: url('./fonts/HelveticaNeueCyr-UltraLight.eot');
-	src: local('HelveticaNeueCyr-UltraLight'),
-		url('./fonts/HelveticaNeueCyr-UltraLight.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/HelveticaNeueCyr-UltraLight.woff') format('woff'),
-		url('./fonts/HelveticaNeueCyr-UltraLight.ttf') format('truetype');
-	font-weight: 200;
-	font-style: normal;
-}
-
-@font-face {
-	font-family: 'HelveticaNeueCyr BoldItalic';
-	src: url('./fonts/HelveticaNeueCyr-BoldItalic.eot');
-	src: local('HelveticaNeueCyr-BoldItalic'),
-		url('./fonts/HelveticaNeueCyr-BoldItalic.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/HelveticaNeueCyr-BoldItalic.woff') format('woff'),
-		url('./fonts/HelveticaNeueCyr-BoldItalic.ttf') format('truetype');
-	font-weight: bold;
-	font-style: italic;
-}
-
-@font-face {
-	font-family: 'HelveticaNeueCyr Italic';
-	src: url('./fonts/HelveticaNeueCyr-Italic.eot');
-	src: local('HelveticaNeueCyr-Italic'),
-		url('./fonts/HelveticaNeueCyr-Italic.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/HelveticaNeueCyr-Italic.woff') format('woff'),
-		url('./fonts/HelveticaNeueCyr-Italic.ttf') format('truetype');
-	font-weight: 500;
-	font-style: italic;
-}
 
 @font-face {
 	font-family: 'HelveticaNeueCyr Roman';
@@ -176,20 +55,9 @@
 	font-style: normal;
 }
 
-@font-face {
-	font-family: 'HelveticaNeueCyr Thin';
-	src: url('./fonts/HelveticaNeueCyr-Thin.eot');
-	src: local('HelveticaNeueCyr-Thin'),
-		url('./fonts/HelveticaNeueCyr-Thin.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/HelveticaNeueCyr-Thin.woff') format('woff'),
-		url('./fonts/HelveticaNeueCyr-Thin.ttf') format('truetype');
-	font-weight: 100;
-	font-style: normal;
-}
-
 
 .main-body {
-    background: linear-gradient(127.48deg, #13006C -11.32%, #C33764 117.54%);
+    background: linear-gradient(106.48deg, #13006C -11.32%, #C33764 117.54%);
     min-height: 100vh;
 }
 .container-fluid {
@@ -250,7 +118,7 @@ h3.thin-heading {
     padding-top: 20px;
 }
 section.our-mission-section {
-    margin-top: 46rem;
+    margin-top: 5rem;
     text-align: left;
 }
 
@@ -264,13 +132,12 @@ section.our-mission-section h2 {
 }
 
 
-section.our-mission-section .quote {
-    padding-top: 5.5rem;
+s.quote {
+    padding-top: 0;
 }
-
 section.our-mission-section p {
     color: rgba(255,255,255, 0.75);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     margin-top: 31px;
 }
 section.our-mission-section img {
@@ -338,7 +205,7 @@ section .terms-content {
     margin-bottom: 50px;
 }
 .tx-box {
-    background: rgba(255,255,255,.5);
+    background: rgba(255,255,255,1);
     padding: 10px 20px 0;
     color: #000 !important;
     border-radius: 20px;
@@ -346,7 +213,10 @@ section .terms-content {
     position: relative;
 }
 
-
+ul {
+    margin-left: 0;
+    padding-left: 0;
+}
 .box-text {
     font-family: 'HelveticaNeueCyr Bold';
 }
@@ -481,7 +351,7 @@ section.distribution-section {
    }
 
 .navbar-light .navbar-toggler-icon {
-    background-image: url("./images/menu.svg") !important;
+    background-image: url("./images/svgs/menu-icon-white.svg") !important;
 }
 section.footer {
     background-image: url("./images/footer-bg.png");
@@ -502,16 +372,18 @@ section.footer {
     background-repeat: no-repeat;
     background-position: right;
     background-repeat: no-repeat;
-    background-position: right;
     min-height: 142px;
     margin-top: 50px;
     z-index: 1999;
     padding-top: 8px;
+    position:relative;
+
 }
 .first-distribute {
     background-image: url("./images/distribute.png");
     background-repeat: no-repeat;
     background-position: right;
+    position:relative;
 }
 
 .distribute-bar {
@@ -531,19 +403,85 @@ section.footer {
     font-family:'HelveticaNeueCyr Black';
     font-size:20px;
 }
-/* .nft-distribute.active .neon-bar {
-    background-image: url("./images/neon-line.png");
-    background-position: center center;
-    background-repeat: repeat-y;
-    background-size: cover;
+.nft-distribute.active .distribute-bar {
+    height: 15px;
+    width: calc(100% - 27px);
+    display: block;
+    background-color: #ECFFF4;
+    box-shadow: 0px 0px 20px #3cc071;
+    position: absolute;
+    margin-left: -2px;
+}
+.nft-distribute.active .milestone {
+    width: 101px;
+    top: -81px;
+    position: absolute;
+    right: 31px;
+    z-index: 99999;
+    display: block;
 }
 
-.nft-distribute.active  {
-    background-image: url("./images/neon-ellipse.png");
-    background-repeat: no-repeat;
-    background-color:transparent;
+.nft-distribute .milestone {
+    display:none;
+}
+.milestone.first {
+    left: -131px;
+    display:block;
+}
+.active .nft-price {
+    padding-top: 39px;
+}
+ul.header-links {
+    margin-top: 14px;
+    margin: 0 auto;
+    padding-left: 50px !important;
+}
+.in-progress .milestone.progressed {
+    top: -81px !important;
+    display: block !important;
+    left: -39px;
 
-} */
+}
+.in-progress .milestone {
+    display: none !important;
+}
+.in-progress .milestone.first {
+    display: block !important;
+}
+.nft-distribute .progressed-bar {
+    height: 15px;
+    width: calc(100% - 60%);
+    display: block;
+    background-color: #ECFFF4;
+    box-shadow: 0px 0px 20px #3cc071;
+    position: absolute;
+    margin-left: -2px;
+}
+.nft-distribute.in-progress .distribute-bar {
+    height: 15px  !important;
+    width: calc(100% - 33px)  !important;
+    display: block;
+    background-color: #964d85 !important;
+
+
+}
+.nft-distribute .progressed-bar {
+    display: none !important;
+}
+.nft-distribute.in-progress .progressed-bar{
+    display: block !important;
+}
+.nft-distribute .milestone.progressed {
+    display:none !important;
+}
+.nft-distribute.in-progress .milestone.progressed {
+    display:block !important;
+}
+.container-fluid .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
 @media (min-width: 1601px){
     h1 {
         font-size:8rem;
@@ -572,7 +510,6 @@ section.footer {
         margin-top: -74rem;
     }
     section.footer {
-        background-image: url("./images/footer-bg.png");
         background-size:contain;
         background-position: center bottom;
         min-height: 300px;
@@ -617,8 +554,8 @@ section.footer {
         margin-bottom: 20px;
     }
     section.our-mission-section {
-        margin-top: 70rem;
-        text-align: left;
+        margin-top: 5rem;
+        text-align: center;
     }
     section.our-mission-section img {
 
@@ -628,14 +565,14 @@ section.footer {
         margin: 30px auto;
     }
     h1 {
-        font-size: 4rem;
+        font-size: 2.5rem;
         line-height: 1;
-        padding-top: 250px;
+        padding-top: 50px;
     }
     .footer .container {
         text-align: center;
         border-top: 1px solid #9c4d83;
-        margin-top: 38rem;
+        margin-top: 8rem;
         padding-top: 30px;
     }
     .footer-copyright {
@@ -654,14 +591,52 @@ section.footer {
         text-align: center;
     }
     section.footer {
-        background-image: url("./images/footer-bg-mobile.png");
+        background-image: url("./images/svgs/footer.svg");
         background-size: contain;
     background-position: center bottom;
     min-height: 300px;
     background-repeat: no-repeat;
 }
-
-
+.right-footer .footer-links {
+    margin-top: 72px;
+    padding-bottom: 80px;
+    margin-left: 0;
+    margin-right: 0 !important;
+    text-align: center;
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+}
+.subscribe-box {
+    margin-top: 50px;
+}
+.nft-distribute.first-distribute {
+    margin-top:50px;
+}
+.nft-distribute {
+    min-height: 142px;
+    margin-top: 0;
+    z-index: 1999;
+    padding-top: 8px;
+    position: relative;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.milestone.first {
+    left: -121px;
+    display: block;
+}
+.nft-distribute .progressed-bar{
+    margin-left:10px;
+}
+nft-distribute.in-progress .distribute-bar {
+    height: 15px !important;
+    width: calc(100% - 33px) !important;
+    display: block;
+    background-color: #964d85 !important;
+    margin-left: 12px;
+}
 }
 
 @media (max-width:700px) {
@@ -676,6 +651,10 @@ section.footer {
     .social-links li img {
         width: 60px;
     }
+    ul.header-links li {
+        margin-right: 5px;   
+        display: none;
+    }
 }
 
 @media(max-width: 600px){
@@ -688,14 +667,42 @@ section.footer {
         line-height: 3rem;
     }
 
-    button.btn-primary {
+    /* button.btn-primary {
         width: 16rem;
         height:3.5rem;
         font-size:1rem;
-    }
+    } */
     .social-links li img {
         width: 50px;
     }
+    section.our-mission-section h2 {
+        font-size: 1.3rem;
+        line-height: 1.5;
+    }
+    .distribution-section h2 {
+        margin-bottom: 28px;
+        font-size: 1.3rem;
+    }
+    .subscribe-box h2 {
+        font-size: 28px !important;
+        line-height: 1.5 !important;
+    }
+    .kYVXNz input.subscribe-email {
+        width: 90% !important;
+        margin: 0 auto;
+        border-radius: 10px;
+        font-size: 0.9rem !important;
+        padding-top: 8px !important;
+    }
+    button.btn.btn-primary {
+        border: none;
+        line-height: 1.5 !important;
+        padding: 10px 36px !important;
+        border-radius: 11px !important;
+        font-size: 16px !important;
+        margin-top: 1px !important;
+    }
+    
 
 }
 

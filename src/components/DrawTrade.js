@@ -13,7 +13,6 @@ import ABI from './contract.abi.json'
 
 require('dotenv').config()
 
-let abi = require('../contracts/cryptogogo/abi.json')
 
 const loadWeb3 = async () => {
     if (window.ethereum) {
