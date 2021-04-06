@@ -6,8 +6,6 @@ import axios from 'axios';
 
 require('dotenv').config();
 
-let abi = require("../contracts/cryptogogo/abi.json")
-
 
 export default class DrawTrade extends React.Component {
     constructor(props) {
@@ -601,7 +599,7 @@ export default class DrawTrade extends React.Component {
         const supply = await window.contract.methods.totalSupply().call();
         if (file) {
 
-            const result = await window.contract.methods.privated(this.state.account, `https://gateway.pinata.cloud/ipfs/${file.IpfsHash}`).send({ from: this.state.account });
+            const result = await window.contract.methods._mint(this.state.account, `https://gateway.pinata.cloud/ipfs/${file.IpfsHash}`).send({ from: this.state.account });
             console.log('result', result)
 
         }
@@ -625,7 +623,7 @@ export default class DrawTrade extends React.Component {
 
     async registerUser(address) {
         if (address) {
-            const request = axios.post('https://api.cryptogogos.com/api/v1/users/register', {
+            const request = axios.post('http://localhost:9000/api/v1/users/register', {
                 address: address
             }).catch(e => {
                 alert(e)
@@ -638,7 +636,7 @@ export default class DrawTrade extends React.Component {
 
 
     async getPackPrice() {
-        const request = axios.get('https://api.cryptogogos.com/api/v1/users/pack-price').catch(e => {
+        const request = axios.get('http://localhost:9000/api/v1/users/pack-price').catch(e => {
             alert(e)
         })
         this.setState({ price: request.data })
@@ -647,7 +645,7 @@ export default class DrawTrade extends React.Component {
 
 
     addPurchase(txDetails) {
-        const request = axios.post('https://api.cryptogogos.com/api/v1/users/purchases', {
+        const request = axios.post('http://localhost:9000/api/v1/users/purchases', {
             txDetails
         }).catch(e => {
             alert(e)
@@ -662,13 +660,13 @@ export default class DrawTrade extends React.Component {
 
     async getDrawCard() {
 
-        const request = await axios.post('https://api.cryptogogos.com/api/v1/cards/draw', { addresss: '' });
+        const request = await axios.post('http://localhost:9000/api/v1/cards/draw', { addresss: '' });
 
         return request;
     }
 
     async getFileHash(id) {
-        const request = await axios.post('https://api.cryptogogos.com/api/v1/cards/get-file', {
+        const request = await axios.post('http://localhost:9000/api/v1/cards/get-file', {
             id
         })
 

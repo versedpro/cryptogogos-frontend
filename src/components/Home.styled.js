@@ -1,10 +1,6 @@
 import styled from 'styled-components'
 import bg from '../images/background.jpg'
 export const HomeWrapper = styled.div`
-
- background: url(${bg}) no-repeat ;
-    background-size: cover;
-    background-position: center top;
     
 
 input.subscribe-email {
