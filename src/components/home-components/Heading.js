@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Image } from 'react-bootstrap'
-import headingBanner from '../../images/svgs/banner.svg'
+import headingBanner from '../../images/home-banner.png'
 
 export default class Heading extends React.Component {
 
