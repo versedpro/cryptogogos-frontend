@@ -10,6 +10,10 @@ export const Wrapper = styled.div`
         left: 0;
         right: 0;
         bottom: 0;
+        
+        @media(max-width: 850px) {
+        display: none;
+        }
     }
 
     h1 {
