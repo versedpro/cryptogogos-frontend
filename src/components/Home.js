@@ -70,7 +70,7 @@ const CustomLeftArrow = ({ onClick, ...rest }) => {
     return (
         <button onClick={() => onClick()}>
             <svg
-                width="40"
+                width="40"hom
                 height="40"
                 viewBox="0 0 40 40"
                 fill="none"
