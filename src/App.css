@@ -300,6 +300,19 @@ section .terms-content {
 .rocket-buttons .actions img {
     cursor: pointer;
 }
+.video-card {
+    /* background: black;
+    width: 100vw;
+    height: 100vh; */
+    background: black;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    height: 100vh;
+    z-index: 9;
+}
 .drawButton {
     padding-top: 3rem;
 }

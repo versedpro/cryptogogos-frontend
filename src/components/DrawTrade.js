@@ -570,48 +570,46 @@ export default class DrawTrade extends React.Component {
     }
 
     async drawCard() {
-        this.setState({ cardImg: videoWrap });
-
         const web3 = window.web3
         console.log('clicked');
         const price = await this.getPackPrice();
         const amount = JSON.stringify(price.data);
         console.log('price', amount)
-        const transactionParameters = {
-            nonce: '0x00', // ignored by MetaMask
-            //   gasPrice: '0x09184e72a000', // customizable by user during MetaMask confirmation.
-            //gas: '0x2710', // customizable by user during MetaMask confirmation.
-            gasPrice: '0x09184e72a000',
-            gasLimit: '0x21000',
-            to: '0xa84aAD9E9e1213Bc77AfEfe2EEBD08ccd2efDAdf', // Required except during contract publications.
-            from: window.ethereum.selectedAddress, // must match user's active address.
-            value: parseInt(Web3.utils.toWei(amount, 'ether')).toString(16), // Only required to send ether to the recipient from the initiating external account.
-            //   data:
-            //     '0x7f7465737432000000000000000000000000000000000000000000000000000000600057', // Optional, but used for defining smart contract creation and interaction.
-            chainId: '4', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
-        };
+        // const transactionParameters = {
+        //     nonce: '0x00', // ignored by MetaMask
+        //     //   gasPrice: '0x09184e72a000', // customizable by user during MetaMask confirmation.
+        //     //gas: '0x2710', // customizable by user during MetaMask confirmation.
+        //     gasPrice: '0x09184e72a000',
+        //     gasLimit: '0x21000',
+        //     to: '0xa84aAD9E9e1213Bc77AfEfe2EEBD08ccd2efDAdf', // Required except during contract publications.
+        //     from: window.ethereum.selectedAddress, // must match user's active address.
+        //     value: parseInt(Web3.utils.toWei(amount, 'ether')).toString(16), // Only required to send ether to the recipient from the initiating external account.
+        //     //   data:
+        //     //     '0x7f7465737432000000000000000000000000000000000000000000000000000000600057', // Optional, but used for defining smart contract creation and interaction.
+        //     chainId: '4', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
+        // };
 
-        // txHash is a hex string
-        // As with any RPC call, it may throw an error
-        const txHash = await window.ethereum.request({
-            method: 'eth_sendTransaction',
-            params: [transactionParameters],
+        // // txHash is a hex string
+        // // As with any RPC call, it may throw an error
+        // const txHash = await window.ethereum.request({
+        //     method: 'eth_sendTransaction',
+        //     params: [transactionParameters],
 
-        })
+        // })
 
-        if (txHash) {
-            const obj = {
-                eth_address: this.state.account,
-                quantity: 1,
-                value: amount,
-                status: "success",
-                txHash: txHash
-            }
-            this.addPurchase(obj);
+        // if (txHash) {
+        //     const obj = {
+        //         eth_address: this.state.account,
+        //         quantity: 1,
+        //         value: amount,
+        //         status: "success",
+        //         txHash: txHash
+        //     }
+        //     this.addPurchase(obj);
 
-        } else {
-            return;
-        }
+        // } else {
+        //     return;
+        // }
 
 
         let cards = await this.getDrawCard();
@@ -625,15 +623,39 @@ export default class DrawTrade extends React.Component {
         window.contract = await this.loadContract();
 
         const supply = await window.contract.methods.totalSupply().call();
-        
+
         const self = this;
 
         const result = await window.contract.methods.mint(cards_info.meta).send({ from: this.state.account, value: web3.utils.toWei(amount, 'ether')})
-        .on('receipt', function(){
+        .on('transactionHash', function(transactionHash){
+            console.log('transactionHash');
+            self.setState({ cardImg: videoWrap });
+        })
+        .on('receipt', function(result){
             console.log("Your Received NFT Token");
             // window.open(cards[0].card.image, "_blank");
             self.setState({ cardImg: null });
             self.setState({ cardImg: cards_info.card.image });
+
+            console.log("Transactions: ", result);
+            
+            const obj = {
+                eth_address: self.state.account,
+                quantity: 1,
+                value: amount,
+                status: "success",
+                txHash: result.transactionHash
+            }
+            self.addPurchase(obj);
+
+            self.addTransactoin({
+                eth_address: self.state.account,
+                quantity: 1,
+                value: amount,
+                status: "success",
+                txHash: result.transactionHash,
+                tokenIds: [result.transactionIndex]
+            })
         })
         .on('error', function(error, receipt) {
             console.log(error);
@@ -688,8 +710,12 @@ export default class DrawTrade extends React.Component {
         this.setState({ user: request })
     }
 
-    addTransactoin() {
-
+    async addTransactoin(txDetails) {
+        const request = await axios.post('https://api.cryptogogos.com/api/v1/users/transactions', {
+            ...txDetails
+        }).catch(e => {
+            alert(e)
+        })
     }
 
     async getDrawCard() {
@@ -720,7 +746,7 @@ export default class DrawTrade extends React.Component {
                                 this.state.cardImg ?
 
                                 <div className="video-card">
-                                    <video width="100%" height="100%" controls={false} autoPlay>
+                                    <video width="800px" controls={false} autoPlay>
                                         <source src={this.state.cardImg} type="video/mp4" />
                                     </video>
                                 </div> :
