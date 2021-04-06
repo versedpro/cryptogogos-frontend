@@ -81,7 +81,7 @@ function App() {
                 </Container>
                 <Switch>
                     <Route path="/" exact component={Home} />
-                    <Route path="/draw-trade" component={DrawTrade} />
+                    <Route path="/df2852a2b39ef0790c7acc806cdaca35-n" component={DrawTrade} />
                     <Route path="/faq" component={Faq} />
                     <Route path="/gallery" component={Gallery} />
                     <Route path="/leaderboard" component={Leaderboard} />
