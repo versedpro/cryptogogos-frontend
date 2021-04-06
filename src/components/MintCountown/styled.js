@@ -5,8 +5,8 @@ export const Wrapper = styled.div`
     position: relative;
 
     .particles {
-        position: absolute;
-        top: -200px;
+        position: fixed;
+        top: 0;
         left: 0;
         right: 0;
         bottom: 0;
