@@ -32,6 +32,7 @@ const loadContract = () => {
 const DrawTrade = () => {
     const videoRef = React.createRef()
     const [user, setUser] = React.useState()
+    const [canClose, setCanClose] = React.useState(false)
     const [account, setAccount] = React.useState()
     const [price, setPrice] = React.useState()
     const [cardImg, setCardImg] = React.useState({  })
@@ -70,6 +71,54 @@ const DrawTrade = () => {
         return mintPrice
     }
 
+    const handleAccountsChanged = accounts => {
+        if (accounts.length === 0) {
+            setAccount(null)
+            console.log(account)
+            // MetaMask is locked or the user has not connected any accounts
+            console.log('Please connect to MetaMask.')
+        } else if (accounts[0] !== account) {
+            setAccount(accounts[0])
+            // Do any other work!
+        }
+    }
+
+    const registerUser = async address => {
+        if (address) {
+            const request = axios
+                .post('https://api.cryptogogos.com/api/v1/users/register', {
+                    address: address,
+                })
+                .catch(e => {
+                    alert(e)
+                })
+
+            setUser(request)
+        }
+    }
+
+    const addPurchase = async txDetails => {
+        const request = axios
+            .post('https://api.cryptogogos.com/api/v1/users/purchases', {
+                txDetails,
+            })
+            .catch(e => {
+                alert(e)
+            })
+
+        setUser(request)
+    }
+
+    const addTransactoin = async txDetails => {
+        const request = await axios
+            .post('https://api.cryptogogos.com/api/v1/users/transactions', {
+                ...txDetails,
+            })
+            .catch(e => {
+                alert(e)
+            })
+    }
+
     const drawCard = async () => {
         setIsOpening("Connecting Metamask...")
 
@@ -104,7 +153,8 @@ const DrawTrade = () => {
                 setIsOpening("Bringing A GOGO to Planet Earth 🌍...")
 
             })
-            .on('receipt', function(result) {
+            .on('receipt', async function(result) {
+                setCanClose(true)
                 console.log('Your Received NFT Token', cards_info)
                 // window.open(cards[0].card.image, "_blank");
                 setCardImg({})
@@ -119,69 +169,27 @@ const DrawTrade = () => {
                     status: 'success',
                     txHash: result.transactionHash,
                 }
-                addPurchase(obj)
 
-                addTransactoin({
+                await  registerUser(account)
+                console.log('addiong purchase')
+                await addPurchase(obj)
+
+
+                console.log('addiong transaction')
+                await addTransactoin({
                     eth_address: account,
                     quantity: 1,
                     value: amount,
                     status: 'success',
                     txHash: result.transactionHash,
-                    tokenIds: [result.transactionIndex],
+                    tokenIds: [cards_info.card.token_id],
                 })
             })
             .on('error', function(error, receipt) {
                 console.log(error)
             })
 
-        const handleAccountsChanged = accounts => {
-            if (accounts.length === 0) {
-                setAccount(null)
-                console.log(account)
-                // MetaMask is locked or the user has not connected any accounts
-                console.log('Please connect to MetaMask.')
-            } else if (accounts[0] !== account) {
-                setAccount(accounts[0])
-                registerUser(accounts[0])
-                // Do any other work!
-            }
-        }
 
-        const registerUser = async address => {
-            if (address) {
-                const request = axios
-                    .post('https://api.cryptogogos.com/api/v1/users/register', {
-                        address: address,
-                    })
-                    .catch(e => {
-                        alert(e)
-                    })
-
-                setUser(request)
-            }
-        }
-
-        const addPurchase = async txDetails => {
-            const request = axios
-                .post('https://api.cryptogogos.com/api/v1/users/purchases', {
-                    txDetails,
-                })
-                .catch(e => {
-                    alert(e)
-                })
-
-            setUser(request)
-        }
-
-        const addTransactoin = async txDetails => {
-            const request = await axios
-                .post('https://api.cryptogogos.com/api/v1/users/transactions', {
-                    ...txDetails,
-                })
-                .catch(e => {
-                    alert(e)
-                })
-        }
 
         window.ethereum.on('accountsChanged', handleAccountsChanged)
     }
@@ -189,7 +197,9 @@ const DrawTrade = () => {
         <div className="draw-trade">
             {account ? (
                 <S.DrawTradeWrapper>
-
+                    {canClose && <div className="close" onClick={() => setIsOpening(false)}>
+                        <b>Go back to spaceship</b>
+                    </div>}
                     <div>
                         <div className="video-card" style={{
                             opacity: isOpening ? 1 : 0,

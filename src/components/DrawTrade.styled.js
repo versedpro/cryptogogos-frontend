@@ -16,4 +16,12 @@ input.subscribe-email {
     font-size: 1.5rem;
     padding-top: 8px;
 }
+
+
+.close {
+position: absolute;
+top: 50px;
+right: 50px;
+font-size: 24px;
+}
 `
