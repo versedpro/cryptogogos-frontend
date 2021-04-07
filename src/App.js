@@ -62,13 +62,13 @@ function App() {
                                             <b>Wiki →</b>
                                         </Nav.Link>
                                         <Nav.Link href="#home">Draw & Trade</Nav.Link>
-                                        <Nav.Link href="#link">OpenSea</Nav.Link>
+                                        <Nav.Link href="https://opensea.io/assets/cryptogogos">OpenSea</Nav.Link>
                                         {/*<Nav.Link href="#link">Gallery</Nav.Link>*/}
                                         {/*<Nav.Link href="#link">Leaderboard</Nav.Link>*/}
-                                        <Nav.Link href="#link">About</Nav.Link>
-                                        <Nav.Link href="#link">FAQ</Nav.Link>
+                                        <Nav.Link  href="https://wiki.cryptogogos.com/about/">About</Nav.Link>
+                                        <Nav.Link  href="https://wiki.cryptogogos.com/faq">FAQ</Nav.Link>
                                         <Nav.Link href="#link">
-                                            <Button variant="outline-light">
+                                            <Button disabled style={{opacity: 0.5}} variant="outline-light">
                                                 <Image src={wallet} />
                                                 My wallet
                                             </Button>{' '}
@@ -108,23 +108,17 @@ function App() {
                                                 <a href="#">Draw & Trade</a>
                                             </li>
                                             <li>
-                                                <a href="#">Gallery</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Leaderboard</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Suggestion & Offfers</a>
+                                                <a href="#">Suggestion & Offers</a>
                                             </li>
                                         </ul>
                                     </Col>
                                     <Col lg="2">
                                         <ul>
                                             <li>
-                                                <a href="#">About</a>
+                                                <a href="https://wiki.cryptogogos.com/about/">About</a>
                                             </li>
                                             <li>
-                                                <a href="#">FAQ</a>
+                                                <a href="https://wiki.cryptogogos.com/faq">FAQ</a>
                                             </li>
                                             <li>
                                                 <a
@@ -136,7 +130,7 @@ function App() {
                                         </ul>
                                     </Col>
                                     <Col lg="5" className="right-footer">
-                                        <Button variant="outline-light">
+                                        <Button  disabled style={{opacity: .5}} variant="outline-light">
                                             <Image src={wallet} />
                                             My wallet
                                         </Button>{' '}

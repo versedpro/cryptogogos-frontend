@@ -26,11 +26,13 @@ const loadWeb3 = async () => {
 }
 
 const loadContract = () => {
-    return new window.web3.eth.Contract(ABI, '0x916ad05a23B4e2d08f61802deD6E11Bfe3021a7f')
+    return new window.web3.eth.Contract(ABI, '0x2118E79aBEf1D49d6ff9B38F104A166A00633420')
 }
 
 const DrawTrade = () => {
     const videoRef = React.createRef()
+    const [isAuth, setIsAuth] = React.useState(false)
+    const [isValid, setIsValid] = React.useState(false)
     const [user, setUser] = React.useState()
     const [canClose, setCanClose] = React.useState(false)
     const [account, setAccount] = React.useState()
@@ -194,6 +196,18 @@ const DrawTrade = () => {
 
         window.ethereum.on('accountsChanged', handleAccountsChanged)
     }
+
+
+    if(!isAuth) return <div className="draw-trade" style={{
+    padding: '250px'}
+    }>
+        <h2>Enter your pre registered ETH address 👁</h2>
+        <form onSubmit={() => setIsAuth(true)}>
+            <input className="form-control" type="text" minLength={8} onChange={(e) => setIsValid(e.target.value.length >= 8)}
+                   style={{ maxWidth: '300px', margin: '40px auto 10px auto' }} />
+            <button disabled={!isValid} type="submit" className="btn btn-primary"><b>Enter The Gogo 🚀</b></button>
+        </form>
+    </div>
     return (
         <div className="draw-trade">
             {account ? (
