@@ -63,8 +63,8 @@ function App() {
                                         </Nav.Link>
                                         <Nav.Link href="#home">Draw & Trade</Nav.Link>
                                         <Nav.Link href="#link">OpenSea</Nav.Link>
-                                        <Nav.Link href="#link">Gallery</Nav.Link>
-                                        <Nav.Link href="#link">Leaderboard</Nav.Link>
+                                        {/*<Nav.Link href="#link">Gallery</Nav.Link>*/}
+                                        {/*<Nav.Link href="#link">Leaderboard</Nav.Link>*/}
                                         <Nav.Link href="#link">About</Nav.Link>
                                         <Nav.Link href="#link">FAQ</Nav.Link>
                                         <Nav.Link href="#link">

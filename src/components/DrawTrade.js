@@ -26,7 +26,7 @@ const loadWeb3 = async () => {
 }
 
 const loadContract = () => {
-    return new window.web3.eth.Contract(ABI, '0x369eEF69bCE3ECBA04C3195d70093132CcFd471c')
+    return new window.web3.eth.Contract(ABI, '0x916ad05a23B4e2d08f61802deD6E11Bfe3021a7f')
 }
 
 const DrawTrade = () => {
@@ -188,6 +188,7 @@ const DrawTrade = () => {
             .on('error', function(error, receipt) {
                 console.log(error)
             })
+
 
 
 
