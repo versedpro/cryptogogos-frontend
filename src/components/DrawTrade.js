@@ -71,6 +71,8 @@ const DrawTrade = () => {
     }
 
     const drawCard = async () => {
+        setIsOpening("Connecting Metamask...")
+
         const web3 = window.web3
         console.log('clicked')
 
@@ -99,7 +101,8 @@ const DrawTrade = () => {
             })
             .on('transactionHash', function(transactionHash) {
                 console.log('transactionHash')
-                setIsOpening(true)
+                setIsOpening("Bringing A GOGO to Planet Earth 🌍...")
+
             })
             .on('receipt', function(result) {
                 console.log('Your Received NFT Token', cards_info)
@@ -212,7 +215,7 @@ const DrawTrade = () => {
                             >
                                 <source  src={cardImg.url} type={"video/mp4"}/>
                             </video>: <div>
-                                <h2 style={{color:"white", position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)'}}>Bringing A GOGO to Planet Earth 🌍...</h2>
+                                <h2 style={{color:"white", position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)'}}>{isOpening}</h2>
                             </div>}
 
                         </div>
