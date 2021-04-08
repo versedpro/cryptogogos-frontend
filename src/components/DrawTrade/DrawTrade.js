@@ -56,6 +56,8 @@ const DrawTrade = () => {
     const [price, setPrice] = React.useState()
     const [metadata, setMetaData] = React.useState({})
     const [isOpening, setIsOpening] = React.useState(false)
+    const [tokenId, setTokenId] = React.useState(null)
+    
     const loadAccount = async () => {
         const web3 = window.web3
 
@@ -118,12 +120,12 @@ const DrawTrade = () => {
                 })
 
             const balance = await window.contract.methods.balanceOf(account).call()
-            const tokenId = await window.contract.methods.tokenOfOwnerByIndex(account, balance-1).call()
-
+            const _tokenId = await window.contract.methods.tokenOfOwnerByIndex(account, balance-1).call()
+            setTokenId(_tokenId)
             setIsOpening('Grooming your GOGO ⚡️...')
-            await confirmMint(account, tokenId, signature)
+            await confirmMint(account, _tokenId, signature)
 
-            const {data: metadata } = await getTokenMetadata(tokenId)
+            const {data: metadata } = await getTokenMetadata(_tokenId)
 
             console.log(metadata)
 
@@ -179,7 +181,7 @@ const DrawTrade = () => {
                             }}>
                             <Particles></Particles>
 
-                            {metadata.image ? <GOGODetails metadata={metadata}/> : (
+                            {metadata.image ? <GOGODetails tokenId={tokenId} metadata={metadata}/> : (
                                 <div>
                                     <h2
                                         style={{
