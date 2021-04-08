@@ -53,21 +53,21 @@ export default class Distribution extends React.Component {
                         <Col xs="12" lg="3">
                             <div className="tx-box extra-white">
                                 <div className="box-text">Amount of CryptoGOGOs</div>
-                                <div className="box-number">0%</div>
+                                <div className="box-number">18%</div>
                                 <div className="box-label red">Sold</div>
                             </div>
                         </Col>
                         <Col xs="12" lg="3">
                             <div className="tx-box">
                                 <div className="box-text">Max amount per tx</div>
-                                <div className="box-number">XX</div>
+                                <div className="box-number">2</div>
                                 <div className="box-label">Tier 1</div>
                             </div>
                         </Col>
                         <Col xs="12" lg="3">
                             <div className="tx-box">
                                 <div className="box-text">Max amount per tx</div>
-                                <div className="box-number">XX</div>
+                                <div className="box-number">2</div>
                                 <div className="box-label">Tier 2</div>
                             </div>
                         </Col>
