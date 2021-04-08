@@ -448,7 +448,7 @@ ul.header-links {
 .in-progress .milestone.progressed {
     top: -81px !important;
     display: block !important;
-    left: 5px;
+    /* left: 5px; */
 }
 .in-progress .milestone {
     display: none !important;
