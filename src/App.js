@@ -10,7 +10,7 @@ import wallet from './images/svgs/wallet.svg'
 import Home from './components/Home'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import DrawTrade from './components/DrawTrade'
+import DrawTrade from './components/DrawTrade/DrawTrade'
 import Faq from './components/Faq'
 import Gallery from './components/Gallery'
 import Leaderboard from './components/Leaderboard'

@@ -1,15 +1,24 @@
 import React, { useEffect } from 'react'
 import Particles from 'react-particles-js'
 import Web3 from 'web3'
-import rocket from '../images/rocket_cp_006.png'
+import rocket from '../../images/rocket_cp_006.png'
 import { Container, Row, Col, Image } from 'react-bootstrap'
+import {
+    addPurchase,
+    addTransaction, confirmMint,
+    createMintRequest,
+    getDrawCard, getTokenMetadata,
+    registerUser,
+} from '../../utils/api'
+import DrawError from './DrawError'
 import * as S from './DrawTrade.styled'
-import drawBtn from '../images/button-draw.png'
-import tradeBtn from '../images/button-trade.png'
-import packet from '../images/gogos_card_small.png'
-import videoWrap from '../videos/wrapper_3.mp4'
+import drawBtn from '../../images/button-draw.png'
+import tradeBtn from '../../images/button-trade.png'
+import packet from '../../images/gogos_card_small.png'
+import videoWrap from '../../videos/wrapper_3.mp4'
 import axios from 'axios'
-import ABI from './contract.abi.json'
+import ABI from '../../utils/contract.abi.json'
+import GOGODetails from './GOGODetails'
 
 require('dotenv').config()
 
@@ -23,21 +32,29 @@ const loadWeb3 = async () => {
     } else {
         window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
     }
+
+    window.web3.eth.getGasPrice((err, curPrice) => {
+        window.gasPrice = curPrice
+    })
+
+
 }
 
 const loadContract = () => {
-    return new window.web3.eth.Contract(ABI, '0x2118E79aBEf1D49d6ff9B38F104A166A00633420')
+    // return new window.web3.eth.Contract(ABI, '0x2118E79aBEf1D49d6ff9B38F104A166A00633420') //mainnet
+    return new window.web3.eth.Contract(ABI, '0xd90467ADd138dF4362f105437e42Ad6e6DC15193') //testnet
 }
 
 const DrawTrade = () => {
     const videoRef = React.createRef()
+    const [error, setError] = React.useState(null)
     const [isAuth, setIsAuth] = React.useState(false)
+    const [signature, setSignature] = React.useState(false)
     const [isValid, setIsValid] = React.useState(false)
-    const [user, setUser] = React.useState()
     const [canClose, setCanClose] = React.useState(false)
     const [account, setAccount] = React.useState()
     const [price, setPrice] = React.useState()
-    const [cardImg, setCardImg] = React.useState({  })
+    const [metadata, setMetaData] = React.useState({})
     const [isOpening, setIsOpening] = React.useState(false)
     const loadAccount = async () => {
         const web3 = window.web3
@@ -53,18 +70,6 @@ const DrawTrade = () => {
         await loadContract()
         await loadAccount()
     }, [])
-
-    useEffect(() => {
-        // if (videoRef.current && videoRef.current.play)
-        //     videoRef.current.play().then(() => console.log('playing video')).catch((e) => console.error(e))
-    }, [videoRef.current])
-    const getDrawCard = async () => {
-        const request = await axios.post('https://api.cryptogogos.com/api/v1/cards/draw', {
-            addresss: '',
-        })
-
-        return request
-    }
 
     const getPackPrice = async () => {
         const mintPrice = await window.contract.methods.getNFTPrice().call()
@@ -85,172 +90,115 @@ const DrawTrade = () => {
         }
     }
 
-    const registerUser = async address => {
-        if (address) {
-            const request = axios
-                .post('https://api.cryptogogos.com/api/v1/users/register', {
-                    address: address,
-                })
-                .catch(e => {
-                    alert(e)
-                })
-
-            setUser(request)
-        }
-    }
-
-    const addPurchase = async txDetails => {
-        const request = axios
-            .post('https://api.cryptogogos.com/api/v1/users/purchases', {
-                txDetails,
-            })
-            .catch(e => {
-                alert(e)
-            })
-
-        setUser(request)
-    }
-
-    const addTransactoin = async txDetails => {
-        const request = await axios
-            .post('https://api.cryptogogos.com/api/v1/users/transactions', {
-                ...txDetails,
-            })
-            .catch(e => {
-                alert(e)
-            })
-    }
-
-    const drawCard = async () => {
-        setIsOpening("Connecting Metamask...")
-
-        const web3 = window.web3
-        console.log('clicked')
-
-
-        let cards = await getDrawCard()
-        console.log(cards)
-        if (cards.data.length === 0) {
-            cards = await getDrawCard()
-        }
-
-        let cards_info = cards.data[0]
-
+    const handleDrawCardClicked = async () => {
+        setIsOpening('Connecting Metamask...')
         window.contract = await loadContract()
 
-        const supply = await window.contract.methods.totalSupply().call()
+        const web3 = window.web3
 
-        const price = await getPackPrice()
-        const amount = JSON.stringify(price.data)
-        console.log('price', amount)
+        try {
+            const {data: {signature}} = await createMintRequest(account)
+            setSignature(signature)
 
-        const result = await window.contract.methods
-            .mint(cards_info.meta)
-            .send({
-                from: account,
-                value: web3.utils.toWei(price, 'wei'),
-            })
-            .on('transactionHash', function(transactionHash) {
-                console.log('transactionHash')
-                setIsOpening("Bringing A GOGO to Planet Earth 🌍...")
-
-            })
-            .on('receipt', async function(result) {
-                setCanClose(true)
-                console.log('Your Received NFT Token', cards_info)
-                // window.open(cards[0].card.image, "_blank");
-                setCardImg({})
-                setCardImg({url: cards_info.card.image})
-
-                console.log('Transactions: ', result)
-
-                const obj = {
-                    eth_address: account,
-                    quantity: 1,
-                    value: amount,
-                    status: 'success',
-                    txHash: result.transactionHash,
-                }
-
-                await  registerUser(account)
-                console.log('addiong purchase')
-                await addPurchase(obj)
+            const price = await getPackPrice()
 
 
-                console.log('addiong transaction')
-                await addTransactoin({
-                    eth_address: account,
-                    quantity: 1,
-                    value: amount,
-                    status: 'success',
-                    txHash: result.transactionHash,
-                    tokenIds: [cards_info.card.token_id],
+            await window.contract.methods
+                .mint()
+                .send({
+                    from: account,
+                    value: web3.utils.toWei(price, 'wei'),
+                    gas_price: window.gasPrice,
                 })
-            })
-            .on('error', function(error, receipt) {
-                console.log(error)
-            })
+                .on('transactionHash', function(transactionHash) {
+                    setIsOpening("Bringing A GOGO to Planet Earth 🌍...")
+                })
+                .on('error', (err) => {
+                    console.log('error')
+                })
 
+            const balance = await window.contract.methods.balanceOf(account).call()
+            const tokenId = await window.contract.methods.tokenOfOwnerByIndex(account, balance-1).call()
 
+            setIsOpening('Grooming your GOGO ⚡️...')
+            await confirmMint(account, tokenId, signature)
+
+            const {data: metadata } = await getTokenMetadata(tokenId)
+
+            console.log(metadata)
+
+            setMetaData(metadata)
+        } catch (err) {
+            setError("Error while minting")
+        }
 
 
         window.ethereum.on('accountsChanged', handleAccountsChanged)
     }
 
+    if (!isAuth)
+        return (
+            <div
+                className="draw-trade"
+                style={{
+                    padding: '250px',
+                }}>
+                <h2>Enter your pre registered ETH address 👁</h2>
+                <form onSubmit={() => setIsAuth(true)}>
+                    <input
+                        className="form-control"
+                        type="text"
+                        minLength={8}
+                        onChange={e => setIsValid(e.target.value.length >= 8)}
+                        style={{ maxWidth: '300px', margin: '40px auto 10px auto' }}
+                    />
+                    <button disabled={!isValid} type="submit" className="btn btn-primary">
+                        <b>Enter The Gogo 🚀</b>
+                    </button>
+                </form>
+            </div>
+        )
 
-    if(!isAuth) return <div className="draw-trade" style={{
-    padding: '250px'}
-    }>
-        <h2>Enter your pre registered ETH address 👁</h2>
-        <form onSubmit={() => setIsAuth(true)}>
-            <input className="form-control" type="text" minLength={8} onChange={(e) => setIsValid(e.target.value.length >= 8)}
-                   style={{ maxWidth: '300px', margin: '40px auto 10px auto' }} />
-            <button disabled={!isValid} type="submit" className="btn btn-primary"><b>Enter The Gogo 🚀</b></button>
-        </form>
-    </div>
+    if(error)
+        return <DrawError error={error}/>
+
     return (
         <div className="draw-trade">
             {account ? (
                 <S.DrawTradeWrapper>
-                    {canClose && <div className="close" onClick={() => setIsOpening(false)}>
-                        <b>Go back to spaceship</b>
-                    </div>}
+                    {canClose && (
+                        <div className="close" onClick={() => setIsOpening(false)}>
+                            <b>Go back to spaceship</b>
+                        </div>
+                    )}
                     <div>
-                        <div className="video-card" style={{
-                            opacity: isOpening ? 1 : 0,
-                            zIndex: isOpening ? 5000 : -20,
-                            position: 'fixed',
-                            top: 0,
-                            left: 0,
-                            right: 0,
-                            bottom: 0
-                        }}>
+                        <S.Fullscreen
+                            style={{
+                                opacity: isOpening ? 1 : 0,
+                                zIndex: isOpening ? 5000 : -20,
+                            }}>
                             <Particles></Particles>
 
-                            {cardImg.url ? <video
-                                style={{zIndex: 5000, position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)'}}
-                                width="600px"
-                                playsInline
-                                muted
-                                loop
-                                controls={false}
-                                autoPlay={true}
-
-
-                            >
-                                <source  src={cardImg.url} type={"video/mp4"}/>
-                            </video>: <div>
-                                <h2 style={{color:"white", position:'absolute', top:'50%', left:'50%', transform:'translate(-50%,-50%)'}}>{isOpening}</h2>
-                            </div>}
-
-                        </div>
+                            {metadata.image ? <GOGODetails metadata={metadata}/> : (
+                                <div>
+                                    <h2
+                                        style={{
+                                            color: 'white',
+                                            position: 'absolute',
+                                            top: '50%',
+                                            left: '50%',
+                                            transform: 'translate(-50%,-50%)',
+                                        }}>
+                                        {isOpening}
+                                    </h2>
+                                </div>
+                            )}
+                        </S.Fullscreen>
                         <section className="heading-section space-ship">
                             <Container>
                                 <Row>
                                     <Col>
-                                        <h2 style={{ paddingTop: '5rem' }}>
-                                            CryptoGogo Spaceship
-                                        </h2>
+                                        <h2 style={{ paddingTop: '5rem' }}>CryptoGogo Spaceship</h2>
                                     </Col>
                                 </Row>
                             </Container>
@@ -266,7 +214,10 @@ const DrawTrade = () => {
 
                                             <div className="actions">
                                                 <div className="drawButton">
-                                                    <img src={drawBtn} onClick={drawCard} />
+                                                    <img
+                                                        src={drawBtn}
+                                                        onClick={handleDrawCardClicked}
+                                                    />
                                                 </div>
                                                 <div className="tradeButton">
                                                     <img src={tradeBtn} />
@@ -289,28 +240,26 @@ const DrawTrade = () => {
                                             </div>
                                             <div className="terms-content">
                                                 <p>
-                                                    In 2021 the world became like in 1984. The
-                                                    human race got enslaved to nonsense NFT Art
-                                                    and bad Collectibles. Ugly Kitties and
-                                                    terrible Punks mesmerized humankind and
-                                                    stole their money. Seeking revenge for the
-                                                    unjust treatment of the true meaning of
-                                                    NFTs, the CryptoGOGOs are coming the far way
-                                                    from PLANET GOGO in the Metaverse to start a
-                                                    revolution. Alongside the GOGO-Rebellion
-                                                    (CryptoGOGO-Collectors), they bring back
-                                                    freedom and power to humankind by taking
-                                                    over the NFT WORLD.
+                                                    In 2021 the world became like in 1984. The human
+                                                    race got enslaved to nonsense NFT Art and bad
+                                                    Collectibles. Ugly Kitties and terrible Punks
+                                                    mesmerized humankind and stole their money.
+                                                    Seeking revenge for the unjust treatment of the
+                                                    true meaning of NFTs, the CryptoGOGOs are coming
+                                                    the far way from PLANET GOGO in the Metaverse to
+                                                    start a revolution. Alongside the GOGO-Rebellion
+                                                    (CryptoGOGO-Collectors), they bring back freedom
+                                                    and power to humankind by taking over the NFT
+                                                    WORLD.
                                                 </p>
 
                                                 <p>
-                                                    In 2021 the world became like in 1984. The
-                                                    human race got enslaved to nonsense NFT Art
-                                                    and bad Collectibles. Ugly Kitties and
-                                                    terrible Punks mesmerized humankind and
-                                                    stole their money. Seeking revenge for the
-                                                    unjust treatment of the true meaning of
-                                                    NFTs,
+                                                    In 2021 the world became like in 1984. The human
+                                                    race got enslaved to nonsense NFT Art and bad
+                                                    Collectibles. Ugly Kitties and terrible Punks
+                                                    mesmerized humankind and stole their money.
+                                                    Seeking revenge for the unjust treatment of the
+                                                    true meaning of NFTs,
                                                 </p>
                                             </div>
                                         </div>
@@ -320,7 +269,6 @@ const DrawTrade = () => {
                             </Container>
                         </section>
                     </div>
-
                 </S.DrawTradeWrapper>
             ) : (
                 <div className="no-meta-mask text-center">
