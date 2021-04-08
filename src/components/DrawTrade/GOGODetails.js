@@ -22,7 +22,7 @@ const GOGODetails = ({metadata, tokenId}) => {
                     <span>Tribe</span>
                 <h2 className="tribe">{tribe}</h2>
                     <div className="opensea-link">
-                        <h1><div className="label">View your GOGO on </div><b><a target="_blank"  rel="noopener" href={`https://opensea.io/assets/${process.env.REACT_APP_CONTRACT_ADDRESS}/${tokenId}`}>OpenSea → </a></b></h1>
+                        <h1><div className="label">View your GOGO on </div><b><a target="_blank"  rel="noopener" href={`${process.env.REACT_APP_OPENSEA}/assets/${process.env.REACT_APP_CONTRACT_ADDRESS}/${tokenId}`}>OpenSea → </a></b></h1>
                     </div>
                 </div>
             </p>
