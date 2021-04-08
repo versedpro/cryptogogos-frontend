@@ -15,6 +15,8 @@ export const Fullscreen = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
+    padding: 100px;
+    overflow:scroll;
     .error {
         position: relative;
         z-index: 1000;
@@ -27,6 +29,17 @@ export const Fullscreen = styled.div`
             line-height: 60px;
             font-size: 48px;
         }
+    }
+    
+    .loading {
+        position: relative;
+    top: -100px;
+    z-index: 1;
+    }
+    video {
+    height: 50vh;
+    position: relative;
+    z-index: 5;
     }
 `
 export const DrawTradeWrapper = styled.div`

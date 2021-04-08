@@ -57,7 +57,7 @@ const DrawTrade = () => {
     const [metadata, setMetaData] = React.useState({})
     const [isOpening, setIsOpening] = React.useState(false)
     const [tokenId, setTokenId] = React.useState(null)
-    
+
     const loadAccount = async () => {
         const web3 = window.web3
 
@@ -168,33 +168,35 @@ const DrawTrade = () => {
         <div className="draw-trade">
             {account ? (
                 <S.DrawTradeWrapper>
-                    {canClose && (
-                        <div className="close" onClick={() => setIsOpening(false)}>
-                            <b>Go back to spaceship</b>
-                        </div>
-                    )}
+                    {/*{canClose && (*/}
+                    {/*    <div className="close" onClick={() => setIsOpening(false)}>*/}
+                    {/*        <b>Go back to spaceship</b>*/}
+                    {/*    </div>*/}
+                    {/*)}*/}
                     <div>
                         <S.Fullscreen
                             style={{
                                 opacity: isOpening ? 1 : 0,
                                 zIndex: isOpening ? 5000 : -20,
                             }}>
-                            <Particles></Particles>
+                            <div>
+                                <Particles></Particles>
 
-                            {metadata.image ? <GOGODetails tokenId={tokenId} metadata={metadata}/> : (
-                                <div>
-                                    <h2
-                                        style={{
-                                            color: 'white',
-                                            position: 'absolute',
-                                            top: '50%',
-                                            left: '50%',
-                                            transform: 'translate(-50%,-50%)',
-                                        }}>
-                                        {isOpening}
-                                    </h2>
-                                </div>
-                            )}
+                                {metadata.image ? <GOGODetails tokenId={tokenId} metadata={metadata}/> : (
+                                    <div>
+                                        <h2
+                                            style={{
+                                                color: 'white',
+                                                position: 'absolute',
+                                                top: '50%',
+                                                left: '50%',
+                                                transform: 'translate(-50%,-50%)',
+                                            }}>
+                                            {isOpening}
+                                        </h2>
+                                    </div>
+                                )}
+                            </div>
                         </S.Fullscreen>
                         <section className="heading-section space-ship">
                             <Container>
