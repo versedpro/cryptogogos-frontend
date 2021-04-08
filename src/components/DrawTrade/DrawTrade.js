@@ -42,7 +42,7 @@ const loadWeb3 = async () => {
 
 const loadContract = () => {
     // return new window.web3.eth.Contract(ABI, '0x2118E79aBEf1D49d6ff9B38F104A166A00633420') //mainnet
-    return new window.web3.eth.Contract(ABI, '0xd90467ADd138dF4362f105437e42Ad6e6DC15193') //testnet
+    return new window.web3.eth.Contract(ABI, process.env.REACT_APP_CONTRACT_ADDRESS) //testnet
 }
 
 const DrawTrade = () => {
