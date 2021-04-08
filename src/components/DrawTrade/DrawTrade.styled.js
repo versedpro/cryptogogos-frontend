@@ -16,7 +16,6 @@ export const Fullscreen = styled.div`
     right: 0;
     bottom: 0;
     padding: 100px;
-    overflow:scroll;
     .error {
         position: relative;
         z-index: 1000;
