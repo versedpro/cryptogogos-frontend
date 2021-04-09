@@ -53,7 +53,7 @@ export default class Distribution extends React.Component {
                         <Col xs="12" lg="3">
                             <div className="tx-box extra-white">
                                 <div className="box-text">Amount of CryptoGOGOs</div>
-                                <div className="box-number">1.8%</div>
+                                <div className="box-number">2.1%</div>
                                 <div className="box-label red">Sold</div>
                             </div>
                         </Col>
@@ -82,7 +82,7 @@ export default class Distribution extends React.Component {
 
                     <Row className="distribution-row">
                         <Col xs="12" lg="2">
-                            <div className="nft-distribute active  in-progress first-distribute extra-white">
+                            <div className="nft-distribute active   first-distribute">
                                 <div className="distribute-bar"></div>
                                 <div className="progressed-bar"></div>
                                 <div className="milestone first">
@@ -99,7 +99,7 @@ export default class Distribution extends React.Component {
                             </div>
                         </Col>
                         <Col xs="12" lg="2">
-                            <div className="nft-distribute">
+                            <div className="nft-distribute in-progress active extra-white">
                                 <div className="distribute-bar"></div>
                                 <div className="progressed-bar"></div>
                                 <div className="milestone">
