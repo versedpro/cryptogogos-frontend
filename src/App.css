@@ -469,7 +469,7 @@ ul.header-links {
 }
 .nft-distribute .progressed-bar {
     height: 15px;
-    width: calc(100% - 30%);
+    width: calc(100% - 62%);
     display: block;
     background-color: #ECFFF4;
     box-shadow: 0px 0px 20px #3cc071;

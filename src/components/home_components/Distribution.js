@@ -80,7 +80,8 @@ const Distribution = () => {
 
     const getTotalSupply = async () => {
         window.contract = await loadContract()
-        const totalSupply = await window.contract.methods.totalSupply().call()
+        // const totalSupply = await window.contract.methods.totalSupply().call()
+        const totalSupply = 300
 
         setTotalSupply(totalSupply)
         console.log('totalSupply: ', totalSupply)
