@@ -437,6 +437,9 @@ section.footer {
     left: -131px;
     display:block;
 }
+.first, .second, .third, .fourth, .fifth, .sixth {
+    display: block !important;
+}
 .active .nft-price {
     padding-top: 39px;
 }
@@ -445,13 +448,21 @@ ul.header-links {
     margin: 0 auto;
     padding-left: 50px !important;
 }
+.milestone-end {
+    position: absolute;
+    top: -81px;
+    display: none;
+}
+.milestone-display {
+    display: block !important;
+}
 .in-progress .milestone.progressed {
     top: -81px !important;
     display: block !important;
     /* left: 5px; */
 }
 .in-progress .milestone {
-    display: none !important;
+    display: none;
 }
 .in-progress .milestone.first {
     display: block !important;
