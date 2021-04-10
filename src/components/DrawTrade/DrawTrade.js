@@ -48,7 +48,6 @@ const loadContract = () => {
 const DrawTrade = () => {
     const videoRef = React.createRef()
     const [error, setError] = React.useState(null)
-    const [isAuth, setIsAuth] = React.useState(false)
     const [signature, setSignature] = React.useState(false)
     const [isValid, setIsValid] = React.useState(false)
     const [canClose, setCanClose] = React.useState(false)
@@ -138,29 +137,6 @@ const DrawTrade = () => {
         window.ethereum.on('accountsChanged', handleAccountsChanged)
     }
 
-    if (!isAuth)
-        return (
-            <div
-                className="draw-trade"
-                style={{
-                    padding: '250px',
-                }}>
-                <h2>Enter your pre registered ETH address 👁</h2>
-                <form onSubmit={() => setIsAuth(true)}>
-                    <input
-                        className="form-control"
-                        type="text"
-                        minLength={8}
-                        onChange={e => setIsValid(e.target.value.length >= 8)}
-                        style={{ maxWidth: '300px', margin: '40px auto 10px auto' }}
-                    />
-                    <button disabled={!isValid} type="submit" className="btn btn-primary">
-                        <b>Enter The Gogo 🚀</b>
-                    </button>
-                </form>
-            </div>
-        )
-
     if(error)
         return <DrawError error={error}/>
 
@@ -168,11 +144,6 @@ const DrawTrade = () => {
         <div className="draw-trade">
             {account ? (
                 <S.DrawTradeWrapper>
-                    {/*{canClose && (*/}
-                    {/*    <div className="close" onClick={() => setIsOpening(false)}>*/}
-                    {/*        <b>Go back to spaceship</b>*/}
-                    {/*    </div>*/}
-                    {/*)}*/}
                     <div>
                         <S.Fullscreen
                             style={{
