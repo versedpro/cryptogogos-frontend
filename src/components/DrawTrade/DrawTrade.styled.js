@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import bg from '../../images/draw-trade-bg.jpg'
+import bg from '../../images/rocket-path.png'
 
 const tribeColors = {
     Orange: 'darkorange',
