@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import bg from '../../images/rocket-path.png'
+import bg from '../../images/rocket-bg.png'
 
 const tribeColors = {
     Orange: 'darkorange',
@@ -42,10 +42,6 @@ export const Fullscreen = styled.div`
     }
 `
 export const DrawTradeWrapper = styled.div`
-    background: url(${bg}) no-repeat;
-    background-size: cover;
-    background-position: center top;
-
     input.subscribe-email {
         width: 50%;
         margin: 0 auto;
@@ -60,6 +56,49 @@ export const DrawTradeWrapper = styled.div`
         top: 50px;
         right: 50px;
         font-size: 24px;
+    }
+
+    .rocket-section {
+        background: url(${bg}) no-repeat;
+        background-size: cover;
+        background-position: center top;
+    }
+
+    .rocket-body {
+        padding-top: 17rem;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        height: auto;
+    }
+
+    .drawButton {
+        padding-top: 8rem;
+    }
+    .tradeButton {
+        padding-top: 2rem;
+    }
+
+    section.terms-section {
+        padding-top: 10rem;
+    }
+    section .terms-title {
+        opacity: 0.9;
+    }
+    section .terms-content {
+        padding-top: 3rem;
+        font-size: 1rem;
+        line-height: 25px;
+        color: rgba(255,255,255, 0.75);
+    }
+    .rocket-buttons {
+        position: absolute;
+        top: 22rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .rocket-buttons .actions img {
+        cursor: pointer;
     }
 `
 export const GOGODetailsWrapper = styled.div`

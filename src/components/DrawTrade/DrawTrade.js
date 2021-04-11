@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import Particles from 'react-particles-js'
 import Web3 from 'web3'
-import rocket from '../../images/rocket_cp_006.png'
+import rocket from '../../images/rocket-body-path.png'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 import {
     addPurchase,
@@ -14,7 +14,7 @@ import DrawError from './DrawError'
 import * as S from './DrawTrade.styled'
 import drawBtn from '../../images/button-draw.png'
 import tradeBtn from '../../images/button-trade.png'
-import packet from '../../images/gogos_card_small.png'
+import packet from '../../images/gogos_card.png'
 import videoWrap from '../../videos/wrapper_3.mp4'
 import axios from 'axios'
 import ABI from '../../utils/contract.abi.json'
@@ -182,7 +182,7 @@ const DrawTrade = () => {
                             <Container>
                                 <Row>
                                     <Col>
-                                        <div className="rocket-buttons" style={{ top: '17rem' }}>
+                                        <div className="rocket-buttons" style={{ top: '42rem' }}>
                                             <div className="card-draw">
                                                 <img src={packet} />
                                             </div>
@@ -199,7 +199,7 @@ const DrawTrade = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <Image style={{ paddingTop: '5rem' }} src={rocket} />
+                                        <Image className="rocket-body" src={rocket} />
                                     </Col>
                                 </Row>
                             </Container>
