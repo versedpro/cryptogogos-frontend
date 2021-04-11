@@ -214,12 +214,17 @@ section .terms-content {
     margin-bottom: 50px;
 }
 .tx-box {
-    background: rgba(255,255,255,1);
+    background: rgba(255,255,255,.6);
     padding: 10px 20px 0;
     color: #000 !important;
     border-radius: 20px;
     text-align: left !important;
     position: relative;
+}
+
+.tx-box .small {
+    font-size: 30px;
+    line-height: 58px;
 }
 
 ul {

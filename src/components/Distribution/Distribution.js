@@ -131,7 +131,7 @@ const Distribution = () => {
                     </Row>
                     <Row>
                         <Col xs="12" lg="3">
-                            <div className="tx-box extra-white">
+                            <div className="tx-box">
                                 <div className="box-text">Amount of CryptoGOGOs</div>
                                 <div className="box-number">{totalAmount}%</div>
                                 <div className="box-label red">Sold</div>
@@ -154,7 +154,7 @@ const Distribution = () => {
                         <Col xs="12" lg="3">
                             <div className="tx-box">
                                 <div className="box-text">Max amount per tx</div>
-                                <div className="box-number">XX</div>
+                                <div className="box-number small"><small>Unlimited</small></div>
                                 <div className="box-label ">Tier 3-6</div>
                             </div>
                         </Col>
@@ -162,7 +162,7 @@ const Distribution = () => {
 
                     <Row className="distribution-row">
                         <Col xs="12" lg="2">
-                            <div className={`nft-distribute ${milestone >= 1? 'active  in-progress first-distribute extra-white': ''}`}>
+                            <div className={`nft-distribute ${milestone >= 1? 'active  in-progress first-distribute': ''} ${milestone == 1 && 'extra-white'}`}>
                                 <div className="distribute-bar"></div>
                                 <div className="progressed-bar" style={{width: `calc(${milestone >= 1 ? (milestone === 1 ? milestoneAmount + '%' : '100% - 27px') : '0%'})`}}></div>
                                 <div className={`milestone ${milestone >= 1 ? 'first': ''}`}>
@@ -176,7 +176,7 @@ const Distribution = () => {
                             </div>
                         </Col>
                         <Col xs="12" lg="2">
-                        <div className={`nft-distribute ${milestone >= 2? 'active  in-progress first-distribute extra-white': ''}`}>
+                        <div className={`nft-distribute ${milestone >= 2? 'active  in-progress first-distribute': ''} ${milestone == 2 && 'extra-white'}`}>
                                 <div className="distribute-bar"></div>
                                 <div className="progressed-bar" style={{width: `calc(${milestone >= 2 ? (milestone === 2 ? milestoneAmount + '%' : '100% - 27px') : '0%'})`}}></div>
                                 <div className={`milestone ${milestone >= 2 ? 'first': ''}`}>
@@ -190,7 +190,7 @@ const Distribution = () => {
                             </div>
                         </Col>
                         <Col xs="12" lg="2">
-                        <div className={`nft-distribute ${milestone >= 3? 'active  in-progress first-distribute extra-white': ''}`}>
+                        <div className={`nft-distribute ${milestone >= 3? 'active  in-progress first-distribute': ''} ${milestone == 3 && 'extra-white'}`}>
                                 <div className="distribute-bar"></div>
                                 <div className="progressed-bar" style={{width: `calc(${milestone >= 3 ? (milestone === 3 ? milestoneAmount + '%' : '100% - 27px') : '0%'})`}}></div>
                                 <div className={`milestone ${milestone >= 3 ? 'first': ''}`}>
@@ -204,7 +204,7 @@ const Distribution = () => {
                             </div>
                         </Col>
                         <Col xs="12" lg="2">
-                        <div className={`nft-distribute ${milestone >= 4? 'active  in-progress first-distribute extra-white': ''}`}>
+                        <div className={`nft-distribute ${milestone >= 4? 'active  in-progress first-distribute': ''} ${milestone == 4 && 'extra-white'}`}>
                                 <div className="distribute-bar"></div>
                                 <div className="progressed-bar" style={{width: `calc(${milestone >= 4 ? (milestone === 4 ? milestoneAmount + '%' : '100% - 27px') : '0%'})`}}></div>
                                 <div className={`milestone ${milestone >= 4 ? 'first': ''}`}>
