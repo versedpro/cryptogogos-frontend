@@ -211,7 +211,7 @@ const DrawTrade = () => {
                                     <Col lg="10" xs="12">
                                         <div className="terms text-left">
                                             <div className="terms-title">
-                                                <h4>Terems</h4>
+                                                <h4>Trems</h4>
                                             </div>
                                             <div className="terms-content">
                                                 <p>
