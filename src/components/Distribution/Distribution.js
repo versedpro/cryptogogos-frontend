@@ -24,7 +24,9 @@ const loadWeb3 = async () => {
     } else if (window.web3) {
         window.web3 = new Web3(window.web3.currentProvider)
     } else {
-        window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+        window.web3 = new Web3(
+            new Web3.providers.HttpProvider(process.env.REACT_APP_INFURA_RPC_URL),
+        )
     }
 
     window.web3.eth.getGasPrice((err, curPrice) => {
@@ -86,27 +88,27 @@ const Distribution = () => {
         setTotalSupply(totalSupply)
         console.log('totalSupply: ', totalSupply)
 
-        const TotalAmount = totalSupply / 7777 * 100
+        const TotalAmount = (totalSupply / 7777) * 100
         setTotalAmount(TotalAmount.toFixed(2))
 
         if (totalSupply >= 7150) {
             setMilestone(6)
-            setMilestoneAmount(((totalSupply - 7150) / 627 * 100).toFixed(2))
+            setMilestoneAmount((((totalSupply - 7150) / 627) * 100).toFixed(2))
         } else if (totalSupply >= 3150) {
             setMilestone(5)
-            setMilestoneAmount(((totalSupply - 3150) / 4000 * 100).toFixed(2))
+            setMilestoneAmount((((totalSupply - 3150) / 4000) * 100).toFixed(2))
         } else if (totalSupply >= 1150) {
             setMilestone(4)
-            setMilestoneAmount(((totalSupply - 1150) / 2000 * 100).toFixed(2))
+            setMilestoneAmount((((totalSupply - 1150) / 2000) * 100).toFixed(2))
         } else if (totalSupply >= 300) {
             setMilestone(3)
-            setMilestoneAmount(((totalSupply - 300) / 850 * 100).toFixed(2))
+            setMilestoneAmount((((totalSupply - 300) / 850) * 100).toFixed(2))
         } else if (totalSupply >= 150) {
             setMilestone(2)
-            setMilestoneAmount(((totalSupply - 150) / 150 * 100).toFixed(2))
+            setMilestoneAmount((((totalSupply - 150) / 150) * 100).toFixed(2))
         } else {
             setMilestone(1)
-            setMilestoneAmount((totalSupply / 150 * 100).toFixed(2))
+            setMilestoneAmount(((totalSupply / 150) * 100).toFixed(2))
         }
 
         return totalSupply
@@ -154,7 +156,9 @@ const Distribution = () => {
                         <Col xs="12" lg="3">
                             <div className="tx-box">
                                 <div className="box-text">Max amount per tx</div>
-                                <div className="box-number small"><small>Unlimited</small></div>
+                                <div className="box-number small">
+                                    <small>Unlimited</small>
+                                </div>
                                 <div className="box-label ">Tier 3-6</div>
                             </div>
                         </Col>
@@ -162,13 +166,30 @@ const Distribution = () => {
 
                     <Row className="distribution-row">
                         <Col xs="12" lg="2">
-                            <div className={`nft-distribute ${milestone >= 1? 'active  in-progress first-distribute': ''} ${milestone == 1 && 'extra-white'}`}>
+                            <div
+                                className={`nft-distribute ${
+                                    milestone >= 1 ? 'active  in-progress first-distribute' : ''
+                                } ${milestone == 1 && 'extra-white'}`}>
                                 <div className="distribute-bar"></div>
-                                <div className="progressed-bar" style={{width: `calc(${milestone >= 1 ? (milestone === 1 ? milestoneAmount + '%' : '100% - 27px') : '0%'})`}}></div>
-                                <div className={`milestone ${milestone >= 1 ? 'first': ''}`}>
+                                <div
+                                    className="progressed-bar"
+                                    style={{
+                                        width: `calc(${
+                                            milestone >= 1
+                                                ? milestone === 1
+                                                    ? milestoneAmount + '%'
+                                                    : '100% - 27px'
+                                                : '0%'
+                                        })`,
+                                    }}></div>
+                                <div className={`milestone ${milestone >= 1 ? 'first' : ''}`}>
                                     <Image src={milestoneImg} />
                                 </div>
-                                <div className={`milestone-end ${milestone === 1 ? 'milestone-display': ''}`} style={{left: `calc(${milestoneAmount}% - 121px)`}}>
+                                <div
+                                    className={`milestone-end ${
+                                        milestone === 1 ? 'milestone-display' : ''
+                                    }`}
+                                    style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                                     <Image src={milestonProgressImg} />
                                 </div>
                                 <div className="nft-price">0.05 ETH</div>
@@ -176,13 +197,30 @@ const Distribution = () => {
                             </div>
                         </Col>
                         <Col xs="12" lg="2">
-                        <div className={`nft-distribute ${milestone >= 2? 'active  in-progress first-distribute': ''} ${milestone == 2 && 'extra-white'}`}>
+                            <div
+                                className={`nft-distribute ${
+                                    milestone >= 2 ? 'active  in-progress first-distribute' : ''
+                                } ${milestone == 2 && 'extra-white'}`}>
                                 <div className="distribute-bar"></div>
-                                <div className="progressed-bar" style={{width: `calc(${milestone >= 2 ? (milestone === 2 ? milestoneAmount + '%' : '100% - 27px') : '0%'})`}}></div>
-                                <div className={`milestone ${milestone >= 2 ? 'first': ''}`}>
+                                <div
+                                    className="progressed-bar"
+                                    style={{
+                                        width: `calc(${
+                                            milestone >= 2
+                                                ? milestone === 2
+                                                    ? milestoneAmount + '%'
+                                                    : '100% - 27px'
+                                                : '0%'
+                                        })`,
+                                    }}></div>
+                                <div className={`milestone ${milestone >= 2 ? 'first' : ''}`}>
                                     <Image src={milestoneImg} />
                                 </div>
-                                <div className={`milestone-end ${milestone === 2 ? 'milestone-display': ''}`} style={{left: `calc(${milestoneAmount}% - 121px)`}}>
+                                <div
+                                    className={`milestone-end ${
+                                        milestone === 2 ? 'milestone-display' : ''
+                                    }`}
+                                    style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                                     <Image src={milestonProgressImg} />
                                 </div>
                                 <div className="nft-price">0.07 ETH</div>
@@ -190,13 +228,30 @@ const Distribution = () => {
                             </div>
                         </Col>
                         <Col xs="12" lg="2">
-                        <div className={`nft-distribute ${milestone >= 3? 'active  in-progress first-distribute': ''} ${milestone == 3 && 'extra-white'}`}>
+                            <div
+                                className={`nft-distribute ${
+                                    milestone >= 3 ? 'active  in-progress first-distribute' : ''
+                                } ${milestone == 3 && 'extra-white'}`}>
                                 <div className="distribute-bar"></div>
-                                <div className="progressed-bar" style={{width: `calc(${milestone >= 3 ? (milestone === 3 ? milestoneAmount + '%' : '100% - 27px') : '0%'})`}}></div>
-                                <div className={`milestone ${milestone >= 3 ? 'first': ''}`}>
+                                <div
+                                    className="progressed-bar"
+                                    style={{
+                                        width: `calc(${
+                                            milestone >= 3
+                                                ? milestone === 3
+                                                    ? milestoneAmount + '%'
+                                                    : '100% - 27px'
+                                                : '0%'
+                                        })`,
+                                    }}></div>
+                                <div className={`milestone ${milestone >= 3 ? 'first' : ''}`}>
                                     <Image src={milestoneImg} />
                                 </div>
-                                <div className={`milestone-end ${milestone === 3 ? 'milestone-display': ''}`} style={{left: `calc(${milestoneAmount}% - 121px)`}}>
+                                <div
+                                    className={`milestone-end ${
+                                        milestone === 3 ? 'milestone-display' : ''
+                                    }`}
+                                    style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                                     <Image src={milestonProgressImg} />
                                 </div>
                                 <div className="nft-price">0.1 ETH</div>
@@ -204,13 +259,30 @@ const Distribution = () => {
                             </div>
                         </Col>
                         <Col xs="12" lg="2">
-                        <div className={`nft-distribute ${milestone >= 4? 'active  in-progress first-distribute': ''} ${milestone == 4 && 'extra-white'}`}>
+                            <div
+                                className={`nft-distribute ${
+                                    milestone >= 4 ? 'active  in-progress first-distribute' : ''
+                                } ${milestone == 4 && 'extra-white'}`}>
                                 <div className="distribute-bar"></div>
-                                <div className="progressed-bar" style={{width: `calc(${milestone >= 4 ? (milestone === 4 ? milestoneAmount + '%' : '100% - 27px') : '0%'})`}}></div>
-                                <div className={`milestone ${milestone >= 4 ? 'first': ''}`}>
+                                <div
+                                    className="progressed-bar"
+                                    style={{
+                                        width: `calc(${
+                                            milestone >= 4
+                                                ? milestone === 4
+                                                    ? milestoneAmount + '%'
+                                                    : '100% - 27px'
+                                                : '0%'
+                                        })`,
+                                    }}></div>
+                                <div className={`milestone ${milestone >= 4 ? 'first' : ''}`}>
                                     <Image src={milestoneImg} />
                                 </div>
-                                <div className={`milestone-end ${milestone === 4 ? 'milestone-display': ''}`} style={{left: `calc(${milestoneAmount}% - 121px)`}}>
+                                <div
+                                    className={`milestone-end ${
+                                        milestone === 4 ? 'milestone-display' : ''
+                                    }`}
+                                    style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                                     <Image src={milestonProgressImg} />
                                 </div>
                                 <div className="nft-price">0.15 ETH</div>
@@ -218,13 +290,32 @@ const Distribution = () => {
                             </div>
                         </Col>
                         <Col xs="12" lg="2">
-                        <div className={`nft-distribute ${milestone >= 5? 'active  in-progress first-distribute extra-white': ''}`}>
+                            <div
+                                className={`nft-distribute ${
+                                    milestone >= 5
+                                        ? 'active  in-progress first-distribute extra-white'
+                                        : ''
+                                }`}>
                                 <div className="distribute-bar"></div>
-                                <div className="progressed-bar" style={{width: `calc(${milestone >= 5 ? (milestone === 5 ? milestoneAmount + '%' : '100% - 27px') : '0%'})`}}></div>
-                                <div className={`milestone ${milestone >= 5 ? 'first': ''}`}>
+                                <div
+                                    className="progressed-bar"
+                                    style={{
+                                        width: `calc(${
+                                            milestone >= 5
+                                                ? milestone === 5
+                                                    ? milestoneAmount + '%'
+                                                    : '100% - 27px'
+                                                : '0%'
+                                        })`,
+                                    }}></div>
+                                <div className={`milestone ${milestone >= 5 ? 'first' : ''}`}>
                                     <Image src={milestoneImg} />
                                 </div>
-                                <div className={`milestone-end ${milestone === 5 ? 'milestone-display': ''}`} style={{left: `calc(${milestoneAmount}% - 121px)`}}>
+                                <div
+                                    className={`milestone-end ${
+                                        milestone === 5 ? 'milestone-display' : ''
+                                    }`}
+                                    style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                                     <Image src={milestonProgressImg} />
                                 </div>
                                 <div className="nft-price">0.2 ETH</div>
@@ -232,13 +323,32 @@ const Distribution = () => {
                             </div>
                         </Col>
                         <Col xs="12" lg="2">
-                        <div className={`nft-distribute ${milestone >= 6? 'active  in-progress first-distribute extra-white': ''}`}>
+                            <div
+                                className={`nft-distribute ${
+                                    milestone >= 6
+                                        ? 'active  in-progress first-distribute extra-white'
+                                        : ''
+                                }`}>
                                 <div className="distribute-bar"></div>
-                                <div className="progressed-bar" style={{width: `calc(${milestone >= 6 ? (milestone === 6 ? milestoneAmount + '%' : '100% - 27px') : '0%'})`}}></div>
-                                <div className={`milestone ${milestone >= 6 ? 'first': ''}`}>
+                                <div
+                                    className="progressed-bar"
+                                    style={{
+                                        width: `calc(${
+                                            milestone >= 6
+                                                ? milestone === 6
+                                                    ? milestoneAmount + '%'
+                                                    : '100% - 27px'
+                                                : '0%'
+                                        })`,
+                                    }}></div>
+                                <div className={`milestone ${milestone >= 6 ? 'first' : ''}`}>
                                     <Image src={milestoneImg} />
                                 </div>
-                                <div className={`milestone-end ${milestone === 6 ? 'milestone-display': ''}`} style={{left: `calc(${milestoneAmount}% - 121px)`}}>
+                                <div
+                                    className={`milestone-end ${
+                                        milestone === 6 ? 'milestone-display' : ''
+                                    }`}
+                                    style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                                     <Image src={milestonProgressImg} />
                                 </div>
                                 <div className="nft-price">1 ETH</div>
