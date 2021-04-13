@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import Particles from 'react-particles-js'
 import Web3 from 'web3'
-import rocket from '../../images/rocket-body-path.png'
-import { Container, Row, Col, Image } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import {
     addPurchase,
     addTransaction, confirmMint,
@@ -12,10 +11,8 @@ import {
 } from '../../utils/api'
 import DrawError from './DrawError'
 import * as S from './DrawTrade.styled'
-import drawBtn from '../../images/button-draw.png'
-import tradeBtn from '../../images/button-trade.png'
-import packet from '../../images/gogos_card.png'
-import videoWrap from '../../videos/wrapper_3.mp4'
+import drawBtn from '../../images/button_draw.png'
+import tradeBtn from '../../images/button_trade.png'
 import axios from 'axios'
 import ABI from '../../utils/contract.abi.json'
 import GOGODetails from './GOGODetails'
@@ -176,17 +173,19 @@ const DrawTrade = () => {
                                         <h2 style={{ paddingTop: '5rem' }}>CryptoGogo Spaceship</h2>
                                     </Col>
                                 </Row>
+                                <Row>
+                                    <Col style={{ paddingTop: '2rem' }}>
+                                        <Button style={{ background: '#fe2afe', marginRight: '1rem' }} onClick={handleDrawCardClicked}>Draw</Button>{' '}
+                                        <Button style={{ marginLeft: '1rem' }} variant="primary">Trade</Button>{' '}
+                                    </Col>
+                                </Row>
                             </Container>
                         </section>
                         <section className="rocket-section">
                             <Container>
                                 <Row>
                                     <Col>
-                                        <div className="rocket-buttons" style={{ top: '42rem' }}>
-                                            <div className="card-draw">
-                                                <img src={packet} />
-                                            </div>
-
+                                        <div className="rocket-buttons">
                                             <div className="actions">
                                                 <div className="drawButton">
                                                     <img
@@ -199,7 +198,6 @@ const DrawTrade = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <Image className="rocket-body" src={rocket} />
                                     </Col>
                                 </Row>
                             </Container>
