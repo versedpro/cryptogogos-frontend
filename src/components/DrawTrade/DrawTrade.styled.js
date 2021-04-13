@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import bg from '../../images/draw-trade-bg.jpg'
+import bg from '../../images/rocket-body-path.png'
 
 const tribeColors = {
     Orange: 'darkorange',
@@ -42,10 +42,9 @@ export const Fullscreen = styled.div`
     }
 `
 export const DrawTradeWrapper = styled.div`
-    background: url(${bg}) no-repeat;
-    background-size: cover;
-    background-position: center top;
-
+background: url(${bg}) no-repeat;
+background-size: cover;
+background-position: center top;
     input.subscribe-email {
         width: 50%;
         margin: 0 auto;
@@ -60,6 +59,73 @@ export const DrawTradeWrapper = styled.div`
         top: 50px;
         right: 50px;
         font-size: 24px;
+    }
+
+    .rocket-section {
+        
+    }
+
+    .rocket-body {
+        padding-top: 17rem;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        height: auto;
+    }
+
+    .drawButton {
+        // padding-top: 8rem;
+    }
+    .tradeButton {
+        margin-left: -15rem;
+        margin-top: -4rem;
+    }
+
+    section.terms-section {
+        padding-top: 30rem;
+    }
+    section .terms-title {
+        opacity: 0.9;
+    }
+    section .terms-content {
+        padding-top: 3rem;
+        font-size: 1rem;
+        line-height: 25px;
+        color: rgba(255,255,255, 0.75);
+    }
+    .rocket-buttons {
+        // position: absolute;
+        // top: 22rem;
+        // left: 50%;
+        // transform: translateX(-50%);
+    }
+    .rocket-buttons .actions {
+        margin-top: 26vw;
+        margin-left: -10vw;
+    }
+    .rocket-buttons .actions img {
+        cursor: pointer;
+    }
+
+    @media (min-width: 1920px) {
+        .tradeButton {
+            margin-left: -20rem;
+            margin-top: -5rem;
+        }
+        .rocket-buttons .actions {
+            margin-top: 31vw;
+        }
+        .rocket-buttons .actions img {
+            width: 120px;
+        }
+    }
+    @media (max-width: 1200px) {
+        .rocket-buttons .actions {
+            display: none;
+        }
+    }
+    @media (max-width: 800px) {
+        background: contain;
     }
 `
 export const GOGODetailsWrapper = styled.div`
