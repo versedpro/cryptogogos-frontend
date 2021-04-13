@@ -35,7 +35,7 @@
     "s3:deploy:prod": "aws s3 sync ./build s3://cryptogogos-frontend --delete --profile gqt",
     "deploy:prod": "npm run build:prod && npm run s3:deploy:prod && npm run cf:invalidate:prod",
     "cf:invalidate:prod": "aws cloudfront create-invalidation --distribution-id E23RTX0RSGBWRU --paths / --profile gqt",
-    "cf:invalidate:staging": "aws cloudfront create-invalidation --distribution-id ELMNI2IKT2G1H --paths / --profile gqt",
+    "cf:invalidate:staging": "aws cloudfront create-invalidation --distribution-id ELMNI2IKT2G1H --paths / --profile gqt"
   },
   "eslintConfig": {
     "extends": [
