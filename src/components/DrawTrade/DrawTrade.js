@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import Particles from 'react-particles-js'
 import Web3 from 'web3'
 import rocket from '../../images/rocket_cp_006.png'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 import {
     addPurchase,
-    addTransaction, confirmMint,
+    addTransaction,
+    confirmMint,
     createMintRequest,
-    getDrawCard, getTokenMetadata,
+    getDrawCard,
+    getTokenMetadata,
     registerUser,
 } from '../../utils/api'
 import DrawError from './DrawError'
@@ -15,130 +17,83 @@ import * as S from './DrawTrade.styled'
 import drawBtn from '../../images/button-draw.png'
 import tradeBtn from '../../images/button-trade.png'
 import packet from '../../images/gogos_card_small.png'
-import videoWrap from '../../videos/wrapper_3.mp4'
-import axios from 'axios'
 import ABI from '../../utils/contract.abi.json'
 import GOGODetails from './GOGODetails'
-
-require('dotenv').config()
-
-
-const loadWeb3 = async () => {
-    if (window.ethereum) {
-        window.web3 = new Web3(window.ethereum)
-        await window.ethereum.enable()
-    } else if (window.web3) {
-        window.web3 = new Web3(window.web3.currentProvider)
-    } else {
-        window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
-    }
-
-    window.web3.eth.getGasPrice((err, curPrice) => {
-        window.gasPrice = curPrice
-    })
-
-
-}
-
-const loadContract = () => {
-    // return new window.web3.eth.Contract(ABI, '0x2118E79aBEf1D49d6ff9B38F104A166A00633420') //mainnet
-    return new window.web3.eth.Contract(ABI, process.env.REACT_APP_CONTRACT_ADDRESS) //testnet
-}
+import { useWallet } from 'use-wallet'
+import { AccountContext } from '../../contexts/AccountProvider'
 
 const DrawTrade = () => {
+    const { account, connect, ethereum, status } = useWallet()
+    const { walletContract, loadWalletAccount } = useContext(AccountContext)
+
     const videoRef = React.createRef()
     const [error, setError] = React.useState(null)
     const [signature, setSignature] = React.useState(false)
     const [isValid, setIsValid] = React.useState(false)
     const [canClose, setCanClose] = React.useState(false)
-    const [account, setAccount] = React.useState()
     const [price, setPrice] = React.useState()
     const [metadata, setMetaData] = React.useState({})
     const [isOpening, setIsOpening] = React.useState(false)
     const [tokenId, setTokenId] = React.useState(null)
 
-    const loadAccount = async () => {
-        const web3 = window.web3
-
-        const accounts = await web3.eth.getAccounts()
-        setAccount(accounts[0])
-        const networkId = await web3.eth.net.getId()
-        console.log('networkId', networkId)
-    }
-
-    useEffect(async () => {
-        await loadWeb3()
-        await loadContract()
-        await loadAccount()
-    }, [])
+    useEffect(() => {
+        if (status !== 'connected') {
+            connect('injected')
+        }
+    }, [status])
 
     const getPackPrice = async () => {
-        const mintPrice = await window.contract.methods.getNFTPrice().call()
-
+        const mintPrice = await walletContract.methods.getNFTPrice().call()
         setPrice(mintPrice)
         return mintPrice
     }
 
-    const handleAccountsChanged = accounts => {
-        if (accounts.length === 0) {
-            setAccount(null)
-            console.log(account)
-            // MetaMask is locked or the user has not connected any accounts
-            console.log('Please connect to MetaMask.')
-        } else if (accounts[0] !== account) {
-            setAccount(accounts[0])
-            // Do any other work!
-        }
-    }
-
     const handleDrawCardClicked = async () => {
         setIsOpening('Connecting Metamask...')
-        window.contract = await loadContract()
-
-        const web3 = window.web3
-
+        const web3 = new Web3(ethereum)
         try {
-            const {data: {signature}} = await createMintRequest(account)
+            const {
+                data: { signature },
+            } = await createMintRequest(account)
             setSignature(signature)
+            console.log(signature)
 
             const price = await getPackPrice()
-
-
-            await window.contract.methods
+            console.log(price)
+            await walletContract.methods
                 .mint()
                 .send({
                     from: account,
                     value: web3.utils.toWei(price, 'wei'),
                     gas_price: window.gasPrice,
                 })
-                .on('transactionHash', function(transactionHash) {
-                    setIsOpening("Bringing A GOGO to Planet Earth 🌍...")
+                .on('transactionHash', function (transactionHash) {
+                    setIsOpening('Bringing A GOGO to Planet Earth 🌍...')
                 })
-                .on('error', (err) => {
+                .on('error', err => {
                     console.log('error')
                 })
 
-            const balance = await window.contract.methods.balanceOf(account).call()
-            const _tokenId = await window.contract.methods.tokenOfOwnerByIndex(account, balance-1).call()
+            const balance = await walletContract.methods.balanceOf(account).call()
+            const _tokenId = await walletContract.methods
+                .tokenOfOwnerByIndex(account, balance - 1)
+                .call()
             setTokenId(_tokenId)
             setIsOpening('Grooming your GOGO ⚡️...')
             await confirmMint(account, _tokenId, signature)
 
-            const {data: metadata } = await getTokenMetadata(_tokenId)
+            const { data: metadata } = await getTokenMetadata(_tokenId)
 
             console.log(metadata)
 
             setMetaData(metadata)
         } catch (err) {
-            setError("Error while minting")
+            setError('Error while minting')
         }
 
-
-        window.ethereum.on('accountsChanged', handleAccountsChanged)
     }
 
-    if(error)
-        return <DrawError error={error}/>
+    if (error) return <DrawError error={error} />
 
     return (
         <div className="draw-trade">
@@ -153,7 +108,9 @@ const DrawTrade = () => {
                             <div>
                                 <Particles></Particles>
 
-                                {metadata.image ? <GOGODetails tokenId={tokenId} metadata={metadata}/> : (
+                                {metadata.image ? (
+                                    <GOGODetails tokenId={tokenId} metadata={metadata} />
+                                ) : (
                                     <div>
                                         <h2
                                             style={{

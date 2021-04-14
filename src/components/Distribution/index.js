@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useCallback } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
@@ -33,13 +33,13 @@ const responsive = {
 }
 
 const Distribution = () => {
-    const { contract } = useContext(AccountContext)
+    const { infuraContract } = useContext(AccountContext)
     const [totalSupply, setTotalSupply] = React.useState()
     const [totalAmount, setTotalAmount] = React.useState()
 
     const getTotalSupply = async () => {
         try {
-            const totalSupply = await contract.methods.totalSupply().call()
+            const totalSupply = await infuraContract.methods.totalSupply().call()
             setTotalSupply(totalSupply)
             console.log('totalSupply: ', totalSupply)
 
@@ -51,10 +51,10 @@ const Distribution = () => {
     }
 
     useEffect(() => {
-        if (contract) {
+        if (infuraContract) {
             getTotalSupply()
         }
-    }, [contract])
+    }, [infuraContract])
 
     return (
         <S.DistributionWrapper>
