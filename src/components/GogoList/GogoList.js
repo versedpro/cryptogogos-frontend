@@ -1,16 +1,11 @@
 import React, { useEffect } from 'react'
 import * as S from './styled'
+import { Container, Row, Col, Image, Spinner } from 'react-bootstrap'
 import Web3 from 'web3'
 import ABI from '../../utils/contract.abi.json'
-import {
-    addPurchase,
-    addTransaction, confirmMint,
-    createMintRequest,
-    getDrawCard, getTokenMetadata,
-    registerUser,
-} from '../../utils/api'
-
-require('dotenv').config()
+import { getTokenMetadata } from '../../utils/api'
+import LoadingMask from 'react-loadingmask'
+import 'react-loadingmask/dist/react-loadingmask.css'
 
 const loadWeb3 = async () => {
     if (window.ethereum) {
@@ -33,6 +28,7 @@ const loadContract = () => {
 }
 
 const GogoList = (props) => {
+    const { tokenNumber = 16 } = props
     const [account, setAccount] = React.useState()
     const [balance, setBalance] = React.useState()
     const [tokens, setTokens] = React.useState([])
@@ -49,11 +45,12 @@ const GogoList = (props) => {
     useEffect(async () => {
         await loadWeb3()
         await loadContract()
-        console.log('owner address: ', props.ownerAddress)
-        if (props.ownerAddress === undefined) {
-            await loadAccount()
-        } else {
+
+        if (props.ownerAddress) { 
             setAccount(props.ownerAddress)
+        } else {
+            // await loadAccount()
+            setAccount(null)
         }
     }, [])
 
@@ -72,29 +69,82 @@ const GogoList = (props) => {
     const getBalance = async () => {
         window.contract = await loadContract()
         if (props.ownerAddress) {
-            setAccount(props.ownerAddress)
-        }
-        
-        const balance = await window.contract.methods.balanceOf(account).call()
+            console.log('account address: ', props.ownerAddress)
 
-        setBalance(balance)
+            const balance = await window.contract.methods.balanceOf(props.ownerAddress).call()
+            setBalance(balance)
+        } else {
+            const totalSupply = await window.contract.methods.totalSupply().call()
+            setBalance(totalSupply)
+        }
     }
 
     const getTokens = async () => {
         const tokenList = []
-        for (let i = 0; i < balance; i++) {
+        for (let i = balance - 1; i >= 0 && i >= balance - tokenNumber; i--) {
             tokenList.push(i)
         }
 
-        await Promise.all(tokenList.map(async index => {
-            const tokenId = await window.contract.methods.tokenOfOwnerByIndex(account, index).call()
-            const {data: metadata } = await getTokenMetadata(tokenId)
-            tokens.push({ index: index, tokenId: tokenId, metaData: metadata })
-        }))
+        console.log(account, tokenList)
+
+        if (props.ownerAddress) {
+            let _tokenList = []
+            await Promise.all(tokenList.map(async index => {
+                const tokenId = await window.contract.methods.tokenOfOwnerByIndex(account, index).call()
+                const {data: metadata } = await getTokenMetadata(tokenId)
+                _tokenList.push({ index: index, tokenId: tokenId, metaData: metadata })
+            }))
+            setTokens([..._tokenList])
+        } else {
+            let _tokenList = []
+
+            await Promise.all(tokenList.map(async index => {
+                const tokenId = await window.contract.methods.tokenByIndex(index).call()
+                const {data: metadata } = await getTokenMetadata(tokenId)
+                _tokenList.push({ index: index, tokenId: tokenId, metaData: metadata, isLoading: true })
+            }))
+            console.log(_tokenList)
+            setTokens([..._tokenList])
+        }
+    }
+
+    const onLoadedVideo = tokenId => {
+        tokens.map(item => {
+            if (item.tokenId === tokenId) item.isLoading = false
+        })
     }
 
     return (
-        <div>GogoList</div>
+        <S.GogoListWrapper>
+            <section className="gallery-section">
+                <Container>
+                    <Row>
+                        {tokens.map(item => (
+                            <Col lg="3" key={item.tokenId}>
+                                <div className="video-container">
+                                    <LoadingMask loading={item.isLoading} text={"loading..."}>
+                                        {
+                                            item.metaData.image ? (
+                                                <video
+                                                    autoPlay
+                                                    playsInline
+                                                    muted
+                                                    width="200px"
+                                                    src={item.metaData.image}
+                                                    onLoadEnd={onLoadedVideo(item.tokenId)}
+                                                />
+                                            ) : (
+                                                <div style={{ width: '200px', height: '200px' }}></div>
+                                            )
+                                        }
+                                    </LoadingMask>
+                                </div>
+                            </Col>
+                        ))}
+                    </Row>
+                </Container>
+            </section>
+        </S.GogoListWrapper>
     )
 }
 
