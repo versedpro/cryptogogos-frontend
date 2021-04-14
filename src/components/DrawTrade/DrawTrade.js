@@ -208,11 +208,11 @@ const DrawTrade = () => {
                 </S.DrawTradeWrapper>
             ) : (
                 <Container>
-                    <section className="heading-section no-metamask">
+                    <S.NoMetamaskContainer className="heading-section">
                         <Container>
                             <Row>
                                 <Col style={{ paddingTop: '3rem' }}>
-                                    <Image src={metamaskLogo} className="meta-logo"/>
+                                    <Image src={metamaskLogo} className="meta-logo" />
                                     <h2 style={{ paddingTop: '1rem' }}>
                                         {window.web3 || window.ethereum
                                             ? 'Connect to MetaMask'
@@ -257,7 +257,7 @@ const DrawTrade = () => {
                                 </Col>
                             </Row>
                         </Container>
-                    </section>
+                    </S.NoMetamaskContainer>
                     <div className="no-meta-mask text-center"></div>
                 </Container>
             )}
