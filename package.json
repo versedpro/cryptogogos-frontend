@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@tailwindcss/postcss7-compat": "^2.1.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "autoprefixer": "^9",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "dotenv": "^8.2.0",
     "loaders.css": "^0.1.2",
     "moment": "^2.29.1",
+    "postcss": "^7",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
     "react-countdown": "^2.3.1",
@@ -23,6 +26,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "styled-components": "^5.2.3",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "ua-parser-js": "^0.7.26",
     "use-wallet": "^0.8.1",
     "web-vitals": "^1.0.1",
@@ -30,14 +34,10 @@
   },
   "scripts": {
     "start": "env-cmd -f config/.env react-scripts start",
-    "start:custom": "env-cmd -f config/.env.${NODE_ENV} react-scripts start",
+    "start:prod": "env-cmd -f config/.env.production react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build": "env-cmd -f config/.env.${NODE_ENV} react-scripts build",
-    "s3:deploy:prod": "aws s3 sync ./build s3://cryptogogos-frontend --delete --profile gqt",
-    "deploy:prod": "npm run build:prod && npm run s3:deploy:prod && npm run cf:invalidate:prod",
-    "cf:invalidate:prod": "aws cloudfront create-invalidation --distribution-id E23RTX0RSGBWRU --paths / --profile gqt",
-    "cf:invalidate:staging": "aws cloudfront create-invalidation --distribution-id ELMNI2IKT2G1H --paths / --profile gqt"
+    "build": "env-cmd -f config/.env.${NODE_ENV} react-scripts build"
   },
   "eslintConfig": {
     "extends": [
