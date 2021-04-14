@@ -170,3 +170,20 @@ export const GOGODetailsWrapper = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
 `
+
+export const NoMetamaskContainer = styled.section`
+    h2 {
+        font-size: 4rem;
+    }
+    img {
+        height: 300px;
+    }
+    @media (max-width: 900px) {
+        h2 {
+            font-size: 2.5rem;
+        }
+        img {
+            height: 10rem;
+        }
+    }
+`
