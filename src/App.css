@@ -152,8 +152,19 @@ section.our-mission-section p {
 section.our-mission-section img {
     margin-top: -30px;
 }
-.space-ship h2 {
+.no-metamask h2 {
     font-size: 4rem;
+}
+.no-metamask img {
+    height: 300px;
+}
+@media (max-width:900px) {
+    .no-metamask h2 {
+        font-size: 2.5rem;
+    }
+    .no-metamask img {
+        height: 10rem;
+    }
 }
 .video-card {
     /* background: black;

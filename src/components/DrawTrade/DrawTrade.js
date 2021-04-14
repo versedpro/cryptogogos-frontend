@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react'
 import Particles from 'react-particles-js'
 import Web3 from 'web3'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 import {
     addPurchase,
     addTransaction,
@@ -16,6 +16,7 @@ import * as S from './DrawTrade.styled'
 import packet from '../../images/gogos_card_small.png'
 import drawBtn from '../../images/button_draw.png'
 import tradeBtn from '../../images/button_trade.png'
+import metamaskLogo from '../../images/metamask-logo.png'
 import GOGODetails from './GOGODetails'
 import { useWallet } from 'use-wallet'
 import { AccountContext } from '../../contexts/AccountProvider'
@@ -42,7 +43,13 @@ const DrawTrade = () => {
         setPrice(mintPrice)
         return mintPrice
     }
-
+    const handleConnect = () => {
+        if (window.web3 || window.ethereum) {
+            connect('injected')
+        } else {
+            window.open('https://metamask.io/')
+        }
+    }
     const handleDrawCardClicked = async () => {
         setIsOpening('Connecting Metamask...')
         const web3 = new Web3(ethereum)
@@ -51,10 +58,8 @@ const DrawTrade = () => {
                 data: { signature },
             } = await createMintRequest(account)
             setSignature(signature)
-            console.log(signature)
 
             const price = await getPackPrice()
-            console.log(price)
             await walletContract.methods
                 .mint()
                 .send({
@@ -78,8 +83,6 @@ const DrawTrade = () => {
             await confirmMint(account, _tokenId, signature)
 
             const { data: metadata } = await getTokenMetadata(_tokenId)
-
-            console.log(metadata)
 
             setMetaData(metadata)
         } catch (err) {
@@ -205,11 +208,16 @@ const DrawTrade = () => {
                 </S.DrawTradeWrapper>
             ) : (
                 <Container>
-                    <section className="heading-section space-ship">
+                    <section className="heading-section no-metamask">
                         <Container>
                             <Row>
-                                <Col>
-                                    <h1 style={{ paddingTop: '5rem' }}>Connect to metamask</h1>
+                                <Col style={{ paddingTop: '3rem' }}>
+                                    <Image src={metamaskLogo} className="meta-logo"/>
+                                    <h2 style={{ paddingTop: '1rem' }}>
+                                        {window.web3 || window.ethereum
+                                            ? 'Connect to MetaMask'
+                                            : 'Install MetaMask'}
+                                    </h2>
                                     <div className="no-meta-mas">
                                         <svg
                                             width="94"
@@ -241,8 +249,10 @@ const DrawTrade = () => {
                                 <Col style={{ paddingTop: '2rem' }}>
                                     <Button
                                         style={{ background: '#fe2afe', marginRight: '1rem' }}
-                                        onClick={() => connect('injected')}>
-                                        Connect Wallet
+                                        onClick={() => handleConnect()}>
+                                        {window.web3 || window.ethereum
+                                            ? 'Connect Wallet'
+                                            : 'Install MetaMask'}
                                     </Button>
                                 </Col>
                             </Row>
