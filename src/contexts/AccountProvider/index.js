@@ -11,7 +11,7 @@ export const AccountContext = createContext({
 })
 
 const AccountProvider = ({ children }) => {
-    const { ethereum,  status, connect } = useWallet()
+    const { ethereum, status, connect } = useWallet()
     const [infuraContract, setInfuraContract] = useState(null)
     const [walletContract, setWalletContract] = useState(null)
 
@@ -33,13 +33,13 @@ const AccountProvider = ({ children }) => {
         }
     }
 
-    const loadInfuraAccount = async () => {
+    const loadInfuraAccount = () => {
         const provider = new Web3.providers.HttpProvider(infuraProviderURL)
         const contract = getContract(provider)
         setInfuraContract(contract)
     }
 
-    const loadWalletAccount = async () => {
+    const loadWalletAccount = () => {
         if (ethereum) {
             const contract = getContract(ethereum)
             setWalletContract(contract)

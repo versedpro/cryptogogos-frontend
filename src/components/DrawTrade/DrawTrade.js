@@ -22,8 +22,10 @@ import { AccountContext } from '../../contexts/AccountProvider'
 
 const DrawTrade = () => {
     const { account, connect, ethereum, status } = useWallet()
-    const { walletContract, loadWalletAccount } = useContext(AccountContext)
-
+    const { walletContract } = useContext(AccountContext)
+    console.log(account)
+    console.log(ethereum)
+    console.log(status)
     const videoRef = React.createRef()
     const [error, setError] = React.useState(null)
     const [signature, setSignature] = React.useState(false)
@@ -35,10 +37,8 @@ const DrawTrade = () => {
     const [tokenId, setTokenId] = React.useState(null)
 
     useEffect(() => {
-        if (status !== 'connected') {
-            connect('injected')
-        }
-    }, [status])
+        connect('injected')
+    }, [])
 
     const getPackPrice = async () => {
         const mintPrice = await walletContract.methods.getNFTPrice().call()
