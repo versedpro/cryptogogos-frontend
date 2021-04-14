@@ -186,12 +186,6 @@ section .terms-content {
     height: 100vh;
     z-index: 9;
 }
-.drawButton {
-    padding-top: 3rem;
-}
-.tradeButton {
-    padding-top: 1rem;
-}
 .distribution-section span {
     width: 10px;
     height: 10px;

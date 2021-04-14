@@ -4,7 +4,6 @@ import * as S from './styled'
 import Distribution from 'components/Distribution'
 import Heading from './components/Heading'
 import OurMission from './components/OurMission'
-
 function Home() {
     return (
         <S.HomeWrapper>
