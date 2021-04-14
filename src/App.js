@@ -9,7 +9,7 @@ import telegram from './images/svgs/telegram.svg'
 import wallet from './images/svgs/wallet.svg'
 import Home from './components/Home'
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-dom'
 import DrawTrade from './components/DrawTrade/DrawTrade'
 import Faq from './components/Faq'
 import Gallery from './components/Gallery'
@@ -78,6 +78,7 @@ function App() {
                                                 <Nav.Link href="https://opensea.io/assets/cryptogogos">
                                                     OpenSea
                                                 </Nav.Link>
+                                                <NavLink className="nav-link" to="leaderboard">Leaderboard</NavLink>
                                                 {/*<Nav.Link href="#link">Gallery</Nav.Link>*/}
                                                 {/*<Nav.Link href="#link">Leaderboard</Nav.Link>*/}
                                                 <Nav.Link href="https://wiki.cryptogogos.com/about/">
@@ -86,7 +87,7 @@ function App() {
                                                 <Nav.Link href="https://wiki.cryptogogos.com/faq">
                                                     FAQ
                                                 </Nav.Link>
-                                                <Nav.Link href="#link">
+                                                <NavLink to="#link">
                                                     <Button
                                                         disabled
                                                         style={{ opacity: 0.5 }}
@@ -94,7 +95,7 @@ function App() {
                                                         <Image src={wallet} />
                                                         My wallet
                                                     </Button>{' '}
-                                                </Nav.Link>
+                                                </NavLink>
                                             </Nav>
                                         </Navbar.Collapse>
                                     </Navbar>
@@ -131,6 +132,9 @@ function App() {
                                                 <ul>
                                                     <li>
                                                         <a href="#">Draw & Trade</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="leaderboard">Leaderboard</a>
                                                     </li>
                                                     <li>
                                                         <a href="#">Suggestion & Offers</a>
