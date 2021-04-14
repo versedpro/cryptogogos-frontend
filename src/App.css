@@ -155,27 +155,6 @@ section.our-mission-section img {
 .space-ship h2 {
     font-size: 4rem;
 }
-section.terms-section {
-    padding-top: 40rem;
-}
-section .terms-title {
-    opacity: 0.9;
-}
-section .terms-content {
-    padding-top: 3rem;
-    font-size: 1rem;
-    line-height: 25px;
-    color: rgba(255,255,255, 0.75);
-}
-.rocket-buttons {
-    position: absolute;
-    top: 22rem;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.rocket-buttons .actions img {
-    cursor: pointer;
-}
 .video-card {
     /* background: black;
     width: 100vw;
@@ -188,12 +167,6 @@ section .terms-content {
     left: 0px;
     height: 100vh;
     z-index: 9;
-}
-.drawButton {
-    padding-top: 3rem;
-}
-.tradeButton {
-    padding-top: 1rem;
 }
 .distribution-section span {
     width: 10px;
