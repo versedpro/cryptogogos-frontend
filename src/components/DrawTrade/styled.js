@@ -29,16 +29,16 @@ export const Fullscreen = styled.div`
             font-size: 48px;
         }
     }
-    
+
     .loading {
         position: relative;
-    top: -100px;
-    z-index: 1;
+        top: -100px;
+        z-index: 1;
     }
     video {
-    height: 50vh;
-    position: relative;
-    z-index: 5;
+        height: 50vh;
+        position: relative;
+        z-index: 5;
     }
 `
 export const DrawTradeWrapper = styled.div`

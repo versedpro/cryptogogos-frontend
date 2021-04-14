@@ -10,15 +10,16 @@ import {
     getDrawCard,
     getTokenMetadata,
     registerUser,
-} from '../../utils/api'
+} from 'utils/api'
 import DrawError from './DrawError'
-import * as S from './DrawTrade.styled'
-import packet from '../../images/gogos_card_small.png'
-import drawBtn from '../../images/button_draw.png'
-import tradeBtn from '../../images/button_trade.png'
+import * as S from './styled'
+import packet from 'images/gogos_card_small.png'
+import drawBtn from 'images/button_draw.png'
+import tradeBtn from 'images/button_trade.png'
 import GOGODetails from './GOGODetails'
+
 import { useWallet } from 'use-wallet'
-import { AccountContext } from '../../contexts/AccountProvider'
+import { AccountContext } from 'contexts/AccountProvider'
 
 const DrawTrade = () => {
     const { account, connect, ethereum, status } = useWallet()
@@ -86,7 +87,6 @@ const DrawTrade = () => {
             setError('Error while minting')
         }
     }
-
     if (error) return <DrawError error={error} />
 
     return (

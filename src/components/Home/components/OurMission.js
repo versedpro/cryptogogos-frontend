@@ -1,9 +1,8 @@
-import React from "react";
-import photosImg from '../../images/photos.png'
+import React from 'react'
+import photosImg from 'images/photos.png'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 
 export default class OurMission extends React.Component {
-
     render() {
         return (
             <section className="our-mission-section">
@@ -27,8 +26,8 @@ export default class OurMission extends React.Component {
                             <h4>Our mission</h4>
                             <h2>
                                 {' '}
-                            Disrupt the Status Quo & Hail
-                            <br /> the CryptoGOGOs{' '}
+                                Disrupt the Status Quo & Hail
+                                <br /> the CryptoGOGOs{' '}
                             </h2>
                             <p>
                                 In 2021 the world became like in 1984. The human race got enslaved
@@ -39,7 +38,7 @@ export default class OurMission extends React.Component {
                                 to start a revolution. Alongside the GOGO-Rebellion
                                 (CryptoGOGO-Collectors), they bring back freedom and power to
                                 humankind by taking over the NFT WORLD.
-                        </p>
+                            </p>
                             <Button>About Us</Button>
                         </Col>
                         <Col lg="6">
