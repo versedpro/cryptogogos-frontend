@@ -5,13 +5,15 @@ import rocket from '../../images/rocket_cp_006.png'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 import {
     addPurchase,
-    addTransaction, confirmMint,
+    addTransaction,
+    confirmMint,
     createMintRequest,
-    getDrawCard, getTokenMetadata,
+    getDrawCard,
+    getTokenMetadata,
     registerUser,
 } from '../../utils/api'
 import DrawError from './DrawError'
-import * as S from './DrawTrade.styled'
+import * as S from './styled'
 import drawBtn from '../../images/button-draw.png'
 import tradeBtn from '../../images/button-trade.png'
 import packet from '../../images/gogos_card_small.png'
@@ -21,7 +23,6 @@ import ABI from '../../utils/contract.abi.json'
 import GOGODetails from './GOGODetails'
 
 require('dotenv').config()
-
 
 const loadWeb3 = async () => {
     if (window.ethereum) {
@@ -36,8 +37,6 @@ const loadWeb3 = async () => {
     window.web3.eth.getGasPrice((err, curPrice) => {
         window.gasPrice = curPrice
     })
-
-
 }
 
 const loadContract = () => {
@@ -98,11 +97,12 @@ const DrawTrade = () => {
         const web3 = window.web3
 
         try {
-            const {data: {signature}} = await createMintRequest(account)
+            const {
+                data: { signature },
+            } = await createMintRequest(account)
             setSignature(signature)
 
             const price = await getPackPrice()
-
 
             await window.contract.methods
                 .mint()
@@ -111,34 +111,34 @@ const DrawTrade = () => {
                     value: web3.utils.toWei(price, 'wei'),
                     gas_price: window.gasPrice,
                 })
-                .on('transactionHash', function(transactionHash) {
-                    setIsOpening("Bringing A GOGO to Planet Earth 🌍...")
+                .on('transactionHash', function (transactionHash) {
+                    setIsOpening('Bringing A GOGO to Planet Earth 🌍...')
                 })
-                .on('error', (err) => {
+                .on('error', err => {
                     console.log('error')
                 })
 
             const balance = await window.contract.methods.balanceOf(account).call()
-            const _tokenId = await window.contract.methods.tokenOfOwnerByIndex(account, balance-1).call()
+            const _tokenId = await window.contract.methods
+                .tokenOfOwnerByIndex(account, balance - 1)
+                .call()
             setTokenId(_tokenId)
             setIsOpening('Grooming your GOGO ⚡️...')
             await confirmMint(account, _tokenId, signature)
 
-            const {data: metadata } = await getTokenMetadata(_tokenId)
+            const { data: metadata } = await getTokenMetadata(_tokenId)
 
             console.log(metadata)
 
             setMetaData(metadata)
         } catch (err) {
-            setError("Error while minting")
+            setError('Error while minting')
         }
-
 
         window.ethereum.on('accountsChanged', handleAccountsChanged)
     }
 
-    if(error)
-        return <DrawError error={error}/>
+    if (error) return <DrawError error={error} />
 
     return (
         <div className="draw-trade">
@@ -153,7 +153,9 @@ const DrawTrade = () => {
                             <div>
                                 <Particles></Particles>
 
-                                {metadata.image ? <GOGODetails tokenId={tokenId} metadata={metadata}/> : (
+                                {metadata.image ? (
+                                    <GOGODetails tokenId={tokenId} metadata={metadata} />
+                                ) : (
                                     <div>
                                         <h2
                                             style={{
