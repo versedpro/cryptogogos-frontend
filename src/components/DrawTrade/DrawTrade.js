@@ -23,9 +23,6 @@ import { AccountContext } from '../../contexts/AccountProvider'
 const DrawTrade = () => {
     const { account, connect, ethereum, status } = useWallet()
     const { walletContract } = useContext(AccountContext)
-    console.log(account)
-    console.log(ethereum)
-    console.log(status)
     const videoRef = React.createRef()
     const [error, setError] = React.useState(null)
     const [signature, setSignature] = React.useState(false)
