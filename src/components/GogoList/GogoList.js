@@ -94,6 +94,11 @@ const GogoList = (props) => {
                 const {data: metadata } = await getTokenMetadata(tokenId)
                 _tokenList.push({ index: index, tokenId: tokenId, metaData: metadata })
             }))
+            _tokenList.sort(function (a, b) {
+                if (a.tokenId < b.tokenId) return -1;
+                if (a.tokenId > b.tokenId) return 1;
+                return 0;
+            })
             setTokens([..._tokenList])
         } else {
             let _tokenList = []
@@ -103,7 +108,11 @@ const GogoList = (props) => {
                 const {data: metadata } = await getTokenMetadata(tokenId)
                 _tokenList.push({ index: index, tokenId: tokenId, metaData: metadata, isLoading: true })
             }))
-            console.log(_tokenList)
+            _tokenList.sort(function (a, b) {
+                if (a.tokenId < b.tokenId) return -1;
+                if (a.tokenId > b.tokenId) return 1;
+                return 0;
+            })
             setTokens([..._tokenList])
         }
     }
