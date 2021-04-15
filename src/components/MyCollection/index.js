@@ -18,12 +18,30 @@ import { AccountContext } from 'contexts/AccountProvider'
 import GogoList from '../GogoList'
 
 const MyCollection = () => {
-    const { account, connect, ethereum, status } = useWallet()
-    const { walletContract } = useContext(AccountContext)
+    const { connect } = useWallet()
+    const { web3Container, walletContract } = useContext(AccountContext)
+    const [account, setAccount] = React.useState()
+
+    const handleAccountsChanged = accounts => {
+        if (accounts.length === 0) {
+            setAccount(null)
+            console.log('Please connect to MetaMask.')
+        } else if (accounts[0] !== account) {
+            setAccount(accounts[0])
+        }
+    }
 
     useEffect(() => {
         connect('injected')
     }, [])
+
+    useEffect(async () => {
+        if (web3Container) {
+            const accounts = await web3Container.eth.getAccounts()
+            setAccount(accounts[0])
+            window.ethereum.on('accountsChanged', handleAccountsChanged)
+        }
+    }, [web3Container])
 
     const handleConnect = () => {
         if (window.web3 || window.ethereum) {

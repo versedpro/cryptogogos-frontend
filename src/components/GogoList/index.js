@@ -9,53 +9,16 @@ import 'react-loadingmask/dist/react-loadingmask.css'
 import { useWallet } from 'use-wallet'
 import { AccountContext } from 'contexts/AccountProvider'
 
-const loadWeb3 = async () => {
-    if (window.ethereum) {
-        window.web3 = new Web3(window.ethereum)
-        await window.ethereum.enable()
-    } else if (window.web3) {
-        window.web3 = new Web3(window.web3.currentProvider)
-    } else {
-        window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
-    }
-
-    window.web3.eth.getGasPrice((err, curPrice) => {
-        window.gasPrice = curPrice
-    })
-}
-
-const loadContract = () => {
-    // return new window.web3.eth.Contract(ABI, '0x2118E79aBEf1D49d6ff9B38F104A166A00633420') //mainnet
-    return new window.web3.eth.Contract(ABI, process.env.REACT_APP_CONTRACT_ADDRESS) //testnet
-}
-
 const GogoList = props => {
     const { tokenNumber = 16 } = props
-    const { account, connect, ethereum, status } = useWallet()
     const { walletContract } = useContext(AccountContext)
-    // const [account, setAccount] = React.useState()
-    const [ownerAddress, setOwnerAddress] = React.useState()
+    const [ownerAddress, setOwnerAddress] = React.useState(null)
     const [balance, setBalance] = React.useState()
     const [tokens, setTokens] = React.useState([])
 
-    // const loadAccount = async () => {
-    //     const web3 = window.web3
-
-    //     const accounts = await web3.eth.getAccounts()
-    //     setAccount(accounts[0])
-    //     const networkId = await web3.eth.net.getId()
-    //     console.log('networkId', networkId)
-    // }
-
-    useEffect(async () => {
-        // await loadWeb3()
-        // await loadContract()
-
+    useEffect(() => {
         if (props.ownerAddress) {
             setOwnerAddress(props.ownerAddress)
-        } else {
-            // await loadAccount()
-            setOwnerAddress(null)
         }
     }, [])
 
@@ -72,14 +35,11 @@ const GogoList = props => {
     }, [balance])
 
     const getBalance = async () => {
-        window.contract = await loadContract()
         if (props.ownerAddress) {
-            console.log('account address: ', props.ownerAddress)
-
-            const balance = await window.contract.methods.balanceOf(props.ownerAddress).call()
+            const balance = await walletContract.methods.balanceOf(props.ownerAddress).call()
             setBalance(balance)
         } else {
-            const totalSupply = await window.contract.methods.totalSupply().call()
+            const totalSupply = await walletContract.methods.totalSupply().call()
             setBalance(totalSupply)
         }
     }
@@ -90,17 +50,20 @@ const GogoList = props => {
             tokenList.push(i)
         }
 
-        console.log(account, tokenList)
-
         if (props.ownerAddress) {
             let _tokenList = []
             await Promise.all(
                 tokenList.map(async index => {
-                    const tokenId = await window.contract.methods
-                        .tokenOfOwnerByIndex(account, index)
+                    const tokenId = await walletContract.methods
+                        .tokenOfOwnerByIndex(props.ownerAddress, index)
                         .call()
                     const { data: metadata } = await getTokenMetadata(tokenId)
-                    _tokenList.push({ index: index, tokenId: tokenId, metaData: metadata })
+                    _tokenList.push({
+                        index: index,
+                        tokenId: tokenId,
+                        metaData: metadata,
+                        isLoading: true,
+                    })
                 }),
             )
             _tokenList.sort(function (a, b) {
@@ -114,7 +77,7 @@ const GogoList = props => {
 
             await Promise.all(
                 tokenList.map(async index => {
-                    const tokenId = await window.contract.methods.tokenByIndex(index).call()
+                    const tokenId = await walletContract.methods.tokenByIndex(index).call()
                     const { data: metadata } = await getTokenMetadata(tokenId)
                     _tokenList.push({
                         index: index,
