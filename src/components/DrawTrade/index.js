@@ -3,32 +3,25 @@ import Particles from 'react-particles-js'
 import Web3 from 'web3'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 import {
-    addPurchase,
-    addTransaction,
     confirmMint,
     createMintRequest,
-    getDrawCard,
     getTokenMetadata,
-    registerUser,
-} from '../../utils/api'
+} from 'utils/api'
 import DrawError from './DrawError'
-import * as S from './DrawTrade.styled'
-import packet from '../../images/gogos_card_small.png'
-import drawBtn from '../../images/button_draw.png'
-import tradeBtn from '../../images/button_trade.png'
 import metamaskLogo from '../../images/metamask-logo.png'
+import * as S from './styled'
+import drawBtn from 'images/button_draw.png'
+import tradeBtn from 'images/button_trade.png'
 import GOGODetails from './GOGODetails'
+
 import { useWallet } from 'use-wallet'
-import { AccountContext } from '../../contexts/AccountProvider'
+import { AccountContext } from 'contexts/AccountProvider'
 
 const DrawTrade = () => {
     const { connect } = useWallet()
     const { web3Container, walletContract } = useContext(AccountContext)
-    const videoRef = React.createRef()
     const [error, setError] = React.useState(null)
     const [signature, setSignature] = React.useState(false)
-    const [isValid, setIsValid] = React.useState(false)
-    const [canClose, setCanClose] = React.useState(false)
     const [price, setPrice] = React.useState()
     const [account, setAccount] = React.useState()
     const [metadata, setMetaData] = React.useState({})
@@ -50,6 +43,7 @@ const DrawTrade = () => {
     }, [])
 
     useEffect(async () => {
+        console.log(web3Container)
         if (web3Container) {
             const accounts = await web3Container.eth.getAccounts()
             setAccount(accounts[0])
@@ -109,7 +103,6 @@ const DrawTrade = () => {
         }
 
     }
-
     if (error) return <DrawError error={error} />
 
     return (
