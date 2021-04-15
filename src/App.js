@@ -8,6 +8,7 @@ import DrawTrade from 'components/DrawTrade/'
 import Faq from 'components/Faq'
 import Gallery from 'components/Gallery'
 import Leaderboard from 'components/Leaderboard'
+import MyCollection from 'components/MyCollection'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import { UseWalletProvider } from 'use-wallet'
@@ -30,6 +31,7 @@ function App() {
                                 path="/df2852a2b39ef0790c7acc806cdaca35"
                                 component={MintCountown}
                             />
+                            <Route path="/mycollection" component={MyCollection} />
                         </Switch>
 
                         <section className="footer">
