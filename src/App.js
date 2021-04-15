@@ -4,7 +4,7 @@ import MintCountown from 'components/MintCountown/MintCountdown'
 import Home from 'components/Home'
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import DrawTrade from 'components/DrawTrade/'
+import DrawTrade from 'components/DrawTrade'
 import Faq from 'components/Faq'
 import Gallery from 'components/Gallery'
 import Leaderboard from 'components/Leaderboard'
@@ -16,7 +16,13 @@ import AccountProvider from './contexts/AccountProvider'
 
 function App() {
     return (
-        <UseWalletProvider chainId={42} connectors={{}}>
+        <UseWalletProvider
+            chainId={process.env.REACT_APP_ETHEREUM_CHAIN_ID}
+            connectors={
+                {
+                    // TODO: use mainnet when in prod
+                }
+            }>
             <AccountProvider>
                 <Router>
                     <div className="main-body text-center">

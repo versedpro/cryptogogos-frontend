@@ -7,13 +7,14 @@ import { infuraProviderURL, getContract } from '../../utils/constants'
 export const AccountContext = createContext({
     infuraContract: null,
     walletContract: null,
+    web3Container: null,
     connect: () => {},
 })
 
 const AccountProvider = ({ children }) => {
-    const { ethereum, status, connect } = useWallet()
     const [infuraContract, setInfuraContract] = useState(null)
     const [walletContract, setWalletContract] = useState(null)
+    const [web3Container, setWeb3Container] = useState(null)
 
     useEffect(() => {
         if (!infuraContract) {
@@ -22,16 +23,10 @@ const AccountProvider = ({ children }) => {
     }, [infuraContract])
 
     useEffect(() => {
-        if (status === 'connected') {
+        if (window.ethereum) {
             loadWalletAccount()
         }
-    }, [status])
-
-    const connectToAccount = () => {
-        if (status !== 'connected') {
-            connect('injected')
-        }
-    }
+    }, [window.ethereum])
 
     const loadInfuraAccount = () => {
         const provider = new Web3.providers.HttpProvider(infuraProviderURL)
@@ -40,15 +35,16 @@ const AccountProvider = ({ children }) => {
     }
 
     const loadWalletAccount = () => {
-        if (ethereum) {
-            const contract = getContract(ethereum)
-            setWalletContract(contract)
-        }
+        const web3 = new Web3(window.ethereum)
+        setWeb3Container(web3)
+        const contract = getContract(window.ethereum)
+        setWalletContract(contract)
     }
 
     return (
         <AccountContext.Provider
             value={{
+                web3Container,
                 infuraContract,
                 walletContract,
                 loadInfuraAccount,
