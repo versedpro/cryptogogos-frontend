@@ -18,14 +18,11 @@ const Leaderboard = () => {
             console.log('totalSupply: ', totalSupply)
             let owner
             let ownersObj = {}
-            let ownersArray = []
             for(let _tokenId = 1; _tokenId <= totalSupply; _tokenId++) {
                 try{
                     owner = await infuraContract.methods.ownerOf(_tokenId).call()
-                    if(!ownersObj[owner]) {
+                    if(!ownersObj[owner])
                         ownersObj[owner] = 1;
-                        ownersArray.push([owner, 1]);
-                    }
                     else
                         ownersObj[owner]++;
                 } catch (e) {
