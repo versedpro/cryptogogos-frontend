@@ -23,10 +23,11 @@ import logo from './images/svgs/logo.svg'
 function App() {
     return (
         <UseWalletProvider
-            chainId={42}                         
+            chainId={process.env.REACT_APP_ETHEREUM_CHAIN_ID}
             connectors={
                 {
-                        }
+                    // TODO: use mainnet when in prod
+                }
             }>
             <AccountProvider>
                 <Router>

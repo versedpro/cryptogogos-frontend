@@ -22,21 +22,40 @@ import { useWallet } from 'use-wallet'
 import { AccountContext } from '../../contexts/AccountProvider'
 
 const DrawTrade = () => {
-    const { account, connect, ethereum, status } = useWallet()
-    const { walletContract } = useContext(AccountContext)
+    const { connect } = useWallet()
+    const { web3Container, walletContract } = useContext(AccountContext)
     const videoRef = React.createRef()
     const [error, setError] = React.useState(null)
     const [signature, setSignature] = React.useState(false)
     const [isValid, setIsValid] = React.useState(false)
     const [canClose, setCanClose] = React.useState(false)
     const [price, setPrice] = React.useState()
+    const [account, setAccount] = React.useState()
     const [metadata, setMetaData] = React.useState({})
     const [isOpening, setIsOpening] = React.useState(false)
     const [tokenId, setTokenId] = React.useState(null)
 
+    const handleAccountsChanged = accounts => {
+        if (accounts.length === 0) {
+            setAccount(null)
+            console.log('Please connect to MetaMask.')
+        } else if (accounts[0] !== account) {
+            setAccount(accounts[0])
+            // Do any other work!
+        }
+    }
+
     useEffect(() => {
         connect('injected')
     }, [])
+
+    useEffect(async () => {
+        if (web3Container) {
+            const accounts = await web3Container.eth.getAccounts()
+            setAccount(accounts[0])
+            window.ethereum.on('accountsChanged', handleAccountsChanged)
+        }
+    }, [web3Container])
 
     const getPackPrice = async () => {
         const mintPrice = await walletContract.methods.getNFTPrice().call()
@@ -52,7 +71,7 @@ const DrawTrade = () => {
     }
     const handleDrawCardClicked = async () => {
         setIsOpening('Connecting Metamask...')
-        const web3 = new Web3(ethereum)
+        const web3 = new Web3(window.ethereum)
         try {
             const {
                 data: { signature },
@@ -88,6 +107,7 @@ const DrawTrade = () => {
         } catch (err) {
             setError('Error while minting')
         }
+
     }
 
     if (error) return <DrawError error={error} />
