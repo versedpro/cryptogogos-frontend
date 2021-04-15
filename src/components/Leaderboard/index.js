@@ -61,11 +61,6 @@ return(
                             <Col lg="6">
                                 <Form.Control as="select" size="lg">
                                     <option>Highest Sale</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
                                 </Form.Control>
                             </Col>
                         </Form.Group>

@@ -16,6 +16,9 @@ export const LeaderboardWrapper = styled.div`
             background: transparent;
             color: white;
             font-size: 16px;
+            option {
+                color: black;
+            }
         }
     }
     .list-show-section {
