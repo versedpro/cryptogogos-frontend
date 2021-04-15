@@ -37,8 +37,14 @@ export const LeaderboardWrapper = styled.div`
                 font-size: 15px;
                 border-radius: 10px;
                 align-items: center;
+                div:nth-child(1) {
+                    font-weight: bold;
+                }
                 div:nth-child(2) {
                     text-align: left;
+                }
+                div:nth-child(3) {
+                    font-weight: bold;
                 }
             }
             div:nth-child(n+4) {
