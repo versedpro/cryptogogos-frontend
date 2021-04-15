@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useWallet } from 'use-wallet'
 import { AccountContext } from '../../contexts/AccountProvider'
-import { Container, Row, Col, FormControl, Form } from 'react-bootstrap'
+import { Container, Row, Col, Form, Table } from 'react-bootstrap'
 import {
     addPurchase,
     addTransaction,
@@ -49,7 +49,7 @@ return(
         <section className="title-section">
             <h1>Leaderboard</h1>
         </section>
-        <section className="list-show-section">
+        <section className="list-sort-section">
             <Container>
                 <Row>
                     <Col lg="6" xs="6" className="text-left">
@@ -71,6 +71,78 @@ return(
                         </Form.Group>
                     </Col>
                 </Row>
+            </Container>
+        </section>
+        <section className="list-show-section">
+            <Container>
+                <Row className="list-header">
+                    <Col lg="1" sm="1" xs="1">
+                        No.
+                    </Col>
+                    <Col lg="10" sm="10" xs="9">
+                        Owner
+                    </Col>
+                    <Col lg="1" sm="1" xs="2">
+                        GOGOs
+                    </Col>
+                </Row>
+                <div className="list-body">
+                    <Row className="list-content">
+                        <Col lg="1" md="1" sm="1" xs="1">
+                            1
+                        </Col>
+                        <Col lg="10" md="10" sm="10" xs="10">
+                            oxaf9g89f99f9f9f9d89d9f9f9
+                        </Col>
+                        <Col lg="1" md="1" sm="1" xs="1">
+                            1021
+                        </Col>
+                    </Row>
+                    <Row className="list-content">
+                        <Col lg="1" md="1" sm="1" xs="1">
+                            2
+                        </Col>
+                        <Col lg="10" md="10" sm="10" xs="10">
+                            oxaf9g89f99f9f9f9d89d9f9f9
+                        </Col>
+                        <Col lg="1" md="1" sm="1" xs="1">
+                            1021
+                        </Col>
+                    </Row>
+                    <Row className="list-content">
+                        <Col lg="1" md="1" sm="1" xs="1">
+                            3
+                        </Col>
+                        <Col lg="10" md="10" sm="10" xs="10">
+                            oxaf9g89f99f9f9f9d89d9f9f9
+                        </Col>
+                        <Col lg="1" md="1" sm="1" xs="1">
+                            1021
+                        </Col>
+                    </Row>
+                    <Row className="list-content">
+                        <Col lg="1" md="1" sm="1" xs="1">
+                            4
+                        </Col>
+                        <Col lg="10" md="10" sm="10" xs="10">
+                            oxaf9g89f99f9f9f9d89d9f9f9
+                        </Col>
+                        <Col lg="1" md="1" sm="1" xs="1">
+                            1021
+                        </Col>
+                    </Row>
+                    <Row className="list-content">
+                        <Col lg="1" md="1" sm="1" xs="1">
+                            5
+                        </Col>
+                        <Col lg="10" md="10" sm="10" xs="10">
+                            oxaf9g89f99f9f9f9d89d9f9f9
+                        </Col>
+                        <Col lg="1" md="1" sm="1" xs="1">
+                            1021
+                        </Col>
+                    </Row>
+                </div>
             </Container>
         </section>
     </S.LeaderboardWrapper>
