@@ -1,47 +1,58 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { useWallet } from 'use-wallet'
+import React, { useState, useEffect, useContext, Fragment } from 'react'
 import { AccountContext } from '../../contexts/AccountProvider'
-import { Container, Row, Col, Form, Table } from 'react-bootstrap'
-import {
-    addPurchase,
-    addTransaction,
-    confirmMint,
-    createMintRequest,
-    getDrawCard,
-    getTokenMetadata,
-    registerUser,
-} from '../../utils/api'
+import { Container, Row, Col, Form } from 'react-bootstrap'
 import * as S from './styled'
 
 const Leaderboard = () => {
-    const { account, connect, ethereum, status } = useWallet()
     const { walletContract, infuraContract } = useContext(AccountContext)
-    const [totalSupply, setTotalSupply] = React.useState()
-    const [totalAmount, setTotalAmount] = React.useState()
-    const [sortBy, setSortBy] = useState('highest')
+    const [totalSupply, setTotalSupply] = React.useState(0)
+    const [ownersList, setOwnersList] = React.useState([])
+    const [sortBy, setSortBy] = useState('highest sale')
+    const [loading, setLoading] = useState(false)
 
-    const getTotalSupply = async () => {
+    const getTokensList = async () => {
         try {
+            setLoading(true)
             const totalSupply = await infuraContract.methods.totalSupply().call()
             setTotalSupply(totalSupply)
             console.log('totalSupply: ', totalSupply)
-
-            const TotalAmount = (totalSupply / 7777) * 100
-            setTotalAmount(TotalAmount.toFixed(2))
+            let owner
+            let ownersObj = {}
+            let ownersArray = []
+            for(let _tokenId = 1; _tokenId <= totalSupply; _tokenId++) {
+                try{
+                    owner = await infuraContract.methods.ownerOf(_tokenId).call()
+                    if(!ownersObj[owner]) {
+                        ownersObj[owner] = 1;
+                        ownersArray.push([owner, 1]);
+                    }
+                    else
+                        ownersObj[owner]++;
+                } catch (e) {
+                    console.log(e)
+                }
+            }
+            setOwnersList(Object.entries(ownersObj).sort((a, b) => b[1] - a[1]))
+            console.log(ownersList)
+            setLoading(false)
         } catch (e) {
             console.log(e)
+            setLoading(false)
         }
     }
-
     useEffect(() => {
         if (infuraContract) {
-            getTotalSupply()
+            getTokensList()
         }
     }, [infuraContract])
-    
-    useEffect(() => {
-        connect('injected')
-    }, [])
+
+    const sortByOwnedCount = () => {
+        setOwnersList(ownersList.sort((a, b) => b[1] - a[1]))
+    }
+
+    function onChangeSort(event){
+        setSortBy(event.target.value)
+    }
 
 
 return(
@@ -59,7 +70,7 @@ return(
                         <Form.Group as={Row} controlId="sortSelection">
                             <Form.Label column lg="6" className="d-none d-lg-block">Sort By: </Form.Label>
                             <Col lg="6">
-                                <Form.Control as="select" size="lg">
+                                <Form.Control as="select" size="lg" onChange={onChangeSort}>
                                     <option>Highest Sale</option>
                                 </Form.Control>
                             </Col>
@@ -70,74 +81,38 @@ return(
         </section>
         <section className="list-show-section">
             <Container>
-                <Row className="list-header">
-                    <Col lg="1" sm="1" xs="1">
-                        No.
-                    </Col>
-                    <Col lg="10" sm="10" xs="9">
-                        Owner
-                    </Col>
-                    <Col lg="1" sm="1" xs="2">
-                        GOGOs
-                    </Col>
-                </Row>
-                <div className="list-body">
-                    <Row className="list-content">
-                        <Col lg="1" md="1" sm="1" xs="1">
-                            1
-                        </Col>
-                        <Col lg="10" md="10" sm="10" xs="10">
-                            oxaf9g89f99f9f9f9d89d9f9f9
-                        </Col>
-                        <Col lg="1" md="1" sm="1" xs="1">
-                            1021
-                        </Col>
-                    </Row>
-                    <Row className="list-content">
-                        <Col lg="1" md="1" sm="1" xs="1">
-                            2
-                        </Col>
-                        <Col lg="10" md="10" sm="10" xs="10">
-                            oxaf9g89f99f9f9f9d89d9f9f9
-                        </Col>
-                        <Col lg="1" md="1" sm="1" xs="1">
-                            1021
-                        </Col>
-                    </Row>
-                    <Row className="list-content">
-                        <Col lg="1" md="1" sm="1" xs="1">
-                            3
-                        </Col>
-                        <Col lg="10" md="10" sm="10" xs="10">
-                            oxaf9g89f99f9f9f9d89d9f9f9
-                        </Col>
-                        <Col lg="1" md="1" sm="1" xs="1">
-                            1021
-                        </Col>
-                    </Row>
-                    <Row className="list-content">
-                        <Col lg="1" md="1" sm="1" xs="1">
-                            4
-                        </Col>
-                        <Col lg="10" md="10" sm="10" xs="10">
-                            oxaf9g89f99f9f9f9d89d9f9f9
-                        </Col>
-                        <Col lg="1" md="1" sm="1" xs="1">
-                            1021
-                        </Col>
-                    </Row>
-                    <Row className="list-content">
-                        <Col lg="1" md="1" sm="1" xs="1">
-                            5
-                        </Col>
-                        <Col lg="10" md="10" sm="10" xs="10">
-                            oxaf9g89f99f9f9f9d89d9f9f9
-                        </Col>
-                        <Col lg="1" md="1" sm="1" xs="1">
-                            1021
-                        </Col>
-                    </Row>
-                </div>
+                {loading === false ? (
+                    <Fragment>
+                        <Row className="list-header">
+                            <Col lg="1" sm="1" xs="1">
+                                No.
+                            </Col>
+                            <Col lg="10" sm="10" xs="9">
+                                Owner
+                            </Col>
+                            <Col lg="1" sm="1" xs="2">
+                                GOGOs
+                            </Col>
+                        </Row>
+                        <div className="list-body">
+                            {ownersList.map((owner, index) => (
+                                <Row className="list-content">
+                                    <Col lg="1" md="1" sm="1" xs="1">
+                                        {index}
+                                    </Col>
+                                    <Col lg="10" md="10" sm="10" xs="10">
+                                        {owner[0]}
+                                    </Col>
+                                    <Col lg="1" md="1" sm="1" xs="1">
+                                        {owner[1]}
+                                    </Col>
+                                </Row>
+                            ))}
+                        </div>
+                    </Fragment>
+                ) : (
+                <div>Loading the Leaderboard...</div>
+                )}
             </Container>
         </section>
     </S.LeaderboardWrapper>
