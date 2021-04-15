@@ -29,16 +29,16 @@ export const Fullscreen = styled.div`
             font-size: 48px;
         }
     }
-    
+
     .loading {
         position: relative;
-    top: -100px;
-    z-index: 1;
+        top: -100px;
+        z-index: 1;
     }
     video {
-    height: 50vh;
-    position: relative;
-    z-index: 5;
+        height: 50vh;
+        position: relative;
+        z-index: 5;
     }
 `
 export const DrawTradeWrapper = styled.div`
@@ -169,4 +169,21 @@ export const GOGODetailsWrapper = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+`
+
+export const NoMetamaskContainer = styled.section`
+    h2 {
+        font-size: 4rem;
+    }
+    img {
+        height: 300px;
+    }
+    @media (max-width: 900px) {
+        h2 {
+            font-size: 2.5rem;
+        }
+        img {
+            height: 10rem;
+        }
+    }
 `

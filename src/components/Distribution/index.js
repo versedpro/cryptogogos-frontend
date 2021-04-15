@@ -1,4 +1,5 @@
-import React, { useEffect, useContext } from 'react'
+import { useContext } from 'react'
+import React, { useEffect } from 'react'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
