@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-do
 import DrawTrade from './components/DrawTrade/DrawTrade'
 import Faq from './components/Faq'
 import Gallery from './components/Gallery'
-import Leaderboard from './components/Leaderboard'
+import Leaderboard from './components/Leaderboard/Leaderboard'
 import { UseWalletProvider } from 'use-wallet'
 import AccountProvider from './contexts/AccountProvider'
 
@@ -23,7 +23,7 @@ import logo from './images/svgs/logo.svg'
 function App() {
     return (
         <UseWalletProvider
-            chainId={42}                         
+            chainId={42}
             connectors={
                 {
                         }
@@ -80,7 +80,6 @@ function App() {
                                                 </Nav.Link>
                                                 <NavLink className="nav-link" to="leaderboard">Leaderboard</NavLink>
                                                 {/*<Nav.Link href="#link">Gallery</Nav.Link>*/}
-                                                {/*<Nav.Link href="#link">Leaderboard</Nav.Link>*/}
                                                 <Nav.Link href="https://wiki.cryptogogos.com/about/">
                                                     About
                                                 </Nav.Link>

@@ -37,6 +37,8 @@ const DrawTrade = () => {
         connect('injected')
     }, [])
 
+    console.log(status)
+
     const getPackPrice = async () => {
         const mintPrice = await walletContract.methods.getNFTPrice().call()
         setPrice(mintPrice)
