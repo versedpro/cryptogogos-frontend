@@ -37,11 +37,19 @@ const DrawTrade = () => {
     }
     const handleDrawCardClicked = async () => {
         setIsOpening('Connecting Metamask...')
-        try {
-            const {
-                data: { signature },
-            } = await createMintRequest(account)
+        let signature, _tokenId
 
+        // Start minting block
+        try {
+            const { data } = await createMintRequest(account)
+            signature = data.signature
+        } catch (err) {
+            console.log(err)
+            setError('Our servers have encountered an unexpected error')
+        }
+
+        // Minting on blockchain block
+        try {
             const price = await getPackPrice()
             await walletContract.methods
                 .mint()
@@ -58,13 +66,24 @@ const DrawTrade = () => {
                 })
 
             const balance = await walletContract.methods.balanceOf(account).call()
-            const _tokenId = await walletContract.methods
-                .tokenOfOwnerByIndex(account, balance - 1)
-                .call()
+            _tokenId = await walletContract.methods.tokenOfOwnerByIndex(account, balance - 1).call()
             setTokenId(_tokenId)
             setIsOpening('Grooming your GOGO ⚡️...')
-            await confirmMint(account, _tokenId, signature)
+        } catch (err) {
+            console.log(err)
+            setError('Error while minting. Please check browser console and refresh')
+        }
 
+        // confirmMint block
+        try {
+            await confirmMint(account, _tokenId, signature)
+        } catch (err) {
+            console.log(err)
+            setError('Our servers have encountered an unexpected error')
+        }
+
+        // metadata block
+        try {
             const { data: metadata } = await getTokenMetadata(_tokenId)
 
             setMetaData(metadata)
