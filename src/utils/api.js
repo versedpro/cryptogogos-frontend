@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { getTokenIdByOwner, getTokenId } from './contract'
 
 export const createMintRequest = user_address =>
     axios.post(`${process.env.REACT_APP_API_BASE}/v1/cards/startMint`, {
@@ -15,7 +16,7 @@ export const confirmMint = (user_address, token_id, signature) =>
 export const getTokenMetadata = tokenId =>
     axios.get(`${process.env.REACT_APP_API_BASE}/metadata/${tokenId}`)
 
-export const getTokensList = async data => {
+export const getTokenList = async data => {
     const tokenList = []
     for (let i = data.balance - 1; i >= 0 && i >= data.balance - data.tokenNumber; i--) {
         tokenList.push(i)
@@ -25,9 +26,11 @@ export const getTokensList = async data => {
         let _tokenList = []
         await Promise.all(
             tokenList.map(async index => {
-                const tokenId = await data.contract
-                    .tokenOfOwnerByIndex(data.ownerAddress, index)
-                    .call()
+                const tokenId = await getTokenIdByOwner({
+                    contract: data.contract,
+                    ownerAddress: data.ownerAddress,
+                    index: index,
+                })
                 const { data: metadata } = await getTokenMetadata(tokenId)
                 _tokenList.push({
                     index: index,
@@ -48,7 +51,10 @@ export const getTokensList = async data => {
 
         await Promise.all(
             tokenList.map(async index => {
-                const tokenId = await data.contract.tokenByIndex(index).call()
+                const tokenId = await getTokenId({
+                    contract: data.contract,
+                    index: data.index,
+                })
                 const { data: metadata } = await getTokenMetadata(tokenId)
                 _tokenList.push({
                     index: index,
@@ -64,15 +70,5 @@ export const getTokensList = async data => {
             return 0
         })
         return [..._tokenList]
-    }
-}
-
-export const getBalanceOfAccount = async data => {
-    if (data.ownerAddress) {
-        const balance = await data.contract.balanceOf(data.ownerAddress).call()
-        return balance
-    } else {
-        const totalSupply = await data.contract.totalSupply().call()
-        return totalSupply
     }
 }

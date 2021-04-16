@@ -3,7 +3,8 @@ import * as S from './styled'
 import { Container, Row, Col, Image, Spinner } from 'react-bootstrap'
 import Web3 from 'web3'
 import ABI from '../../utils/contract.abi.json'
-import { getBalanceOfAccount, getTokensList } from '../../utils/api'
+import { getTokenList } from '../../utils/api'
+import { getBalanceOfAccount, getTotalSupply } from '../../utils/contract'
 import LoadingMask from 'react-loadingmask'
 import 'react-loadingmask/dist/react-loadingmask.css'
 import { useWallet } from 'use-wallet'
@@ -35,15 +36,23 @@ const GogoList = props => {
     }, [balance])
 
     const getBalance = async () => {
-        const balance = await getBalanceOfAccount({
-            ownerAddress: props.ownerAddress,
-            contract: walletContract.methods,
-        })
+        let balance = -1
+        if (props.ownerAddress) {
+            balance = await getBalanceOfAccount({
+                account: props.ownerAddress,
+                contract: walletContract.methods,
+            })
+        } else {
+            balance = await getTotalSupply({
+                contract: walletContract.methods,
+            })
+        }
+
         setBalance(balance)
     }
 
     const getTokens = async () => {
-        const tokenList = await getTokensList({
+        const tokenList = await getTokenList({
             balance: balance,
             tokenNumber: tokenNumber,
             ownerAddress: props.ownerAddress,
@@ -75,7 +84,7 @@ const GogoList = props => {
                                                 muted
                                                 width="200px"
                                                 src={item.metaData.image}
-                                                onLoadEnd={onLoadedVideo(item.tokenId)}
+                                                onLoadedData={onLoadedVideo(item.tokenId)}
                                             />
                                         ) : (
                                             <div style={{ width: '200px', height: '200px' }}></div>
