@@ -49,6 +49,8 @@ export const LeaderboardWrapper = styled.div`
     }
     .list-show-section {
         margin-top: 4rem;
+        width: 90%;
+        margin: auto;
         .list-header {
             font-size: 12px;
             margin-bottom: 1rem;
@@ -57,8 +59,6 @@ export const LeaderboardWrapper = styled.div`
             }
         }
         .list-body {
-            padding-right: 5px;
-            padding-left: 5px;
             .list-content {
                 color: black;
                 background-color: rgba(255, 255, 255, 1);

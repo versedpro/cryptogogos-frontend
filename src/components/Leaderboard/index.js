@@ -61,7 +61,6 @@ return(
             </Container>
         </section>
         <section className="list-show-section">
-            <Container>
                 {loading === false ? (
                     <Fragment>
                         <Row className="list-header">
@@ -106,7 +105,6 @@ return(
                         <GuardSpinner size={50} frontColor="rgba(255, 255, 255, 1)" backColor="rgba(255, 255, 255, 0.3)" loading={loading} />
                     </div>
                 )}
-            </Container>
         </section>
     </S.LeaderboardWrapper>
 );
