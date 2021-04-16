@@ -3,7 +3,7 @@ import * as S from './styled'
 import { Container, Row, Col, Image, Spinner } from 'react-bootstrap'
 import Web3 from 'web3'
 import ABI from '../../utils/contract.abi.json'
-import { getTokenMetadata } from '../../utils/api'
+import { getTokenMetadata, getTokensList } from '../../utils/api'
 import LoadingMask from 'react-loadingmask'
 import 'react-loadingmask/dist/react-loadingmask.css'
 import { useWallet } from 'use-wallet'
@@ -45,55 +45,14 @@ const GogoList = props => {
     }
 
     const getTokens = async () => {
-        const tokenList = []
-        for (let i = balance - 1; i >= 0 && i >= balance - tokenNumber; i--) {
-            tokenList.push(i)
-        }
+        const tokenList = await getTokensList({
+            balance: balance,
+            tokenNumber: tokenNumber,
+            ownerAddress: props.ownerAddress,
+            contract: walletContract.methods,
+        })
 
-        if (props.ownerAddress) {
-            let _tokenList = []
-            await Promise.all(
-                tokenList.map(async index => {
-                    const tokenId = await walletContract.methods
-                        .tokenOfOwnerByIndex(props.ownerAddress, index)
-                        .call()
-                    const { data: metadata } = await getTokenMetadata(tokenId)
-                    _tokenList.push({
-                        index: index,
-                        tokenId: tokenId,
-                        metaData: metadata,
-                        isLoading: true,
-                    })
-                }),
-            )
-            _tokenList.sort(function (a, b) {
-                if (a.tokenId < b.tokenId) return -1
-                if (a.tokenId > b.tokenId) return 1
-                return 0
-            })
-            setTokens([..._tokenList])
-        } else {
-            let _tokenList = []
-
-            await Promise.all(
-                tokenList.map(async index => {
-                    const tokenId = await walletContract.methods.tokenByIndex(index).call()
-                    const { data: metadata } = await getTokenMetadata(tokenId)
-                    _tokenList.push({
-                        index: index,
-                        tokenId: tokenId,
-                        metaData: metadata,
-                        isLoading: true,
-                    })
-                }),
-            )
-            _tokenList.sort(function (a, b) {
-                if (a.tokenId < b.tokenId) return -1
-                if (a.tokenId > b.tokenId) return 1
-                return 0
-            })
-            setTokens([..._tokenList])
-        }
+        setTokens([...tokenList])
     }
 
     const onLoadedVideo = tokenId => {
