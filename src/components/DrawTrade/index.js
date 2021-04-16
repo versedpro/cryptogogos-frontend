@@ -2,11 +2,7 @@ import React, { useEffect, useContext } from 'react'
 import Particles from 'react-particles-js'
 import Web3 from 'web3'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
-import {
-    confirmMint,
-    createMintRequest,
-    getTokenMetadata,
-} from 'utils/api'
+import { confirmMint, createMintRequest, getTokenMetadata } from 'utils/api'
 import DrawError from './DrawError'
 import metamaskLogo from '../../images/metamask-logo.png'
 import * as S from './styled'
@@ -101,7 +97,6 @@ const DrawTrade = () => {
         } catch (err) {
             setError('Error while minting')
         }
-
     }
     if (error) return <DrawError error={error} />
 
@@ -153,27 +148,6 @@ const DrawTrade = () => {
                                         <Button style={{ marginLeft: '1rem' }} variant="primary">
                                             Trade
                                         </Button>{' '}
-                                    </Col>
-                                </Row>
-                            </Container>
-                        </section>
-                        <section className="rocket-section">
-                            <Container>
-                                <Row>
-                                    <Col>
-                                        <div className="rocket-buttons">
-                                            <div className="actions">
-                                                <div className="drawButton">
-                                                    <img
-                                                        src={drawBtn}
-                                                        onClick={handleDrawCardClicked}
-                                                    />
-                                                </div>
-                                                <div className="tradeButton">
-                                                    <img src={tradeBtn} />
-                                                </div>
-                                            </div>
-                                        </div>
                                     </Col>
                                 </Row>
                             </Container>

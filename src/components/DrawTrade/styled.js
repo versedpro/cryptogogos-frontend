@@ -42,9 +42,9 @@ export const Fullscreen = styled.div`
     }
 `
 export const DrawTradeWrapper = styled.div`
-background: url(${bg}) no-repeat;
-background-size: cover;
-background-position: center top;
+    background: url(${bg}) no-repeat;
+    background-size: cover;
+    background-position: center top;
     input.subscribe-email {
         width: 50%;
         margin: 0 auto;
@@ -59,18 +59,6 @@ background-position: center top;
         top: 50px;
         right: 50px;
         font-size: 24px;
-    }
-
-    .rocket-section {
-        
-    }
-
-    .rocket-body {
-        padding-top: 17rem;
-        margin-left: auto;
-        margin-right: auto;
-        width: 100%;
-        height: auto;
     }
 
     .drawButton {
@@ -91,41 +79,7 @@ background-position: center top;
         padding-top: 3rem;
         font-size: 1rem;
         line-height: 25px;
-        color: rgba(255,255,255, 0.75);
-    }
-    .rocket-buttons {
-        // position: absolute;
-        // top: 22rem;
-        // left: 50%;
-        // transform: translateX(-50%);
-    }
-    .rocket-buttons .actions {
-        margin-top: 26vw;
-        margin-left: -10vw;
-    }
-    .rocket-buttons .actions img {
-        cursor: pointer;
-    }
-
-    @media (min-width: 1920px) {
-        .tradeButton {
-            margin-left: -20rem;
-            margin-top: -5rem;
-        }
-        .rocket-buttons .actions {
-            margin-top: 31vw;
-        }
-        .rocket-buttons .actions img {
-            width: 120px;
-        }
-    }
-    @media (max-width: 1200px) {
-        .rocket-buttons .actions {
-            display: none;
-        }
-    }
-    @media (max-width: 800px) {
-        background: contain;
+        color: rgba(255, 255, 255, 0.75);
     }
 `
 export const GOGODetailsWrapper = styled.div`
