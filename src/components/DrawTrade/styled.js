@@ -42,9 +42,9 @@ export const Fullscreen = styled.div`
     }
 `
 export const DrawTradeWrapper = styled.div`
-background: url(${bg}) no-repeat;
-background-size: cover;
-background-position: center top;
+    background: url(${bg}) no-repeat;
+    background-size: cover;
+    background-position: center top;
     input.subscribe-email {
         width: 50%;
         margin: 0 auto;
@@ -62,7 +62,6 @@ background-position: center top;
     }
 
     .rocket-section {
-        
     }
 
     .rocket-body {
@@ -91,7 +90,7 @@ background-position: center top;
         padding-top: 3rem;
         font-size: 1rem;
         line-height: 25px;
-        color: rgba(255,255,255, 0.75);
+        color: rgba(255, 255, 255, 0.75);
     }
     .rocket-buttons {
         // position: absolute;
@@ -100,7 +99,7 @@ background-position: center top;
         // transform: translateX(-50%);
     }
     .rocket-buttons .actions {
-        margin-top: 26vw;
+        margin-top: 20vw;
         margin-left: -10vw;
     }
     .rocket-buttons .actions img {
@@ -113,7 +112,7 @@ background-position: center top;
             margin-top: -5rem;
         }
         .rocket-buttons .actions {
-            margin-top: 31vw;
+            margin-top: 24vw;
         }
         .rocket-buttons .actions img {
             width: 120px;

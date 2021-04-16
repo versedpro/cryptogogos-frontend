@@ -164,15 +164,6 @@ section .terms-content {
     line-height: 25px;
     color: rgba(255, 255, 255, 0.75);
 }
-.rocket-buttons {
-    position: absolute;
-    top: 22rem;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.rocket-buttons .actions img {
-    cursor: pointer;
-}
 .video-card {
     /* background: black;
     width: 100vw;
