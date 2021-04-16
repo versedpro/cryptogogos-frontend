@@ -13,33 +13,14 @@ import MyCollection from 'components/MyCollection'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import { useWallet, UseWalletProvider } from 'use-wallet'
-import AccountProvider, { AccountContext } from './contexts/AccountProvider'
+import AccountProvider from './contexts/AccountProvider'
 
 function App() {
     const wallet = useWallet()
-    const { web3Container, walletContract } = useContext(AccountContext)
-    // const [account, setAccount] = React.useState()
-
-    // const handleAccountsChanged = accounts => {
-    //     if (accounts.length === 0) {
-    //         setAccount(null)
-    //         console.log('Please connect to MetaMask.')
-    //     } else if (accounts[0] !== account) {
-    //         setAccount(accounts[0])
-    //     }
-    // }
 
     useEffect(() => {
         wallet.connect('injected')
     }, [])
-
-    // useEffect(async () => {
-    //     if (web3Container) {
-    //         const accounts = await web3Container.eth.getAccounts()
-    //         setAccount(accounts[0])
-    //         window.ethereum.on('accountsChanged', handleAccountsChanged)
-    //     }
-    // }, [web3Container])
 
     return (
         <Router>

@@ -21,7 +21,6 @@ export const getTokenList = async ({ balance, contract, tokenCount, ownerAddress
     for (let i = balance - 1; i >= 0 && i >= balance - tokenCount; i--) {
         tokenList.push(i)
     }
-    console.log(balance, tokenCount)
 
     if (ownerAddress) {
         let _tokenList = []
@@ -56,7 +55,6 @@ export const getTokenList = async ({ balance, contract, tokenCount, ownerAddress
                     contract: contract,
                     index: index,
                 })
-                console.log(tokenId)
                 const { data: metadata } = await getTokenMetadata(tokenId)
                 _tokenList.push({
                     index: index,
