@@ -1,7 +1,12 @@
 import styled from 'styled-components'
 
 export const DistributionWrapper = styled.div`
-    .first, .second, .third, .fourth, .fifth, .sixth {
+    .first,
+    .second,
+    .third,
+    .fourth,
+    .fifth,
+    .sixth {
         display: block !important;
     }
     .milestone-end {
@@ -26,27 +31,27 @@ export const DistributionWrapper = styled.div`
         height: 15px;
         width: calc(100% - 62%);
         display: block;
-        background-color: #ECFFF4;
+        background-color: #ecfff4;
         box-shadow: 0px 0px 20px #3cc071;
         position: absolute;
         margin-left: -2px;
     }
     .nft-distribute.in-progress .distribute-bar {
-        height: 15px  !important;
-        width: calc(100% - 33px)  !important;
+        height: 15px !important;
+        width: calc(100% - 33px) !important;
         display: block;
         background-color: #964d85 !important;
     }
     .nft-distribute .progressed-bar {
         display: none !important;
     }
-    .nft-distribute.in-progress .progressed-bar{
+    .nft-distribute.in-progress .progressed-bar {
         display: block !important;
     }
     .nft-distribute .milestone.progressed {
-        display:none !important;
+        display: none !important;
     }
     .nft-distribute.in-progress .milestone.progressed {
-        display:block !important;
+        display: block !important;
     }
 `

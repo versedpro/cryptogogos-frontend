@@ -1,6 +1,4 @@
-@import 'loaders.css/src/animations/square-spin.scss'
-
-.loader-hidden {
+@import 'loaders.css/src/animations/square-spin.scss' .loader-hidden {
     display: none;
 }
 .loader-active {
@@ -9,84 +7,97 @@
 
 /*used font*/
 @font-face {
-	font-family: 'Avenir Next Cyr Medium';
-	src: url('./fonts/AvenirNextCyr-Medium.eot');
-	src: local('AvenirNextCyr-Medium'),
-		url('./fonts/AvenirNextCyr-Medium.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/AvenirNextCyr-Medium.woff') format('woff'),
-		url('./fonts/AvenirNextCyr-Medium.woff2') format('woff2'),
-		url('./fonts/AvenirNextCyr-Medium.ttf') format('truetype');
+    font-family: 'Avenir Next Cyr Medium';
+    src: url('./fonts/AvenirNextCyr-Medium.eot');
+    src: local('AvenirNextCyr-Medium'),
+        url('./fonts/AvenirNextCyr-Medium.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/AvenirNextCyr-Medium.woff') format('woff'),
+        url('./fonts/AvenirNextCyr-Medium.woff2') format('woff2'),
+        url('./fonts/AvenirNextCyr-Medium.ttf') format('truetype');
 
-	font-style: normal;
+    font-style: normal;
 }
 @font-face {
-	font-family: 'HelveticaNeueCyr Black';
-	src: url('./fonts/HelveticaNeueCyr-Black.eot');
-	src: local('HelveticaNeueCyr-Black'),
-		url('./fonts/HelveticaNeueCyr-Black.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/HelveticaNeueCyr-Black.woff') format('woff'),
-		url('./fonts/HelveticaNeueCyr-Black.ttf') format('truetype');
-	font-weight: 900;
-	font-style: normal;
-}
-
-
-@font-face {
-	font-family: 'HelveticaNeueCyr Roman';
-	src: url('./fonts/HelveticaNeueCyr-Roman.eot');
-	src: local('HelveticaNeueCyr-Roman'),
-		url('./fonts/HelveticaNeueCyr-Roman.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/HelveticaNeueCyr-Roman.woff') format('woff'),
-		url('./fonts/HelveticaNeueCyr-Roman.ttf') format('truetype');
-	font-weight: normal;
-	font-style: normal;
+    font-family: 'HelveticaNeueCyr Black';
+    src: url('./fonts/HelveticaNeueCyr-Black.eot');
+    src: local('HelveticaNeueCyr-Black'),
+        url('./fonts/HelveticaNeueCyr-Black.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/HelveticaNeueCyr-Black.woff') format('woff'),
+        url('./fonts/HelveticaNeueCyr-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: 'HelveticaNeueCyr Bold';
-	src: url('./fonts/HelveticaNeueCyr-Bold.eot');
-	src: local('HelveticaNeueCyr-Bold'),
-		url('./fonts/HelveticaNeueCyr-Bold.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/HelveticaNeueCyr-Bold.woff') format('woff'),
-		url('./fonts/HelveticaNeueCyr-Bold.ttf') format('truetype');
-	font-weight: bold;
-	font-style: normal;
+    font-family: 'HelveticaNeueCyr Roman';
+    src: url('./fonts/HelveticaNeueCyr-Roman.eot');
+    src: local('HelveticaNeueCyr-Roman'),
+        url('./fonts/HelveticaNeueCyr-Roman.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/HelveticaNeueCyr-Roman.woff') format('woff'),
+        url('./fonts/HelveticaNeueCyr-Roman.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
 @font-face {
-	font-family: 'HelveticaNeueCyr Light';
-	src: url('./fonts/HelveticaNeueCyr-Light.eot');
-	src: local('HelveticaNeueCyr-Light'),
-		url('./fonts/HelveticaNeueCyr-Light.eot?#iefix') format('embedded-opentype'),
-		url('./fonts/HelveticaNeueCyr-Light.woff') format('woff'),
-		url('./fonts/HelveticaNeueCyr-Light.ttf') format('truetype');
-	font-weight: 300;
-	font-style: normal;
+    font-family: 'HelveticaNeueCyr Bold';
+    src: url('./fonts/HelveticaNeueCyr-Bold.eot');
+    src: local('HelveticaNeueCyr-Bold'),
+        url('./fonts/HelveticaNeueCyr-Bold.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/HelveticaNeueCyr-Bold.woff') format('woff'),
+        url('./fonts/HelveticaNeueCyr-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
 }
 
+@font-face {
+    font-family: 'HelveticaNeueCyr Light';
+    src: url('./fonts/HelveticaNeueCyr-Light.eot');
+    src: local('HelveticaNeueCyr-Light'),
+        url('./fonts/HelveticaNeueCyr-Light.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/HelveticaNeueCyr-Light.woff') format('woff'),
+        url('./fonts/HelveticaNeueCyr-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
 
 .main-body {
-    background: linear-gradient(106.48deg, #13006C -11.32%, #C33764 117.54%);
+    background: linear-gradient(106.48deg, #13006c -11.32%, #c33764 117.54%);
     min-height: 100vh;
 }
 .container-fluid {
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
-body{
+body {
     font-family: 'HelveticaNeueCyr Roman', cursive;
-    font-size:16px;
-    color:#fff;
+    font-size: 16px;
+    color: #fff;
     min-height: 100vh;
 }
 
 .navbar-light .navbar-nav .nav-link {
     color: rgba(255,255, 255,1)  !important;
+    position: relative;
+    margin-right: 20px;
 }
-.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
     /* color: rgba(255,255, 255,1)  !important; */
     text-decoration: underline;
 }
+
+.navbar-light .navbar-nav .nav-link.active:before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 17px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
 ul.header-links li {
     list-style-type: none;
     float: left;
@@ -96,9 +107,7 @@ ul.header-links li {
 .header-links img {
     width: 25px;
 }
-nav.navbar.navbar-expand-lg.navbar-light {
-    margin-top: 20px !important;
-}
+
 .navbar-collapse button.btn.btn-outline-light {
     width: 120px;
 }
@@ -109,8 +118,11 @@ nav.navbar.navbar-expand-lg.navbar-light {
     align-items: inherit;
 }
 
-h1, h2, h4, h5 {
-    font-family: 'Avenir Next Cyr Medium'  !important;
+h1,
+h2,
+h4,
+h5 {
+    font-family: 'Avenir Next Cyr Medium' !important;
 }
 h1 {
     font-size: 5rem;
@@ -118,7 +130,7 @@ h1 {
     padding-top: 50px;
 }
 h1 span {
-    color:#FE2AFE;
+    color: #fe2afe;
 }
 h3.thin-heading {
     font-size: 20px;
@@ -140,12 +152,11 @@ section.our-mission-section h2 {
     line-height: 1.5;
 }
 
-
 s.quote {
     padding-top: 0;
 }
 section.our-mission-section p {
-    color: rgba(255,255,255, 0.75);
+    color: rgba(255, 255, 255, 0.75);
     font-size: 0.8rem;
     margin-top: 31px;
 }
@@ -165,16 +176,7 @@ section .terms-content {
     padding-top: 3rem;
     font-size: 1rem;
     line-height: 25px;
-    color: rgba(255,255,255, 0.75);
-}
-.rocket-buttons {
-    position: absolute;
-    top: 22rem;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.rocket-buttons .actions img {
-    cursor: pointer;
+    color: rgba(255, 255, 255, 0.75);
 }
 .video-card {
     /* background: black;
@@ -188,12 +190,6 @@ section .terms-content {
     left: 0px;
     height: 100vh;
     z-index: 9;
-}
-.drawButton {
-    padding-top: 3rem;
-}
-.tradeButton {
-    padding-top: 1rem;
 }
 .distribution-section span {
     width: 10px;
@@ -214,7 +210,7 @@ section .terms-content {
     margin-bottom: 50px;
 }
 .tx-box {
-    background: rgba(255,255,255,.6);
+    background: rgba(255, 255, 255, 0.6);
     padding: 10px 20px 0;
     color: #000 !important;
     border-radius: 20px;
@@ -242,7 +238,7 @@ ul {
     position: absolute;
     right: 10px;
     bottom: 18px;
-    background: #3FD27F;
+    background: #3fd27f;
     padding: 3px 10px;
     border-radius: 6px;
     color: #fff;
@@ -250,10 +246,9 @@ ul {
     font-size: 12px;
 }
 
-.box-label.red{
-    background:#D12F4D;
+.box-label.red {
+    background: #d12f4d;
 }
-
 
 .timer {
     font-size: 10rem;
@@ -271,7 +266,8 @@ ul {
     margin-top: 14rem;
     margin-bottom: 6rem;
 }
-.nft-distribute.extra-white .nft-price, .nft-distribute.extra-white .nft-numbers{
+.nft-distribute.extra-white .nft-price,
+.nft-distribute.extra-white .nft-numbers {
     color: white !important;
 }
 
@@ -279,7 +275,7 @@ button.btn-primary {
     /* width: 10rem;
     height: 4rem; */
 
-    background: #3108ED;
+    background: #3108ed;
 }
 button.btn.btn-primary {
     border: none;
@@ -290,8 +286,8 @@ button.btn.btn-primary {
     margin-top: 30px;
 }
 button.btn-primary:hover {
-    background:#fff;
-    color: #3108ED;
+    background: #fff;
+    color: #3108ed;
 }
 .footer .container {
     text-align: left;
@@ -314,15 +310,17 @@ button.btn-primary:hover {
     margin-left: 40px;
 }
 
-.footer-links img {width: 20px;}
+.footer-links img {
+    width: 20px;
+}
 .footer-copyright {
     margin-top: 70px;
     font-size: 14px;
-    color:#c1a3c3;
+    color: #c1a3c3;
 }
 .right-footer .footer-links li {
-    float:left;
-    margin-left:10px;
+    float: left;
+    margin-left: 10px;
 }
 .recent-minted {
     margin-top: 150px;
@@ -331,15 +329,15 @@ button.btn-primary:hover {
     text-align: center;
     margin-bottom: 30px;
 }
-.btn-outline-light{
-    background:transparent;
+.btn-outline-light {
+    background: transparent;
     border: 1px solid #fff;
 }
 .btn-outline-light:hover {
     color: #fff;
-    background-color: #3108ED;
+    background-color: #3108ed;
     border-color: #f8f9fa;
-    border:1px solid #3108ED;
+    border: 1px solid #3108ed;
 }
 section.distribution-section {
     margin-top: 50px;
@@ -362,18 +360,17 @@ section.distribution-section {
 }
 .carousel-container {
     width: 100%;
-   }
+}
 
 .navbar-light .navbar-toggler-icon {
-    background-image: url("./images/svgs/menu-icon-white.svg") !important;
+    background-image: url('./images/svgs/menu-icon-white.svg') !important;
 }
 section.footer {
-    background-image: url("./images/footer-bg.png");
-    background-size:cover;
+    background-image: url('./images/footer-bg.png');
+    background-size: cover;
     background-position: center;
     min-height: 300px;
     background-repeat: no-repeat;
-
 }
 .distribution-row .col-lg-2.col-12 {
     margin-left: 0 !important;
@@ -382,7 +379,7 @@ section.footer {
     padding-right: 0 !important;
 }
 .nft-distribute {
-    background-image: url("./images/distribute.png");
+    background-image: url('./images/distribute.png');
     background-repeat: no-repeat;
     background-position: right;
     background-repeat: no-repeat;
@@ -390,14 +387,13 @@ section.footer {
     margin-top: 50px;
     z-index: 1999;
     padding-top: 8px;
-    position:relative;
-
+    position: relative;
 }
 .first-distribute {
-    background-image: url("./images/distribute.png");
+    background-image: url('./images/distribute.png');
     background-repeat: no-repeat;
     background-position: right;
-    position:relative;
+    position: relative;
 }
 
 .distribute-bar {
@@ -408,20 +404,20 @@ section.footer {
 }
 .nft-price {
     color: #98568d;
-    font-family:'HelveticaNeueCyr Black';
-    font-size:18px;
+    font-family: 'HelveticaNeueCyr Black';
+    font-size: 18px;
     padding-top: 20px;
 }
 .nft-numbers {
     color: #98568d;
-    font-family:'HelveticaNeueCyr Black';
-    font-size:20px;
+    font-family: 'HelveticaNeueCyr Black';
+    font-size: 20px;
 }
 .nft-distribute.active .distribute-bar {
     height: 15px;
     width: calc(100% - 27px);
     display: block;
-    background-color: #ECFFF4;
+    background-color: #ecfff4;
     box-shadow: 0px 0px 20px #3cc071;
     position: absolute;
     margin-left: -2px;
@@ -436,11 +432,11 @@ section.footer {
 }
 
 .nft-distribute .milestone {
-    display:none;
+    display: none;
 }
 .milestone.first {
     left: -131px;
-    display:block;
+    display: block;
 }
 .active .nft-price {
     padding-top: 39px;
@@ -456,9 +452,9 @@ ul.header-links {
     margin-right: 0;
 }
 
-@media (min-width: 1601px){
+@media (min-width: 1601px) {
     h1 {
-        font-size:8rem;
+        font-size: 8rem;
     }
     h3.thin-heading {
         font-size: 24px;
@@ -468,7 +464,7 @@ ul.header-links {
         padding-bottom: 25px;
     }
     section.our-mission-section p {
-        color: rgba(255,255,255, 0.75);
+        color: rgba(255, 255, 255, 0.75);
         font-size: 1rem;
         margin-top: 31px;
     }
@@ -476,52 +472,47 @@ ul.header-links {
         margin-top: 13rem;
         margin-bottom: 12rem;
     }
-
 }
 
-@media (max-width:1600px) {
-    .timer{
+@media (max-width: 1600px) {
+    .timer {
         margin-top: -74rem;
     }
     section.footer {
-        background-size:contain;
+        background-size: contain;
         background-position: center bottom;
         min-height: 300px;
         background-repeat: no-repeat;
-
     }
 }
 
-
-@media (max-width:1500px) {
-    .timer{
+@media (max-width: 1500px) {
+    .timer {
         margin-top: -64rem;
     }
 }
 
-@media (max-width:1200px) {
-    .timer{
+@media (max-width: 1200px) {
+    .timer {
         margin-top: -54rem;
-        font-size:8rem;
+        font-size: 8rem;
     }
 }
 
-
-@media (max-width:1040px) {
-    .timer{
+@media (max-width: 1040px) {
+    .timer {
         margin-top: -44rem;
         font-size: 6rem;
     }
 }
 
-
-@media (max-width:991px) {
-    .timer{
+@media (max-width: 991px) {
+    .timer {
         margin-top: -34rem;
         font-size: 4rem;
     }
     .join-text {
-        font-size:3rem;
+        font-size: 3rem;
     }
 
     .tx-box {
@@ -532,7 +523,6 @@ ul.header-links {
         text-align: center;
     }
     section.our-mission-section img {
-
         text-align: center;
         margin-left: -50px;
         width: 310px;
@@ -565,62 +555,61 @@ ul.header-links {
         text-align: center;
     }
     section.footer {
-        background-image: url("./images/svgs/footer.svg");
+        background-image: url('./images/svgs/footer.svg');
         background-size: contain;
-    background-position: center bottom;
-    min-height: 300px;
-    background-repeat: no-repeat;
-}
-.right-footer .footer-links {
-    margin-top: 72px;
-    padding-bottom: 80px;
-    margin-left: 0;
-    margin-right: 0 !important;
-    text-align: center;
-    padding-left: 0;
-    display: flex;
-    justify-content: center;
-}
-.subscribe-box {
-    margin-top: 50px;
-}
-.nft-distribute.first-distribute {
-    margin-top:50px;
-}
-.nft-distribute {
-    min-height: 142px;
-    margin-top: 0;
-    z-index: 1999;
-    padding-top: 8px;
-    position: relative;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-}
-.milestone.first {
-    left: -121px;
-    display: block;
-}
-.nft-distribute .progressed-bar{
-    margin-left:10px;
-}
-nft-distribute.in-progress .distribute-bar {
-    height: 15px !important;
-    width: calc(100% - 33px) !important;
-    display: block;
-    background-color: #964d85 !important;
-    margin-left: 12px;
-}
+        background-position: center bottom;
+        min-height: 300px;
+        background-repeat: no-repeat;
+    }
+    .right-footer .footer-links {
+        margin-top: 72px;
+        padding-bottom: 80px;
+        margin-left: 0;
+        margin-right: 0 !important;
+        text-align: center;
+        padding-left: 0;
+        display: flex;
+        justify-content: center;
+    }
+    .subscribe-box {
+        margin-top: 50px;
+    }
+    .nft-distribute.first-distribute {
+        margin-top: 50px;
+    }
+    .nft-distribute {
+        min-height: 142px;
+        margin-top: 0;
+        z-index: 1999;
+        padding-top: 8px;
+        position: relative;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .milestone.first {
+        left: -121px;
+        display: block;
+    }
+    .nft-distribute .progressed-bar {
+        margin-left: 10px;
+    }
+    nft-distribute.in-progress .distribute-bar {
+        height: 15px !important;
+        width: calc(100% - 33px) !important;
+        display: block;
+        background-color: #964d85 !important;
+        margin-left: 12px;
+    }
 }
 
-@media (max-width:700px) {
-    .timer{
+@media (max-width: 700px) {
+    .timer {
         margin-top: -26rem;
         font-size: 3rem;
     }
     .social-links li {
         padding-right: 2rem;
-
     }
     .social-links li img {
         width: 60px;
@@ -631,7 +620,7 @@ nft-distribute.in-progress .distribute-bar {
     }
 }
 
-@media(max-width: 600px){
+@media (max-width: 600px) {
     .timer {
         margin-top: -21rem;
         font-size: 3rem;
@@ -676,19 +665,16 @@ nft-distribute.in-progress .distribute-bar {
         font-size: 16px !important;
         margin-top: 1px !important;
     }
-
-
 }
 
-@media(max-width:450px) {
+@media (max-width: 450px) {
     .timer {
         margin-top: -18.5rem;
         font-size: 2rem;
     }
 }
 
-
-@media(max-width:370px) {
+@media (max-width: 370px) {
     .timer {
         margin-top: -15.5rem;
         font-size: 2rem;
@@ -700,14 +686,9 @@ nft-distribute.in-progress .distribute-bar {
 }
 
 .subscribe-box h2 {
-
-        font-size: 40px;
-        line-height: 60px;
-
+    font-size: 40px;
+    line-height: 60px;
 }
-
-
-
 
 loader {
     font-size: 10px;
