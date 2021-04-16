@@ -1,60 +1,44 @@
 import React, { useContext, useEffect } from 'react'
 import * as S from './styled'
 import { Container, Row, Col, Image, Spinner } from 'react-bootstrap'
-import Web3 from 'web3'
-import ABI from '../../utils/contract.abi.json'
 import { getTokenList } from '../../utils/api'
 import { getBalanceOfAccount, getTotalSupply } from '../../utils/contract'
-import 'react-loadingmask/dist/react-loadingmask.css'
-import { useWallet } from 'use-wallet'
 import { AccountContext } from 'contexts/AccountProvider'
 
-const GogoList = props => {
-    const { tokenNumber = 16 } = props
+const GogoList = ({ ownerAddress, tokenCount }) => {
     const { walletContract } = useContext(AccountContext)
-    const [ownerAddress, setOwnerAddress] = React.useState(null)
-    const [balance, setBalance] = React.useState()
+    const [count, setCount] = React.useState()
     const [tokens, setTokens] = React.useState([])
 
     useEffect(() => {
-        if (props.ownerAddress) {
-            setOwnerAddress(props.ownerAddress)
-        }
+        getGogosCount()
     }, [])
 
     useEffect(() => {
-        if (ownerAddress !== undefined) {
-            getBalance()
-        }
-    }, [ownerAddress])
-
-    useEffect(() => {
-        if (balance !== undefined) {
+        if (count) {
             getTokens()
         }
-    }, [balance])
+    }, [count])
 
-    const getBalance = async () => {
-        let balance = -1
-        if (props.ownerAddress) {
-            balance = await getBalanceOfAccount({
-                account: props.ownerAddress,
+    const getGogosCount = async () => {
+        let count = -1
+        if (ownerAddress) {
+            count = await getBalanceOfAccount({
+                account: ownerAddress,
                 contract: walletContract.methods,
             })
         } else {
-            balance = await getTotalSupply({
-                contract: walletContract.methods,
-            })
+            count = await getTotalSupply(walletContract.methods)
         }
 
-        setBalance(balance)
+        setCount(count)
     }
 
     const getTokens = async () => {
         const tokenList = await getTokenList({
-            balance: balance,
-            tokenNumber: tokenNumber,
-            ownerAddress: props.ownerAddress,
+            balance: count,
+            tokenCount: tokenCount ? tokenCount : 12,
+            ownerAddress: ownerAddress,
             contract: walletContract.methods,
         })
 

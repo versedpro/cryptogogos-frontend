@@ -16,19 +16,20 @@ export const confirmMint = (user_address, token_id, signature) =>
 export const getTokenMetadata = tokenId =>
     axios.get(`${process.env.REACT_APP_API_BASE}/metadata/${tokenId}`)
 
-export const getTokenList = async data => {
+export const getTokenList = async ({ balance, contract, tokenCount, ownerAddress }) => {
     const tokenList = []
-    for (let i = data.balance - 1; i >= 0 && i >= data.balance - data.tokenNumber; i--) {
+    for (let i = balance - 1; i >= 0 && i >= balance - tokenCount; i--) {
         tokenList.push(i)
     }
+    console.log(balance, tokenCount)
 
-    if (data.ownerAddress) {
+    if (ownerAddress) {
         let _tokenList = []
         await Promise.all(
             tokenList.map(async index => {
                 const tokenId = await getTokenIdByOwner({
-                    contract: data.contract,
-                    ownerAddress: data.ownerAddress,
+                    contract: contract,
+                    ownerAddress: ownerAddress,
                     index: index,
                 })
                 const { data: metadata } = await getTokenMetadata(tokenId)
@@ -52,9 +53,10 @@ export const getTokenList = async data => {
         await Promise.all(
             tokenList.map(async index => {
                 const tokenId = await getTokenId({
-                    contract: data.contract,
-                    index: data.index,
+                    contract: contract,
+                    index: index,
                 })
+                console.log(tokenId)
                 const { data: metadata } = await getTokenMetadata(tokenId)
                 _tokenList.push({
                     index: index,
