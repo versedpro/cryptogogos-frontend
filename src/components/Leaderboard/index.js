@@ -55,7 +55,7 @@ const Leaderboard = () => {
 return(
     <S.LeaderboardWrapper>
         <section className="title-section">
-            <h1>Leaderboard</h1>
+            <h2>Leaderboard</h2>
         </section>
         <section className="list-sort-section">
             <Container>

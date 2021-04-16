@@ -2,8 +2,9 @@ import styled from 'styled-components'
 
 export const LeaderboardWrapper = styled.div`
     .title-section {
-        h1 {
-            margin-top: 5rem;
+        margin-top: 5rem;
+        h2 {
+            font-size: 3rem;
         }
     }
     .list-sort-section {
