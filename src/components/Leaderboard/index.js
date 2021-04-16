@@ -1,51 +1,33 @@
-import React, { useState, useEffect, useContext, Fragment } from 'react'
-import { AccountContext } from '../../contexts/AccountProvider'
+import React, { useState, useEffect, Fragment } from 'react'
 import { Container, Row, Col, Form } from 'react-bootstrap'
 import * as S from './styled'
 import { GuardSpinner } from "react-spinners-kit"
+import {
+    getLeaderboardList
+} from 'utils/api'
 
 const Leaderboard = () => {
-    const { walletContract, infuraContract } = useContext(AccountContext)
-    const [totalSupply, setTotalSupply] = React.useState(0)
     const [ownersList, setOwnersList] = React.useState([])
     const [sortBy, setSortBy] = useState('highest sale')
     const [loading, setLoading] = useState(false)
 
-    const getTokensList = async () => {
+    const getLeaderboard = async () => {
+        setLoading(true)
         try {
-            setLoading(true)
-            const totalSupply = await infuraContract.methods.totalSupply().call()
-            setTotalSupply(totalSupply)
-            console.log('totalSupply: ', totalSupply)
-            let owner
-            let ownersObj = {}
-            for(let _tokenId = 1; _tokenId <= totalSupply; _tokenId++) {
-                try{
-                    owner = await infuraContract.methods.ownerOf(_tokenId).call()
-                    if(!ownersObj[owner])
-                        ownersObj[owner] = 1;
-                    else
-                        ownersObj[owner]++;
-                } catch (e) {
-                    console.log(e)
-                }
-            }
-            setOwnersList(Object.entries(ownersObj).sort((a, b) => b[1] - a[1]))
-            console.log(ownersList)
+            const leaderboard = await getLeaderboardList()
+            setOwnersList(leaderboard.data)
             setLoading(false)
-        } catch (e) {
+       } catch(e) {
             console.log(e)
             setLoading(false)
-        }
+       }
     }
     useEffect(() => {
-        if (infuraContract) {
-            getTokensList()
-        }
-    }, [infuraContract])
+        getLeaderboard()
+    }, [])
 
     const sortByOwnedCount = () => {
-        setOwnersList(ownersList.sort((a, b) => b[1] - a[1]))
+        setOwnersList(ownersList.sort((a, b) => a[1] - b[1]))
     }
 
     function onChangeSort(event){
@@ -67,7 +49,7 @@ return(
                     <Col lg="6" xs="6" className="text-right">
                         <Form.Group as={Row} controlId="sortSelection">
                             <Form.Label column lg="6" className="d-none d-lg-block">Sort By: </Form.Label>
-                            <Col lg="6">
+                            <Col lg="6" className="sort-container">
                                 <Form.Control as="select" size="lg" onChange={onChangeSort}>
                                     <option>Highest Sale</option>
                                 </Form.Control>
@@ -96,19 +78,19 @@ return(
                             {ownersList.map((owner, index) => (
                                 <Row className="list-content">
                                     <Col lg="1" md="1" sm="1" xs="1">
-                                        {index}
+                                        {index+1}
                                     </Col>
                                     <Col lg="10" md="10" sm="10" xs="10">
                                         <a
                                             target="_blank"
                                             rel="noreferrer"
-                                            href={`${process.env.REACT_APP_OPENSEA}/accounts/${owner[0]}`}>
-                                            {owner[0]}
+                                            href={`${process.env.REACT_APP_OPENSEA}/accounts/${owner.owner_address}`}>
+                                            {owner.owner_address}
                                         </a>
                                         
                                     </Col>
                                     <Col lg="1" md="1" sm="1" xs="1">
-                                        {owner[1]}
+                                        {owner.balance}
                                     </Col>
                                 </Row>
                             ))}

@@ -13,14 +13,39 @@ export const LeaderboardWrapper = styled.div`
             display: flex;
             align-items: center;
         }
-        select {
-            background: transparent;
-            color: white;
-            font-size: 16px;
-            option {
-                color: black;
+        .sort-container {
+            position: relative;
+            select::-ms-expand {
+                display: none;
+            }
+            select {
+                background: transparent;
+                color: white;
+                font-size: 16px;
+                option {
+                    color: black;
+                }
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                display: block;
+                -ms-word-break: normal;
+                word-break: normal;
+            }
+            .form-control:focus {
+                box-shadow: none;
+                border-color: white;
             }
         }
+        .sort-container:after {
+            content: '\\25BC';
+            right: 25px;
+            top: 15px;
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        
     }
     .list-show-section {
         margin-top: 4rem;
