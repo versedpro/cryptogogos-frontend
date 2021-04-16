@@ -5,6 +5,7 @@ import instagram from 'images/svgs/insta.svg'
 import twitter from 'images/svgs/twitter.svg'
 import telegram from 'images/svgs/telegram.svg'
 import wallet from 'images/svgs/wallet.svg'
+import { NavLink } from 'react-router-dom'
 
 //svg images
 import logo from 'images/svgs/logo.svg'
@@ -50,6 +51,7 @@ const Header = () => {
                     <Nav.Link href="https://opensea.io/assets/cryptogogos">OpenSea</Nav.Link>
                     {/*<Nav.Link href="#link">Gallery</Nav.Link>*/}
                     {/*<Nav.Link href="#link">Leaderboard</Nav.Link>*/}
+                    <NavLink className="nav-link" to="leaderboard">Leaderboard</NavLink>
                     <Nav.Link href="https://wiki.cryptogogos.com/about/">About</Nav.Link>
                     <Nav.Link href="https://wiki.cryptogogos.com/faq">FAQ</Nav.Link>
                     <Nav.Link href="#link">
