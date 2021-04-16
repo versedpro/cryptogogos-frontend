@@ -50,10 +50,16 @@ export const LeaderboardWrapper = styled.div`
                 div:nth-child(3) {
                     font-weight: bold;
                 }
+                a {
+                    color: black;
+                }
             }
             div:nth-child(n+4) {
                 color: white;
                 background-color: rgba(255, 255, 255, 0.3);
+                a {
+                    color: white;
+                }
             }
         }
     }

@@ -98,7 +98,13 @@ return(
                                         {index}
                                     </Col>
                                     <Col lg="10" md="10" sm="10" xs="10">
-                                        {owner[0]}
+                                        <a
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            href={`${process.env.REACT_APP_OPENSEA}/accounts/${owner[0]}`}>
+                                            {owner[0]}
+                                        </a>
+                                        
                                     </Col>
                                     <Col lg="1" md="1" sm="1" xs="1">
                                         {owner[1]}
