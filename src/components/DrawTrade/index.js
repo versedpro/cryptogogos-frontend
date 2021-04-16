@@ -46,6 +46,7 @@ const DrawTrade = () => {
         } catch (err) {
             console.log(err)
             setError('Our servers have encountered an unexpected error')
+            return
         }
 
         // Minting on blockchain block
@@ -72,6 +73,7 @@ const DrawTrade = () => {
         } catch (err) {
             console.log(err)
             setError('Error while minting. Please check browser console and refresh')
+            return
         }
 
         // confirmMint block
@@ -80,6 +82,7 @@ const DrawTrade = () => {
         } catch (err) {
             console.log(err)
             setError('Our servers have encountered an unexpected error')
+            return
         }
 
         // metadata block
@@ -90,6 +93,7 @@ const DrawTrade = () => {
         } catch (err) {
             console.log(err)
             setError('Error while minting. Please check browser console and refresh')
+            return
         }
     }
     if (error) return <DrawError error={error} />
