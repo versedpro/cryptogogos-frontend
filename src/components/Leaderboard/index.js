@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, Fragment } from 'react'
 import { AccountContext } from '../../contexts/AccountProvider'
 import { Container, Row, Col, Form } from 'react-bootstrap'
 import * as S from './styled'
+import { GuardSpinner } from "react-spinners-kit"
 
 const Leaderboard = () => {
     const { walletContract, infuraContract } = useContext(AccountContext)
@@ -114,7 +115,9 @@ return(
                         </div>
                     </Fragment>
                 ) : (
-                <div>Loading the Leaderboard...</div>
+                    <div class="list-loading">
+                        <GuardSpinner size={50} frontColor="rgba(255, 255, 255, 1)" backColor="rgba(255, 255, 255, 0.3)" loading={loading} />
+                    </div>
                 )}
             </Container>
         </section>

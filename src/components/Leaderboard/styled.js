@@ -62,5 +62,9 @@ export const LeaderboardWrapper = styled.div`
                 }
             }
         }
+        .list-loading {
+            display: flex;
+            justify-content: center;
+        }
     }
 `
