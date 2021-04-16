@@ -71,7 +71,7 @@ return(
                             <Col lg="10" sm="10" xs="9">
                                 Owner
                             </Col>
-                            <Col lg="1" sm="1" xs="2">
+                            <Col lg="1" sm="1" xs="1">
                                 GOGOs
                             </Col>
                         </Row>
@@ -81,7 +81,7 @@ return(
                                     <Col lg="1" md="1" sm="1" xs="1">
                                         {index+1}
                                     </Col>
-                                    <Col lg="10" md="10" sm="10" xs="10">
+                                    <Col lg="10" md="10" sm="10" xs="9">
                                         <a
                                             target="_blank"
                                             rel="noreferrer"

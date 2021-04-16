@@ -57,7 +57,8 @@ export const LeaderboardWrapper = styled.div`
             }
         }
         .list-body {
-            padding: 10px;
+            padding-right: 5px;
+            padding-left: 5px;
             .list-content {
                 color: black;
                 background-color: rgba(255, 255, 255, 1);
@@ -69,6 +70,9 @@ export const LeaderboardWrapper = styled.div`
                 align-items: center;
                 div:nth-child(2) {
                     text-align: left;
+                }
+                div:nth-child(3) {
+                    text-align: center;
                 }
                 a {
                     color: black;
