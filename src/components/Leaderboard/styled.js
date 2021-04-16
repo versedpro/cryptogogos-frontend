@@ -13,14 +13,39 @@ export const LeaderboardWrapper = styled.div`
             display: flex;
             align-items: center;
         }
-        select {
-            background: transparent;
-            color: white;
-            font-size: 16px;
-            option {
-                color: black;
+        .sort-container {
+            position: relative;
+            select::-ms-expand {
+                display: none;
+            }
+            select {
+                background: transparent;
+                color: white;
+                font-size: 16px;
+                option {
+                    color: black;
+                }
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                display: block;
+                -ms-word-break: normal;
+                word-break: normal;
+            }
+            .form-control:focus {
+                box-shadow: none;
+                border-color: white;
             }
         }
+        .sort-container:after {
+            content: '\\25BC';
+            right: 25px;
+            top: 15px;
+            position: absolute;
+            pointer-events: none;
+        }
+        
+        
     }
     .list-show-section {
         margin-top: 4rem;
@@ -32,6 +57,7 @@ export const LeaderboardWrapper = styled.div`
             }
         }
         .list-body {
+            padding: 10px;
             .list-content {
                 color: black;
                 background-color: rgba(255, 255, 255, 1);
@@ -41,14 +67,8 @@ export const LeaderboardWrapper = styled.div`
                 font-size: 15px;
                 border-radius: 10px;
                 align-items: center;
-                div:nth-child(1) {
-                    font-weight: bold;
-                }
                 div:nth-child(2) {
                     text-align: left;
-                }
-                div:nth-child(3) {
-                    font-weight: bold;
                 }
                 a {
                     color: black;

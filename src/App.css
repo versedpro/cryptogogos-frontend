@@ -87,15 +87,9 @@ body {
     text-decoration: underline;
 }
 
-.navbar-light .navbar-nav .nav-link.active:before {
-    content: '';
-    position: absolute;
-    left: -7px;
-    top: 17px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    border: 1px solid white;
+.navbar-light .navbar-nav .nav-link.active {
+    text-decoration: underline;
+    font-weight: bold;
 }
 
 ul.header-links li {

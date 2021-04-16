@@ -9,3 +9,5 @@ export const confirmMint = (user_address, token_id, signature) => axios.post(`${
 })
 
 export const getTokenMetadata = (tokenId) => axios.get(`${process.env.REACT_APP_API_BASE}/metadata/${tokenId}`)
+
+export const getLeaderboardList = () => axios.get(`${process.env.REACT_APP_API_BASE}/v1/leaderboard`)
