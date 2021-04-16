@@ -5,7 +5,6 @@ import Web3 from 'web3'
 import ABI from '../../utils/contract.abi.json'
 import { getTokenList } from '../../utils/api'
 import { getBalanceOfAccount, getTotalSupply } from '../../utils/contract'
-import LoadingMask from 'react-loadingmask'
 import 'react-loadingmask/dist/react-loadingmask.css'
 import { useWallet } from 'use-wallet'
 import { AccountContext } from 'contexts/AccountProvider'
@@ -76,20 +75,14 @@ const GogoList = props => {
                         {tokens.map(item => (
                             <Col lg="3" key={item.tokenId}>
                                 <div className="video-container">
-                                    <LoadingMask loading={item.isLoading} text={'loading...'}>
-                                        {item.metaData.image ? (
-                                            <video
-                                                autoPlay
-                                                playsInline
-                                                muted
-                                                width="200px"
-                                                src={item.metaData.image}
-                                                onLoadedData={onLoadedVideo(item.tokenId)}
-                                            />
-                                        ) : (
-                                            <div style={{ width: '200px', height: '200px' }}></div>
-                                        )}
-                                    </LoadingMask>
+                                    <video
+                                        autoPlay
+                                        playsInline
+                                        muted
+                                        width="200px"
+                                        src={item.metaData.image}
+                                        onLoadedData={onLoadedVideo(item.tokenId)}
+                                    />
                                 </div>
                             </Col>
                         ))}
