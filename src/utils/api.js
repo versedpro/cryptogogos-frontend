@@ -72,3 +72,6 @@ export const getTokenList = async ({ balance, contract, tokenCount, ownerAddress
         return [..._tokenList]
     }
 }
+
+export const getLeaderboardList = () =>
+    axios.get(`${process.env.REACT_APP_API_BASE}/v1/leaderboard`)
