@@ -99,7 +99,7 @@ export const DrawTradeWrapper = styled.div`
         // transform: translateX(-50%);
     }
     .rocket-buttons .actions {
-        margin-top: 20vw;
+        margin-top: 15vw;
         margin-left: -10vw;
     }
     .rocket-buttons .actions img {
@@ -112,7 +112,7 @@ export const DrawTradeWrapper = styled.div`
             margin-top: -5rem;
         }
         .rocket-buttons .actions {
-            margin-top: 24vw;
+            margin-top: 20vw;
         }
         .rocket-buttons .actions img {
             width: 120px;
