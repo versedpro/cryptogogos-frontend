@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import Particles from 'react-particles-js'
 import Web3 from 'web3'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
@@ -16,13 +16,13 @@ import { AccountContext } from 'contexts/AccountProvider'
 const DrawTrade = () => {
     const { connect } = useWallet()
     const { web3Container, walletContract } = useContext(AccountContext)
-    const [error, setError] = React.useState(null)
-    const [signature, setSignature] = React.useState(false)
-    const [price, setPrice] = React.useState()
-    const [account, setAccount] = React.useState()
-    const [metadata, setMetaData] = React.useState({})
-    const [isOpening, setIsOpening] = React.useState(false)
-    const [tokenId, setTokenId] = React.useState(null)
+    const [error, setError] = useState(null)
+    const [signature, setSignature] = useState(false)
+    const [price, setPrice] = useState()
+    const [account, setAccount] = useState()
+    const [metadata, setMetaData] = useState({})
+    const [isOpening, setIsOpening] = useState(false)
+    const [tokenId, setTokenId] = useState(null)
 
     const handleAccountsChanged = accounts => {
         if (accounts.length === 0) {

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import * as S from './styled'
 import { Container, Row, Col, Image, Spinner } from 'react-bootstrap'
 import { getTokenList } from '../../utils/api'
@@ -7,8 +7,8 @@ import { AccountContext } from 'contexts/AccountProvider'
 
 const GogoList = ({ ownerAddress, tokenCount }) => {
     const { walletContract } = useContext(AccountContext)
-    const [count, setCount] = React.useState()
-    const [tokens, setTokens] = React.useState([])
+    const [count, setCount] = useState()
+    const [tokens, setTokens] = useState([])
 
     useEffect(() => {
         getGogosCount()

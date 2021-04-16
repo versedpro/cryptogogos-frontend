@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import bg from '../../images/rocket-body-path.png'
+import variables from '../../theme/variables'
 
 const tribeColors = {
     Orange: 'darkorange',
@@ -80,6 +81,12 @@ export const DrawTradeWrapper = styled.div`
         font-size: 1rem;
         line-height: 25px;
         color: rgba(255, 255, 255, 0.75);
+    }
+
+    @media (max-width: ${variables.breakpoints.mobile}) {
+        .space-ship h2 {
+            font-size: 3rem;
+        }
     }
 `
 export const GOGODetailsWrapper = styled.div`
