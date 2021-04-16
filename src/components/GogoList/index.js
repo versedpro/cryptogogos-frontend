@@ -3,7 +3,7 @@ import * as S from './styled'
 import { Container, Row, Col, Image, Spinner } from 'react-bootstrap'
 import Web3 from 'web3'
 import ABI from '../../utils/contract.abi.json'
-import { getTokenMetadata, getTokensList } from '../../utils/api'
+import { getBalanceOfAccount, getTokensList } from '../../utils/api'
 import LoadingMask from 'react-loadingmask'
 import 'react-loadingmask/dist/react-loadingmask.css'
 import { useWallet } from 'use-wallet'
@@ -35,13 +35,11 @@ const GogoList = props => {
     }, [balance])
 
     const getBalance = async () => {
-        if (props.ownerAddress) {
-            const balance = await walletContract.methods.balanceOf(props.ownerAddress).call()
-            setBalance(balance)
-        } else {
-            const totalSupply = await walletContract.methods.totalSupply().call()
-            setBalance(totalSupply)
-        }
+        const balance = await getBalanceOfAccount({
+            ownerAddress: props.ownerAddress,
+            contract: walletContract.methods,
+        })
+        setBalance(balance)
     }
 
     const getTokens = async () => {

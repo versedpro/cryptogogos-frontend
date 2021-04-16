@@ -66,3 +66,13 @@ export const getTokensList = async data => {
         return [..._tokenList]
     }
 }
+
+export const getBalanceOfAccount = async data => {
+    if (data.ownerAddress) {
+        const balance = await data.contract.balanceOf(data.ownerAddress).call()
+        return balance
+    } else {
+        const totalSupply = await data.contract.totalSupply().call()
+        return totalSupply
+    }
+}

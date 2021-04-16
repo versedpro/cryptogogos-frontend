@@ -26,7 +26,7 @@ const MyCollection = () => {
                                 </Row>
                             </Container>
                         </section>
-                        <GogoList ownerAddress={account}></GogoList>
+                        <GogoList></GogoList>
                     </div>
                 </S.MyCollectionWrapper>
             ) : (

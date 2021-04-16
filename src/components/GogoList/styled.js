@@ -24,9 +24,18 @@ export const GogoListWrapper = styled.div`
         padding-top: 4rem;
     }
 
+    .rc-loading {
+        width: 200px;
+    }
+
     .rc-loading-icon-default {
         width: 40px !important;
         height: 40px !important;
         background: unset !important;
+    }
+
+    .video-container {
+        padding: 1rem;
+        text-align: -webkit-center;
     }
 `
