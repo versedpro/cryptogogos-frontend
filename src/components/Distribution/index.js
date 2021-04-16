@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 import Carousel from 'react-multi-carousel'
 import 'react-multi-carousel/lib/styles.css'
@@ -35,8 +35,8 @@ const responsive = {
 
 const Distribution = () => {
     const { infuraContract } = useContext(AccountContext)
-    const [totalSupply, setTotalSupply] = React.useState()
-    const [totalAmount, setTotalAmount] = React.useState()
+    const [totalSupply, setTotalSupply] = useState()
+    const [totalAmount, setTotalAmount] = useState()
 
     const getTotalSupply = async () => {
         try {

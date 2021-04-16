@@ -12,11 +12,12 @@ import Header from 'components/Header'
 import Footer from 'components/Footer'
 import { UseWalletProvider } from 'use-wallet'
 import AccountProvider from './contexts/AccountProvider'
+import { requiredChainId } from 'utils/constants'
 
 function App() {
     return (
         <UseWalletProvider
-            chainId={process.env.REACT_APP_ETHEREUM_CHAIN_ID}
+            chainId={requiredChainId}
             connectors={
                 {
                     // TODO: use mainnet when in prod
