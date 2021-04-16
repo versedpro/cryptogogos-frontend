@@ -1,7 +1,8 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { Container, Row, Col, Form } from 'react-bootstrap'
 import * as S from './styled'
-import { GuardSpinner } from "react-spinners-kit"
+import { GuardSpinner } from 'react-spinners-kit'
+import TextTruncate from 'react-text-truncate'
 import {
     getLeaderboardList
 } from 'utils/api'
@@ -15,7 +16,7 @@ const Leaderboard = () => {
         setLoading(true)
         try {
             const leaderboard = await getLeaderboardList()
-            setOwnersList(leaderboard.data)
+            setOwnersList(leaderboard.data.slice(0, 10))
             setLoading(false)
        } catch(e) {
             console.log(e)
@@ -85,9 +86,13 @@ return(
                                             target="_blank"
                                             rel="noreferrer"
                                             href={`${process.env.REACT_APP_OPENSEA}/accounts/${owner.owner_address}`}>
-                                            {owner.owner_address}
+                                            <TextTruncate
+                                                line={1}
+                                                element="div"
+                                                truncateText="..."
+                                                text={owner.owner_address}
+                                            />
                                         </a>
-                                        
                                     </Col>
                                     <Col lg="1" md="1" sm="1" xs="1">
                                         {owner.balance}
