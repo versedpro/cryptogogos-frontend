@@ -1,6 +1,5 @@
 import './App.css'
 import 'react-multi-carousel/lib/styles.css'
-import './tailwind.output.css'
 import MintCountown from 'components/MintCountown/MintCountdown'
 import Home from 'components/Home'
 
