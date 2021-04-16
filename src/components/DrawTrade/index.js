@@ -69,7 +69,8 @@ const DrawTrade = () => {
 
             setMetaData(metadata)
         } catch (err) {
-            setError(err.message ? err.message : 'Error while minting')
+            console.log(err)
+            setError('Error while minting. Please check browser console and refresh')
         }
     }
     if (error) return <DrawError error={error} />
@@ -118,6 +119,7 @@ const DrawTrade = () => {
                                 <Row>
                                     <Col style={{ paddingTop: '2rem' }}>
                                         <Button
+                                            disabled={!isCorrectChain}
                                             style={{ background: '#fe2afe', marginRight: '1rem' }}
                                             onClick={handleDrawCardClicked}>
                                             Draw
