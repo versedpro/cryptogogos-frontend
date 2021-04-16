@@ -77,13 +77,27 @@ body {
 }
 
 .navbar-light .navbar-nav .nav-link {
-    color: rgba(255, 255, 255, 1) !important;
+    color: rgba(255,255, 255,1)  !important;
+    position: relative;
+    margin-right: 20px;
 }
 .navbar-light .navbar-nav .nav-link:focus,
 .navbar-light .navbar-nav .nav-link:hover {
     /* color: rgba(255,255, 255,1)  !important; */
     text-decoration: underline;
 }
+
+.navbar-light .navbar-nav .nav-link.active:before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 17px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
 ul.header-links li {
     list-style-type: none;
     float: left;
@@ -163,15 +177,6 @@ section .terms-content {
     font-size: 1rem;
     line-height: 25px;
     color: rgba(255, 255, 255, 0.75);
-}
-.rocket-buttons {
-    position: absolute;
-    top: 22rem;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.rocket-buttons .actions img {
-    cursor: pointer;
 }
 .video-card {
     /* background: black;

@@ -30,6 +30,9 @@ const Footer = () => {
                                     <a href="#">Draw & Trade</a>
                                 </li>
                                 <li>
+                                    <a href="leaderboard">Leaderboard</a>
+                                </li>
+                                <li>
                                     <a href="#">Suggestion & Offers</a>
                                 </li>
                             </ul>
