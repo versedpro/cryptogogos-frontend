@@ -11,6 +11,7 @@ import { useWallet } from 'use-wallet'
 import { AccountContext } from 'contexts/AccountProvider'
 import useAccount from 'hooks/useAccount'
 import SpaceTravel from './SpaceTravel'
+import { StyledFullscreen, DrawTradeWrapper, StyledNoMetamaskContainer } from './styled'
 
 const DrawTrade = () => {
     const { connect } = useWallet()
@@ -102,51 +103,60 @@ const DrawTrade = () => {
     return (
         <div className="draw-trade">
             {account ? (
-                <S.DrawTradeWrapper>
+                <DrawTradeWrapper>
                     {!isCorrectChain && (
                         <p className="text-red-500">Please select the correct chain</p>
                     )}
                     <div>
                         {isOpening ? (
-
-                            <S.Fullscreen>
-                                <SpaceTravel/>
-                                <Particles  params={{
-                                    "particles": {
-                                        "number": {
-                                            "value": 20
+                            <StyledFullscreen>
+                                <SpaceTravel />
+                                <Particles
+                                    params={{
+                                        particles: {
+                                            number: {
+                                                value: 20,
+                                            },
+                                            size: {
+                                                value: 1,
+                                            },
                                         },
-                                        "size": {
-                                            "value": 1
-                                        }
-                                    },
-                                    "interactivity": {
-                                        "events": {
-                                            "onhover": {
-                                                "enable": true,
-                                                "mode": "repulse"
-                                            }
-                                        }
-                                    }
-                                }}  style={{ zIndex: 5001, position: 'absolute', top:0, left:0 , bottom:0, right: 0 }}/>
-                                    {metadata.image ? (
-                                        <GOGODetails tokenId={tokenId} metadata={metadata} />
-                                    ) : (
-                                        <div>
-                                            <h2
-                                                style={{
-                                                    color: 'white',
-                                                    position: 'absolute',
-                                                    top: '50%',
-                                                    left: '50%',
-                                                    transform: 'translate(-50%,-50%)',
-                                                    zIndex: 5005,
-                                                }}>
-                                                {isOpening}
-                                            </h2>
-                                        </div>
-                                    )}
-                            </S.Fullscreen>
+                                        interactivity: {
+                                            events: {
+                                                onhover: {
+                                                    enable: true,
+                                                    mode: 'repulse',
+                                                },
+                                            },
+                                        },
+                                    }}
+                                    style={{
+                                        zIndex: 5001,
+                                        position: 'absolute',
+                                        top: 0,
+                                        left: 0,
+                                        bottom: 0,
+                                        right: 0,
+                                    }}
+                                />
+                                {metadata.image ? (
+                                    <GOGODetails tokenId={tokenId} metadata={metadata} />
+                                ) : (
+                                    <div>
+                                        <h2
+                                            style={{
+                                                color: 'white',
+                                                position: 'absolute',
+                                                top: '50%',
+                                                left: '50%',
+                                                transform: 'translate(-50%,-50%)',
+                                                zIndex: 5005,
+                                            }}>
+                                            {isOpening}
+                                        </h2>
+                                    </div>
+                                )}
+                            </StyledFullscreen>
                         ) : (
                             <div>
                                 <section className="heading-section space-ship">
@@ -223,10 +233,10 @@ const DrawTrade = () => {
                             </div>
                         )}
                     </div>
-                </S.DrawTradeWrapper>
+                </DrawTradeWrapper>
             ) : (
                 <Container>
-                    <S.NoMetamaskContainer className="heading-section">
+                    <StyledNoMetamaskContainer className="heading-section">
                         <Container>
                             <Row>
                                 <Col style={{ paddingTop: '3rem' }}>
@@ -275,7 +285,7 @@ const DrawTrade = () => {
                                 </Col>
                             </Row>
                         </Container>
-                    </S.NoMetamaskContainer>
+                    </StyledNoMetamaskContainer>
                     <div className="no-meta-mask text-center"></div>
                 </Container>
             )}

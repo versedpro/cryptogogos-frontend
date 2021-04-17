@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import bg from '../../images/rocket-body-path.png'
 import variables from '../../theme/variables'
+import Particles from 'react-particles-js'
 
 const tribeColors = {
     Orange: 'darkorange',
@@ -9,7 +10,7 @@ const tribeColors = {
     Green: '#3cc071',
 }
 
-export const Fullscreen = styled.div`
+export const StyledFullscreen = styled.div`
     background: black;
     position: fixed;
     top: 0;
@@ -17,7 +18,7 @@ export const Fullscreen = styled.div`
     right: 0;
     bottom: 0;
     padding: 100px;
-    z-index:5000;
+    z-index: 5000;
     .error {
         position: relative;
         z-index: 1000;
@@ -43,6 +44,10 @@ export const Fullscreen = styled.div`
         z-index: 5;
     }
 `
+export const DrawErrorFullScreenWrapper = styled(StyledFullscreen)`
+    z-index: 5000;
+`
+
 export const DrawTradeWrapper = styled.div`
     background: url(${bg}) no-repeat;
     background-size: cover;
@@ -84,7 +89,7 @@ export const DrawTradeWrapper = styled.div`
         color: rgba(255, 255, 255, 0.75);
     }
 
-    @media (max-width: ${variables.breakpoints.mobile}) {
+    @media (max-width: ${variables.breakpoints.mobile.value}px) {
         background-size: 100%;
         background-position-y: 300px;
 
@@ -97,6 +102,32 @@ export const DrawTradeWrapper = styled.div`
         }
     }
 `
+
+export const StyledNoMetamaskContainer = styled.section`
+    h2 {
+        font-size: 4rem;
+    }
+    img {
+        height: 300px;
+    }
+    @media (max-width: 900px) {
+        h2 {
+            font-size: 2.5rem;
+        }
+        img {
+            height: 10rem;
+        }
+    }
+`
+export const StyledParticles = styled(Particles)`
+    position: 'absolute';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+`
+
 export const GOGODetailsWrapper = styled.div`
     h1 {
         font-size: 40px;
@@ -138,21 +169,4 @@ export const GOGODetailsWrapper = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-`
-
-export const NoMetamaskContainer = styled.section`
-    h2 {
-        font-size: 4rem;
-    }
-    img {
-        height: 300px;
-    }
-    @media (max-width: 900px) {
-        h2 {
-            font-size: 2.5rem;
-        }
-        img {
-            height: 10rem;
-        }
-    }
 `

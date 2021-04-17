@@ -1,7 +1,6 @@
-import React, { useEffect, useContext } from 'react'
-import Web3 from 'web3'
+import React, { useContext } from 'react'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
-import * as S from './styled'
+import { MyCollectionWrapper, StyledNoMetamaskContainer } from './styled'
 
 import { useWallet } from 'use-wallet'
 import { AccountContext } from 'contexts/AccountProvider'
@@ -24,7 +23,7 @@ const MyCollection = () => {
     return (
         <div className="draw-trade">
             {account ? (
-                <S.MyCollectionWrapper>
+                <MyCollectionWrapper>
                     <div>
                         <section className="heading-section">
                             <Container>
@@ -37,9 +36,9 @@ const MyCollection = () => {
                         </section>
                         <GogoList ownerAddress={account} tokenCount={12}></GogoList>
                     </div>
-                </S.MyCollectionWrapper>
+                </MyCollectionWrapper>
             ) : (
-                <S.NoMetamaskContainer className="heading-section">
+                <StyledNoMetamaskContainer className="heading-section">
                     <Container>
                         <Row>
                             <Col style={{ paddingTop: '3rem' }}>
@@ -66,7 +65,7 @@ const MyCollection = () => {
                             </Col>
                         </Row>
                     </Container>
-                </S.NoMetamaskContainer>
+                </StyledNoMetamaskContainer>
             )}
         </div>
     )

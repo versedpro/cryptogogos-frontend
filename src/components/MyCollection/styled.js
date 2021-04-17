@@ -5,7 +5,7 @@ export const MyCollectionWrapper = styled.div`
         font-size: 4rem;
     }
 `
-export const NoMetamaskContainer = styled.section`
+export const StyledNoMetamaskContainer = styled.section`
     h2 {
         font-size: 4rem;
     }
