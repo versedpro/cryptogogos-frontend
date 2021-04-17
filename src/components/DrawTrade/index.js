@@ -4,12 +4,14 @@ import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 import { confirmMint, createMintRequest, getTokenMetadata } from 'utils/api'
 import DrawError from './DrawError'
 import metamaskLogo from '../../images/metamask-logo.png'
-import { NoMetamaskContainer, DrawTradeWrapper, StyledFullscreen } from './styled'
+import * as S from './styled'
 import GOGODetails from './GOGODetails'
 
 import { useWallet } from 'use-wallet'
 import { AccountContext } from 'contexts/AccountProvider'
 import useAccount from 'hooks/useAccount'
+import SpaceTravel from './SpaceTravel'
+import { StyledFullscreen, DrawTradeWrapper, StyledNoMetamaskContainer } from './styled'
 
 const DrawTrade = () => {
     const { connect } = useWallet()
@@ -106,14 +108,37 @@ const DrawTrade = () => {
                         <p className="text-red-500">Please select the correct chain</p>
                     )}
                     <div>
-                        <StyledFullscreen
-                            style={{
-                                opacity: isOpening ? 1 : 0,
-                                zIndex: isOpening ? 5000 : -20,
-                            }}>
-                            <div>
-                                <Particles></Particles>
-
+                        {isOpening ? (
+                            <StyledFullscreen>
+                                <SpaceTravel />
+                                <Particles
+                                    params={{
+                                        particles: {
+                                            number: {
+                                                value: 20,
+                                            },
+                                            size: {
+                                                value: 1,
+                                            },
+                                        },
+                                        interactivity: {
+                                            events: {
+                                                onhover: {
+                                                    enable: true,
+                                                    mode: 'repulse',
+                                                },
+                                            },
+                                        },
+                                    }}
+                                    style={{
+                                        zIndex: 5001,
+                                        position: 'absolute',
+                                        top: 0,
+                                        left: 0,
+                                        bottom: 0,
+                                        right: 0,
+                                    }}
+                                />
                                 {metadata.image ? (
                                     <GOGODetails tokenId={tokenId} metadata={metadata} />
                                 ) : (
@@ -125,79 +150,93 @@ const DrawTrade = () => {
                                                 top: '50%',
                                                 left: '50%',
                                                 transform: 'translate(-50%,-50%)',
+                                                zIndex: 5005,
                                             }}>
                                             {isOpening}
                                         </h2>
                                     </div>
                                 )}
-                            </div>
-                        </StyledFullscreen>
-                        <section className="heading-section space-ship">
-                            <Container>
-                                <Row>
-                                    <Col>
-                                        <h2 style={{ paddingTop: '5rem' }}>CryptoGogo Spaceship</h2>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col style={{ paddingTop: '2rem' }}>
-                                        <Button
-                                            disabled={!isCorrectChain}
-                                            style={{ background: '#fe2afe', marginRight: '1rem' }}
-                                            onClick={handleDrawCardClicked}>
-                                            Draw
-                                        </Button>{' '}
-                                        <Button style={{ marginLeft: '1rem' }} variant="primary">
-                                            Trade
-                                        </Button>{' '}
-                                    </Col>
-                                </Row>
-                            </Container>
-                        </section>
-                        <section className="terms-section">
-                            <Container>
-                                <Row>
-                                    <Col lg="1"></Col>
-                                    <Col lg="10" xs="12">
-                                        <div className="terms text-left">
-                                            <div className="terms-title">
-                                                <h4>Terms</h4>
-                                            </div>
-                                            <div className="terms-content">
-                                                <p>
-                                                    In 2021 the world became like in 1984. The human
-                                                    race got enslaved to nonsense NFT Art and bad
-                                                    Collectibles. Ugly Kitties and terrible Punks
-                                                    mesmerized humankind and stole their money.
-                                                    Seeking revenge for the unjust treatment of the
-                                                    true meaning of NFTs, the CryptoGOGOs are coming
-                                                    the far way from PLANET GOGO in the Metaverse to
-                                                    start a revolution. Alongside the GOGO-Rebellion
-                                                    (CryptoGOGO-Collectors), they bring back freedom
-                                                    and power to humankind by taking over the NFT
-                                                    WORLD.
-                                                </p>
+                            </StyledFullscreen>
+                        ) : (
+                            <div>
+                                <section className="heading-section space-ship">
+                                    <Container>
+                                        <Row>
+                                            <Col>
+                                                <h2 style={{ paddingTop: '5rem' }}>
+                                                    CryptoGogo Spaceship
+                                                </h2>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col style={{ paddingTop: '2rem' }}>
+                                                <Button
+                                                    disabled={!isCorrectChain}
+                                                    style={{
+                                                        background: '#fe2afe',
+                                                        marginRight: '1rem',
+                                                    }}
+                                                    onClick={handleDrawCardClicked}>
+                                                    Draw
+                                                </Button>{' '}
+                                                <Button
+                                                    style={{ marginLeft: '1rem' }}
+                                                    variant="primary">
+                                                    Trade
+                                                </Button>{' '}
+                                            </Col>
+                                        </Row>
+                                    </Container>
+                                </section>
+                                <section className="terms-section">
+                                    <Container>
+                                        <Row>
+                                            <Col lg="1"></Col>
+                                            <Col lg="10" xs="12">
+                                                <div className="terms text-left">
+                                                    <div className="terms-title">
+                                                        <h4>Terms</h4>
+                                                    </div>
+                                                    <div className="terms-content">
+                                                        <p>
+                                                            In 2021 the world became like in 1984.
+                                                            The human race got enslaved to nonsense
+                                                            NFT Art and bad Collectibles. Ugly
+                                                            Kitties and terrible Punks mesmerized
+                                                            humankind and stole their money. Seeking
+                                                            revenge for the unjust treatment of the
+                                                            true meaning of NFTs, the CryptoGOGOs
+                                                            are coming the far way from PLANET GOGO
+                                                            in the Metaverse to start a revolution.
+                                                            Alongside the GOGO-Rebellion
+                                                            (CryptoGOGO-Collectors), they bring back
+                                                            freedom and power to humankind by taking
+                                                            over the NFT WORLD.
+                                                        </p>
 
-                                                <p>
-                                                    In 2021 the world became like in 1984. The human
-                                                    race got enslaved to nonsense NFT Art and bad
-                                                    Collectibles. Ugly Kitties and terrible Punks
-                                                    mesmerized humankind and stole their money.
-                                                    Seeking revenge for the unjust treatment of the
-                                                    true meaning of NFTs,
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </Col>
-                                    <Col lg="1"></Col>
-                                </Row>
-                            </Container>
-                        </section>
+                                                        <p>
+                                                            In 2021 the world became like in 1984.
+                                                            The human race got enslaved to nonsense
+                                                            NFT Art and bad Collectibles. Ugly
+                                                            Kitties and terrible Punks mesmerized
+                                                            humankind and stole their money. Seeking
+                                                            revenge for the unjust treatment of the
+                                                            true meaning of NFTs,
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </Col>
+                                            <Col lg="1"></Col>
+                                        </Row>
+                                    </Container>
+                                </section>
+                            </div>
+                        )}
                     </div>
                 </DrawTradeWrapper>
             ) : (
                 <Container>
-                    <NoMetamaskContainer className="heading-section">
+                    <StyledNoMetamaskContainer className="heading-section">
                         <Container>
                             <Row>
                                 <Col style={{ paddingTop: '3rem' }}>
@@ -246,7 +285,7 @@ const DrawTrade = () => {
                                 </Col>
                             </Row>
                         </Container>
-                    </NoMetamaskContainer>
+                    </StyledNoMetamaskContainer>
                     <div className="no-meta-mask text-center"></div>
                 </Container>
             )}

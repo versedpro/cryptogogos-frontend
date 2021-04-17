@@ -18,6 +18,7 @@ export const StyledFullscreen = styled.div`
     right: 0;
     bottom: 0;
     padding: 100px;
+    z-index: 5000;
     .error {
         position: relative;
         z-index: 1000;
@@ -102,7 +103,7 @@ export const DrawTradeWrapper = styled.div`
     }
 `
 
-export const NoMetamaskContainer = styled.section`
+export const StyledNoMetamaskContainer = styled.section`
     h2 {
         font-size: 4rem;
     }
@@ -163,7 +164,7 @@ export const GOGODetailsWrapper = styled.div`
         }
     }
 
-    zindex: 5000;
+    z-index: 6000;
     position: absolute;
     top: 50%;
     left: 50%;
