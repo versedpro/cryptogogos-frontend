@@ -104,9 +104,6 @@ ul.header-links li {
     padding-right: 10px;
 }
 
-nav.navbar.navbar-expand-lg.navbar-light {
-    margin-top: 20px !important;
-}
 .ml-auto.navbar-nav {
     align-items: inherit;
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 import headingBanner from 'images/home-banner.png'
-import styled from 'styled-components'
+import { ThinHeader } from '../styled'
 
 export default class Heading extends React.Component {
     render() {
@@ -32,13 +32,3 @@ export default class Heading extends React.Component {
         )
     }
 }
-
-const ThinHeader = styled.h3`
-    font-size: 20px;
-    font-weight: 300;
-    font-family: 'HelveticaNeueCyr Light';
-    padding-top: 20px;
-    @media (min-width: 1601px) {
-        font-size: 24px;
-    }
-`

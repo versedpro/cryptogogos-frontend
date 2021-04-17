@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Image, Row, Button } from 'react-bootstrap'
+import { Col, Row, Button } from 'react-bootstrap'
 import Carousel from 'react-multi-carousel'
 import rocky from '../../images/rocky.png'
 import enjin from '../../images/enjin.png'
@@ -8,22 +8,25 @@ import mushroom from '../../images/mushroom.png'
 import lips from '../../images/lips.png'
 import maltahead from '../../images/metalhead.png'
 import nftGold from '../../images/nft-card-golden.png'
+import variables from '../../theme/variables'
+import { StyledImage } from './styled'
 
+const { superLargeDesktop, desktop, tablet, mobile } = variables.breakpoints
 const responsive = {
     superLargeDesktop: {
-        breakpoint: { max: 4000, min: 3000 },
+        breakpoint: { max: superLargeDesktop.max, min: superLargeDesktop.min },
         items: 5,
     },
     desktop: {
-        breakpoint: { max: 3000, min: 1024 },
+        breakpoint: { max: desktop.max, min: desktop.min },
         items: 5,
     },
     tablet: {
-        breakpoint: { max: 1024, min: 464 },
+        breakpoint: { max: tablet.max, min: tablet.min },
         items: 3,
     },
     mobile: {
-        breakpoint: { max: 464, min: 0 },
+        breakpoint: { max: mobile.max, min: mobile.min },
         items: 2,
     },
 }
@@ -43,15 +46,13 @@ const Gallery = () => {
                 autoPlay
                 autoPlaySpeed={3000}
                 arrows>
-                <Image draggable={false} style={{ width: '90%', height: '90%' }} src={rocky} />
-                <Image draggable={false} style={{ width: '90%', height: '90%' }} src={mushroom} />
-                <Image draggable={false} style={{ width: '90%', height: '90%' }} src={shiller} />
-                <Image draggable={false} style={{ width: '90%', height: '90%' }} src={enjin} />
-
-                <Image draggable={false} style={{ width: '90%', height: '90%' }} src={maltahead} />
-
-                <Image draggable={false} style={{ width: '90%', height: '90%' }} src={lips} />
-                <Image draggable={false} style={{ width: '90%', height: '90%' }} src={nftGold} />
+                <StyledImage draggable={false} src={rocky} />
+                <StyledImage draggable={false} src={mushroom} />
+                <StyledImage draggable={false} src={shiller} />
+                <StyledImage draggable={false} src={enjin} />
+                <StyledImage draggable={false} src={maltahead} />
+                <StyledImage draggable={false} src={lips} />
+                <StyledImage draggable={false} src={nftGold} />
             </Carousel>
             <Col>
                 {' '}

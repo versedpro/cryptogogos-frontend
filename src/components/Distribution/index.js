@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react'
-import styled from 'styled-components'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import 'react-multi-carousel/lib/styles.css'
 import ProgressBar from './ProgressBar'
@@ -7,6 +6,14 @@ import { AccountContext } from '../../contexts/AccountProvider'
 import Signup from './Signup'
 import Gallery from './Gallery'
 import TxBox from './TxBox'
+import {
+    DistributionWrapper,
+    StyledSection,
+    StyledHeader,
+    StyledLightButton,
+    StyledSpan,
+    StyledRecentMintedContainer,
+} from './styled'
 
 const Distribution = () => {
     const { infuraContract } = useContext(AccountContext)
@@ -34,19 +41,19 @@ const Distribution = () => {
 
     return (
         <DistributionWrapper>
-            <Section>
+            <StyledSection>
                 <Container>
                     <Row className="justify-content-center">
                         <Col xs="12" lg="1">
-                            <Header>
-                                <LightButton variant="outline-light">
+                            <StyledHeader>
+                                <StyledLightButton variant="outline-light">
                                     {' '}
-                                    <Span></Span> Live
-                                </LightButton>
-                            </Header>
+                                    <StyledSpan></StyledSpan> Live
+                                </StyledLightButton>
+                            </StyledHeader>
                         </Col>
                         <Col xs="12" lg="7">
-                            <Header>Distribution of CryptoGOGOs</Header>
+                            <StyledHeader>Distribution of CryptoGOGOs</StyledHeader>
                         </Col>
                     </Row>
                     <Row>
@@ -75,119 +82,13 @@ const Distribution = () => {
                     </Row>
                     <ProgressBar totalSupply={totalSupply} />
                 </Container>
-                <RecentMintedContainer>
+                <StyledRecentMintedContainer>
                     <Gallery />
                     <Signup />
-                </RecentMintedContainer>
-            </Section>
+                </StyledRecentMintedContainer>
+            </StyledSection>
         </DistributionWrapper>
     )
 }
 
 export default Distribution
-
-const DistributionWrapper = styled.div`
-    .first,
-    .second,
-    .third,
-    .fourth,
-    .fifth,
-    .sixth {
-        display: block !important;
-    }
-    .milestone-end {
-        position: absolute;
-        top: -81px;
-        display: none;
-    }
-    .milestone-display {
-        display: block !important;
-    }
-    .in-progress .milestone.progressed {
-        top: -81px !important;
-        display: block !important;
-    }
-    .in-progress .milestone {
-        display: none;
-    }
-    .in-progress .milestone.first {
-        display: block !important;
-    }
-    .nft-distribute .progressed-bar {
-        height: 15px;
-        width: calc(100% - 62%);
-        display: block;
-        background-color: #ecfff4;
-        box-shadow: 0px 0px 20px #3cc071;
-        position: absolute;
-        margin-left: -2px;
-    }
-    .nft-distribute.in-progress .distribute-bar {
-        height: 15px !important;
-        width: calc(100% - 33px) !important;
-        display: block;
-        background-color: #964d85 !important;
-    }
-    .nft-distribute .progressed-bar {
-        display: none !important;
-    }
-    .nft-distribute.in-progress .progressed-bar {
-        display: block !important;
-    }
-    .nft-distribute .milestone.progressed {
-        display: none !important;
-    }
-    .nft-distribute.in-progress .milestone.progressed {
-        display: block !important;
-    }
-`
-const Section = styled.section`
-    margin-top: 50px;
-    margin-bottom: 50px !important;
-`
-
-const Span = styled.span`
-    width: 10px;
-    height: 10px;
-    background: greenyellow;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 8px;
-`
-
-const LightButton = styled(Button)`
-    padding: 5px 25px;
-    border-radius: 12px;
-    border: 1px solid #9c4d83;
-    margin-right: 30px;
-    text-transform: uppercase;
-
-    background: transparent;
-    &:hover {
-        color: #fff;
-        background-color: #3108ed;
-        border-color: #f8f9fa;
-        border: 1px solid #3108ed;
-    }
-`
-
-const Header = styled.h2`
-    margin-bottom: 50px;
-
-    @media (max-width: 600px) {
-        margin-bottom: 28px;
-        font-size: 1.3rem;
-    }
-`
-
-const RecentMintedContainer = styled(Container)`
-    margin-top: 150px;
-    h4 {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-    @media (min-width: 1601px) {
-        margin-top: 13rem;
-        margin-bottom: 12rem;
-    }
-`

@@ -4,7 +4,7 @@ import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 import { confirmMint, createMintRequest, getTokenMetadata } from 'utils/api'
 import DrawError from './DrawError'
 import metamaskLogo from '../../images/metamask-logo.png'
-import { NoMetamaskContainer, DrawTradeWrapper, Fullscreen } from './styled'
+import { NoMetamaskContainer, DrawTradeWrapper, StyledFullscreen } from './styled'
 import GOGODetails from './GOGODetails'
 
 import { useWallet } from 'use-wallet'
@@ -106,7 +106,7 @@ const DrawTrade = () => {
                         <p className="text-red-500">Please select the correct chain</p>
                     )}
                     <div>
-                        <Fullscreen
+                        <StyledFullscreen
                             style={{
                                 opacity: isOpening ? 1 : 0,
                                 zIndex: isOpening ? 5000 : -20,
@@ -131,7 +131,7 @@ const DrawTrade = () => {
                                     </div>
                                 )}
                             </div>
-                        </Fullscreen>
+                        </StyledFullscreen>
                         <section className="heading-section space-ship">
                             <Container>
                                 <Row>

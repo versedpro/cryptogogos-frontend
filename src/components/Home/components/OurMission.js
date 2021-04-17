@@ -1,12 +1,11 @@
 import React from 'react'
 import photosImg from 'images/photos.png'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
-import styled from 'styled-components'
-
+import { OurMissionSectionWrapper } from '../styled'
 export default class OurMission extends React.Component {
     render() {
         return (
-            <OurMission>
+            <OurMissionSectionWrapper>
                 <Container>
                     <Row>
                         <Col lg="1" className="quote">
@@ -47,55 +46,7 @@ export default class OurMission extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-            </OurMission>
+            </OurMissionSectionWrapper>
         )
     }
 }
-
-const OurMissionSection = styled.section`
-    margin-top: 5rem;
-    text-align: left;
-    & h4 {
-        font-size: 20px;
-        padding-bottom: 25px;
-    }
-    & h2 {
-        font-size: 1.8rem;
-        line-height: 1.5;
-    }
-    & p {
-        color: rgba(255, 255, 255, 0.75);
-        font-size: 0.8rem;
-        margin-top: 31px;
-    }
-    & img {
-        margin-top: -30px;
-    }
-    @media (max-width: 600px) {
-        & h2 {
-            font-size: 1.3rem;
-            line-height: 1.5;
-        }
-    }
-    @media (max-width: 991px) {
-        margin-top: 5rem;
-        text-align: center;
-        & img {
-            text-align: center;
-            margin-left: -50px;
-            width: 310px;
-            margin: 30px auto;
-        }
-    }
-    @media (min-width: 1601px) {
-        & h4 {
-            font-size: 24px;
-            padding-bottom: 25px;
-        }
-        & p {
-            color: rgba(255, 255, 255, 0.75);
-            font-size: 1rem;
-            margin-top: 31px;
-        }
-    }
-`

@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react'
-import { Row, Col, Image } from 'react-bootstrap'
+import { Col, Image } from 'react-bootstrap'
 import 'react-multi-carousel/lib/styles.css'
 import milestoneImg from '../../images/svgs/distribute-milestone.svg'
 import milestonProgressImg from '../../images/svgs/mileston-progress.svg'
-import styled from 'styled-components'
-import distributeImage from '../../images/distribute.png'
+import {
+    StyledDistributionRow,
+    StyledNftDistribute,
+    StyledNftNumbers,
+    StyledNftPrice,
+} from './styled'
 
 const ProgressBar = ({ totalSupply }) => {
     const [milestoneAmount, setMilestoneAmount] = useState(0)
@@ -33,9 +37,9 @@ const ProgressBar = ({ totalSupply }) => {
     }, [totalSupply])
 
     return (
-        <DistributionRow>
+        <StyledDistributionRow>
             <Col xs="12" lg="2">
-                <NftDistribute
+                <StyledNftDistribute
                     className={`nft-distribute ${
                         milestone >= 1 ? 'active  in-progress first-distribute' : ''
                     } ${milestone == 1 && 'extra-white'}`}>
@@ -59,14 +63,14 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <NftPrice isWhite isActive>
+                    <StyledNftPrice isWhite isActive>
                         0.05 ETH
-                    </NftPrice>
-                    <NftNumbers isWhite>150 NFTs</NftNumbers>
-                </NftDistribute>
+                    </StyledNftPrice>
+                    <StyledNftNumbers isWhite>150 NFTs</StyledNftNumbers>
+                </StyledNftDistribute>
             </Col>
             <Col xs="12" lg="2">
-                <NftDistribute
+                <StyledNftDistribute
                     className={`nft-distribute ${
                         milestone >= 2 ? 'active  in-progress first-distribute' : ''
                     } ${milestone == 2 && 'extra-white'}`}>
@@ -90,12 +94,12 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <NftPrice>0.07 ETH</NftPrice>
-                    <NftNumbers>150 NFTs</NftNumbers>
-                </NftDistribute>
+                    <StyledNftPrice>0.07 ETH</StyledNftPrice>
+                    <StyledNftNumbers>150 NFTs</StyledNftNumbers>
+                </StyledNftDistribute>
             </Col>
             <Col xs="12" lg="2">
-                <NftDistribute
+                <StyledNftDistribute
                     className={`nft-distribute ${
                         milestone >= 3 ? 'active  in-progress first-distribute' : ''
                     } ${milestone == 3 && 'extra-white'}`}>
@@ -119,12 +123,12 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <NftPrice>0.1 ETH</NftPrice>
-                    <NftNumbers>850 NFTs</NftNumbers>
-                </NftDistribute>
+                    <StyledNftPrice>0.1 ETH</StyledNftPrice>
+                    <StyledNftNumbers>850 NFTs</StyledNftNumbers>
+                </StyledNftDistribute>
             </Col>
             <Col xs="12" lg="2">
-                <NftDistribute
+                <StyledNftDistribute
                     className={`nft-distribute ${
                         milestone >= 4 ? 'active  in-progress first-distribute' : ''
                     } ${milestone == 4 && 'extra-white'}`}>
@@ -148,12 +152,12 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <NftPrice>0.15 ETH</NftPrice>
-                    <NftNumbers>2000 NFTs</NftNumbers>
-                </NftDistribute>
+                    <StyledNftPrice>0.15 ETH</StyledNftPrice>
+                    <StyledNftNumbers>2000 NFTs</StyledNftNumbers>
+                </StyledNftDistribute>
             </Col>
             <Col xs="12" lg="2">
-                <NftDistribute
+                <StyledNftDistribute
                     className={`nft-distribute ${
                         milestone >= 5 ? 'active  in-progress first-distribute extra-white' : ''
                     }`}>
@@ -177,12 +181,12 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <NftPrice>0.2 ETH</NftPrice>
-                    <NftNumbers>4000 NFTs</NftNumbers>
-                </NftDistribute>
+                    <StyledNftPrice>0.2 ETH</StyledNftPrice>
+                    <StyledNftNumbers>4000 NFTs</StyledNftNumbers>
+                </StyledNftDistribute>
             </Col>
             <Col xs="12" lg="2">
-                <NftDistribute
+                <StyledNftDistribute
                     className={`nft-distribute ${
                         milestone >= 6 ? 'active  in-progress first-distribute extra-white' : ''
                     }`}>
@@ -206,103 +210,12 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <NftPrice>1 ETH</NftPrice>
-                    <NftNumbers>627 NFTs</NftNumbers>
-                </NftDistribute>
+                    <StyledNftPrice>1 ETH</StyledNftPrice>
+                    <StyledNftNumbers>627 NFTs</StyledNftNumbers>
+                </StyledNftDistribute>
             </Col>
-        </DistributionRow>
+        </StyledDistributionRow>
     )
 }
 
 export default ProgressBar
-
-const DistributionRow = styled(Row)`
-    .col-lg-2.col-12 {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-`
-
-const NftDistribute = styled.div`
-    background-image: url(${distributeImage});
-    background-repeat: no-repeat;
-    background-position: right;
-    background-repeat: no-repeat;
-    min-height: 142px;
-    margin-top: 50px;
-    z-index: 1999;
-    padding-top: 8px;
-    position: relative;
-    .distribute-bar {
-        height: 15px;
-        width: calc(100% - 33px);
-        display: block;
-        background-color: #964d85;
-    }
-    &.active .distribute-bar {
-        height: 15px;
-        width: calc(100% - 27px);
-        display: block;
-        background-color: #ecfff4;
-        box-shadow: 0px 0px 20px #3cc071;
-        position: absolute;
-        margin-left: -2px;
-    }
-    &.active .milestone {
-        width: 101px;
-        top: -81px;
-        position: absolute;
-        right: 31px;
-        z-index: 99999;
-        display: block;
-    }
-    & .milestone {
-        display: none;
-    }
-    .milestone.first {
-        left: -131px;
-        display: block;
-    }
-    &.first-distribute {
-        background-image: url(${distributeImage});
-        background-repeat: no-repeat;
-        background-position: right;
-        position: relative;
-    }
-
-    @media (max-width: 991px) {
-        min-height: 142px;
-        margin-top: 0;
-        z-index: 1999;
-        padding-top: 8px;
-        position: relative;
-        width: 80%;
-        margin-left: auto;
-        margin-right: auto;
-        &.first-distribute {
-            margin-top: 50px;
-        }
-        & .progressed-bar {
-            margin-left: 8px !important;
-        }
-        .milestone.first {
-            left: -121px;
-            display: block;
-        }
-    }
-`
-
-const NftNumbers = styled.div`
-    color: ${p => (p.isWhite ? 'white' : '#98568d')};
-    font-family: 'HelveticaNeueCyr Black';
-    font-size: 20px;
-`
-
-const NftPrice = styled.div`
-    color: ${p => (p.isWhite ? 'white' : '#98568d')};
-    font-family: 'HelveticaNeueCyr Black';
-    font-size: 18px;
-    padding-top: ${p => (p.isActive ? '39px' : '20px')};
-`
