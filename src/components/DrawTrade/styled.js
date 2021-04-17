@@ -17,6 +17,7 @@ export const Fullscreen = styled.div`
     right: 0;
     bottom: 0;
     padding: 100px;
+    z-index:5000;
     .error {
         position: relative;
         z-index: 1000;
@@ -132,7 +133,7 @@ export const GOGODetailsWrapper = styled.div`
         }
     }
 
-    zindex: 5000;
+    z-index: 6000;
     position: absolute;
     top: 50%;
     left: 50%;
