@@ -1,12 +1,12 @@
 import React from 'react'
-import * as S from './styled'
+import { Wrapper } from './styled'
 import Countdown from 'react-countdown'
 import moment from 'moment'
 import Particles from 'react-particles-js'
 
 function MintCountown() {
     return (
-        <S.Wrapper>
+        <Wrapper>
             <div className="particles">
                 <Particles />
             </div>
@@ -20,7 +20,7 @@ function MintCountown() {
                     <Countdown date={new Date((1617734208 + 3600 * 5.5) * 1000)} />
                 </h1>
             </div>
-        </S.Wrapper>
+        </Wrapper>
     )
 }
 

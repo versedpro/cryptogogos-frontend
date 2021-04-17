@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row, Col, Image } from 'react-bootstrap'
 import headingBanner from 'images/home-banner.png'
+import styled from 'styled-components'
 
 export default class Heading extends React.Component {
     render() {
@@ -12,11 +13,11 @@ export default class Heading extends React.Component {
                             <h1>
                                 Prepare for total <br /> <span>NFT</span> takeover
                             </h1>
-                            <h3 className="thin-heading">
+                            <ThinHeader>
                                 The NFT Trading Card Game the World has never seen.
                                 <br />
                                 Collect them and join the GOGO-Rebellion
-                            </h3>
+                            </ThinHeader>
                         </Col>
                     </Row>
                 </Container>
@@ -31,3 +32,13 @@ export default class Heading extends React.Component {
         )
     }
 }
+
+const ThinHeader = styled.h3`
+    font-size: 20px;
+    font-weight: 300;
+    font-family: 'HelveticaNeueCyr Light';
+    padding-top: 20px;
+    @media (min-width: 1601px) {
+        font-size: 24px;
+    }
+`

@@ -1,5 +1,12 @@
 import React from 'react'
-import * as S from './styled'
+import styled from 'styled-components'
+
+const tribeColors = {
+    Orange: 'darkorange',
+    Red: 'tomato',
+    Purple: 'blueviolet',
+    Green: '#3cc071',
+}
 
 const GOGODetails = ({ metadata, tokenId }) => {
     const getTribe = ({ attributes }) => attributes.filter(t => t.trait_type === 'Tribe')[0].value
@@ -10,7 +17,7 @@ const GOGODetails = ({ metadata, tokenId }) => {
 
     setTimeout(() => setShowText(true), 5000)
     return (
-        <S.GOGODetailsWrapper tribe={tribe}>
+        <GOGODetailsWrapper tribe={tribe}>
             <video width="600px" playsInline muted loop controls={false} autoPlay={true}>
                 <source src={metadata.image} type={'video/mp4'} />
             </video>
@@ -38,8 +45,51 @@ const GOGODetails = ({ metadata, tokenId }) => {
             ) : (
                 <h1 className="Loading">Finalizing...</h1>
             )}
-        </S.GOGODetailsWrapper>
+        </GOGODetailsWrapper>
     )
 }
 
 export default GOGODetails
+
+const GOGODetailsWrapper = styled.div`
+    h1 {
+        font-size: 40px;
+    }
+
+    .opensea-link {
+        h1 {
+            .label {
+                opacity: 0.5;
+                margin-bottom: 8px;
+            }
+            font-size: 14px;
+        }
+    }
+
+    .tribe {
+        color: ${props => tribeColors[props.tribe]};
+        line-height: 20px;
+        font-size: 29px;
+    }
+
+    .tribe-wrapper {
+        margin: 0 auto;
+
+        max-width: 300px;
+        margin-top: 40px;
+        span {
+            font-weight: bold;
+            display: inline-block;
+            font-size: 12px;
+            letter-spacing: 2px;
+            opacity: 0.6;
+            text-transform: uppercase;
+        }
+    }
+
+    zindex: 5000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`

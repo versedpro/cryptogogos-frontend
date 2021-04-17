@@ -2,13 +2,6 @@ import styled from 'styled-components'
 import bg from '../../images/rocket-body-path.png'
 import variables from '../../theme/variables'
 
-const tribeColors = {
-    Orange: 'darkorange',
-    Red: 'tomato',
-    Purple: 'blueviolet',
-    Green: '#3cc071',
-}
-
 export const Fullscreen = styled.div`
     background: black;
     position: fixed;
@@ -95,48 +88,6 @@ export const DrawTradeWrapper = styled.div`
             padding-top: 22rem;
         }
     }
-`
-export const GOGODetailsWrapper = styled.div`
-    h1 {
-        font-size: 40px;
-    }
-
-    .opensea-link {
-        h1 {
-            .label {
-                opacity: 0.5;
-                margin-bottom: 8px;
-            }
-            font-size: 14px;
-        }
-    }
-
-    .tribe {
-        color: ${props => tribeColors[props.tribe]};
-        line-height: 20px;
-        font-size: 29px;
-    }
-
-    .tribe-wrapper {
-        margin: 0 auto;
-
-        max-width: 300px;
-        margin-top: 40px;
-        span {
-            font-weight: bold;
-            display: inline-block;
-            font-size: 12px;
-            letter-spacing: 2px;
-            opacity: 0.6;
-            text-transform: uppercase;
-        }
-    }
-
-    zindex: 5000;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 `
 
 export const NoMetamaskContainer = styled.section`

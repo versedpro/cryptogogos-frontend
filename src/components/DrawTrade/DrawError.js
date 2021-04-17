@@ -1,10 +1,10 @@
 import React from 'react'
 import Particles from 'react-particles-js'
-import * as S from './styled'
+import { Fullscreen } from './styled'
 
 const DrawError = ({ error }) => {
     return (
-        <S.Fullscreen style={{ zIndex: 5000 }}>
+        <Fullscreen style={{ zIndex: 5000 }}>
             <Particles
                 style={{
                     position: 'absolute',
@@ -20,7 +20,7 @@ const DrawError = ({ error }) => {
                     <p></p>
                 </div>
             </div>
-        </S.Fullscreen>
+        </Fullscreen>
     )
 }
 

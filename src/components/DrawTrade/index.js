@@ -4,7 +4,7 @@ import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 import { confirmMint, createMintRequest, getTokenMetadata } from 'utils/api'
 import DrawError from './DrawError'
 import metamaskLogo from '../../images/metamask-logo.png'
-import * as S from './styled'
+import { NoMetamaskContainer, DrawTradeWrapper, Fullscreen } from './styled'
 import GOGODetails from './GOGODetails'
 
 import { useWallet } from 'use-wallet'
@@ -101,12 +101,12 @@ const DrawTrade = () => {
     return (
         <div className="draw-trade">
             {account ? (
-                <S.DrawTradeWrapper>
+                <DrawTradeWrapper>
                     {!isCorrectChain && (
                         <p className="text-red-500">Please select the correct chain</p>
                     )}
                     <div>
-                        <S.Fullscreen
+                        <Fullscreen
                             style={{
                                 opacity: isOpening ? 1 : 0,
                                 zIndex: isOpening ? 5000 : -20,
@@ -131,7 +131,7 @@ const DrawTrade = () => {
                                     </div>
                                 )}
                             </div>
-                        </S.Fullscreen>
+                        </Fullscreen>
                         <section className="heading-section space-ship">
                             <Container>
                                 <Row>
@@ -194,10 +194,10 @@ const DrawTrade = () => {
                             </Container>
                         </section>
                     </div>
-                </S.DrawTradeWrapper>
+                </DrawTradeWrapper>
             ) : (
                 <Container>
-                    <S.NoMetamaskContainer className="heading-section">
+                    <NoMetamaskContainer className="heading-section">
                         <Container>
                             <Row>
                                 <Col style={{ paddingTop: '3rem' }}>
@@ -246,7 +246,7 @@ const DrawTrade = () => {
                                 </Col>
                             </Row>
                         </Container>
-                    </S.NoMetamaskContainer>
+                    </NoMetamaskContainer>
                     <div className="no-meta-mask text-center"></div>
                 </Container>
             )}
