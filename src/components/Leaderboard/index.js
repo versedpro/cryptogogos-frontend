@@ -61,7 +61,6 @@ return(
             </Container>
         </section>
         <section className="list-show-section">
-            <Container>
                 {loading === false ? (
                     <Fragment>
                         <Row className="list-header">
@@ -71,7 +70,7 @@ return(
                             <Col lg="10" sm="10" xs="9">
                                 Owner
                             </Col>
-                            <Col lg="1" sm="1" xs="2">
+                            <Col lg="1" sm="1" xs="1">
                                 GOGOs
                             </Col>
                         </Row>
@@ -81,7 +80,7 @@ return(
                                     <Col lg="1" md="1" sm="1" xs="1">
                                         {index+1}
                                     </Col>
-                                    <Col lg="10" md="10" sm="10" xs="10">
+                                    <Col lg="10" md="10" sm="10" xs="9">
                                         <a
                                             target="_blank"
                                             rel="noreferrer"
@@ -106,7 +105,6 @@ return(
                         <GuardSpinner size={50} frontColor="rgba(255, 255, 255, 1)" backColor="rgba(255, 255, 255, 0.3)" loading={loading} />
                     </div>
                 )}
-            </Container>
         </section>
     </S.LeaderboardWrapper>
 );

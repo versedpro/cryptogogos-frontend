@@ -14,6 +14,7 @@ import Header from 'components/Header'
 import Footer from 'components/Footer'
 import { useWallet, UseWalletProvider } from 'use-wallet'
 import AccountProvider from './contexts/AccountProvider'
+import { requiredChainId } from 'utils/constants'
 
 function App() {
     const wallet = useWallet()

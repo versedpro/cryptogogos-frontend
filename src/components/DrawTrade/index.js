@@ -1,55 +1,31 @@
-import React, { useEffect, useContext, useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import Particles from 'react-particles-js'
-import Web3 from 'web3'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 import { confirmMint, createMintRequest, getTokenMetadata } from 'utils/api'
 import DrawError from './DrawError'
 import metamaskLogo from '../../images/metamask-logo.png'
 import * as S from './styled'
-import drawBtn from 'images/button_draw.png'
-import tradeBtn from 'images/button_trade.png'
 import GOGODetails from './GOGODetails'
 
 import { useWallet } from 'use-wallet'
 import { AccountContext } from 'contexts/AccountProvider'
+import useAccount from 'hooks/useAccount'
 
 const DrawTrade = () => {
     const { connect } = useWallet()
-    const { web3Container, walletContract } = useContext(AccountContext)
-    const [error, setError] = useState(null)
-    const [signature, setSignature] = useState(false)
-    const [price, setPrice] = useState()
-    const [account, setAccount] = useState()
+    const { web3, walletContract } = useContext(AccountContext)
+    const { isCorrectChain, account } = useAccount()
+    const [error, setError] = useState('')
     const [metadata, setMetaData] = useState({})
     const [isOpening, setIsOpening] = useState(false)
     const [tokenId, setTokenId] = useState(null)
-
-    const handleAccountsChanged = accounts => {
-        if (accounts.length === 0) {
-            setAccount(null)
-            console.log('Please connect to MetaMask.')
-        } else if (accounts[0] !== account) {
-            setAccount(accounts[0])
-            // Do any other work!
-        }
-    }
 
     useEffect(() => {
         connect('injected')
     }, [])
 
-    useEffect(async () => {
-        console.log(web3Container)
-        if (web3Container) {
-            const accounts = await web3Container.eth.getAccounts()
-            setAccount(accounts[0])
-            window.ethereum.on('accountsChanged', handleAccountsChanged)
-        }
-    }, [web3Container])
-
     const getPackPrice = async () => {
         const mintPrice = await walletContract.methods.getNFTPrice().call()
-        setPrice(mintPrice)
         return mintPrice
     }
     const handleConnect = () => {
@@ -61,13 +37,20 @@ const DrawTrade = () => {
     }
     const handleDrawCardClicked = async () => {
         setIsOpening('Connecting Metamask...')
-        const web3 = new Web3(window.ethereum)
-        try {
-            const {
-                data: { signature },
-            } = await createMintRequest(account)
-            setSignature(signature)
+        let signature, _tokenId
 
+        // Start minting block
+        try {
+            const { data } = await createMintRequest(account)
+            signature = data.signature
+        } catch (err) {
+            console.log(err)
+            setError('Our servers have encountered an unexpected error')
+            return
+        }
+
+        // Minting on blockchain block
+        try {
             const price = await getPackPrice()
             await walletContract.methods
                 .mint()
@@ -80,22 +63,37 @@ const DrawTrade = () => {
                     setIsOpening('Bringing A GOGO to Planet Earth 🌍...')
                 })
                 .on('error', err => {
-                    console.log('error')
+                    throw err
                 })
 
             const balance = await walletContract.methods.balanceOf(account).call()
-            const _tokenId = await walletContract.methods
-                .tokenOfOwnerByIndex(account, balance - 1)
-                .call()
+            _tokenId = await walletContract.methods.tokenOfOwnerByIndex(account, balance - 1).call()
             setTokenId(_tokenId)
             setIsOpening('Grooming your GOGO ⚡️...')
-            await confirmMint(account, _tokenId, signature)
+        } catch (err) {
+            console.log(err)
+            setError('Error while minting. Please check browser console and refresh')
+            return
+        }
 
+        // confirmMint block
+        try {
+            await confirmMint(account, _tokenId, signature)
+        } catch (err) {
+            console.log(err)
+            setError('Our servers have encountered an unexpected error')
+            return
+        }
+
+        // metadata block
+        try {
             const { data: metadata } = await getTokenMetadata(_tokenId)
 
             setMetaData(metadata)
         } catch (err) {
-            setError('Error while minting')
+            console.log(err)
+            setError('Error while minting. Please check browser console and refresh')
+            return
         }
     }
     if (error) return <DrawError error={error} />
@@ -104,6 +102,9 @@ const DrawTrade = () => {
         <div className="draw-trade">
             {account ? (
                 <S.DrawTradeWrapper>
+                    {!isCorrectChain && (
+                        <p className="text-red-500">Please select the correct chain</p>
+                    )}
                     <div>
                         <S.Fullscreen
                             style={{
@@ -141,6 +142,7 @@ const DrawTrade = () => {
                                 <Row>
                                     <Col style={{ paddingTop: '2rem' }}>
                                         <Button
+                                            disabled={!isCorrectChain}
                                             style={{ background: '#fe2afe', marginRight: '1rem' }}
                                             onClick={handleDrawCardClicked}>
                                             Draw

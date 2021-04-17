@@ -35,6 +35,9 @@
         "env-cmd": "^10.1.0"
     },
     "scripts": {
+        "build:tailwind": "tailwindcss build src/tailwind.css -o src/tailwind.output.css",
+        "prestart": "npm run build:tailwind",
+        "prebuild": "npm run build:tailwind",
         "start": "env-cmd -f config/.env react-scripts start",
         "start:prod": "env-cmd -f config/.env.production react-scripts start",
         "test": "react-scripts test",

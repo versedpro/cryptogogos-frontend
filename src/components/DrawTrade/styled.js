@@ -84,8 +84,15 @@ export const DrawTradeWrapper = styled.div`
     }
 
     @media (max-width: ${variables.breakpoints.mobile}) {
+        background-size: 100%;
+        background-position-y: 300px;
+
         .space-ship h2 {
             font-size: 3rem;
+        }
+
+        section.terms-section {
+            padding-top: 22rem;
         }
     }
 `
