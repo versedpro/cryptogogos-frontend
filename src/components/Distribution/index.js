@@ -1,37 +1,12 @@
-import { useContext } from 'react'
-import React, { useState, useEffect } from 'react'
-import { Container, Row, Col, Button, Image } from 'react-bootstrap'
-import Carousel from 'react-multi-carousel'
+import React, { useState, useEffect, useContext } from 'react'
+import styled from 'styled-components'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import 'react-multi-carousel/lib/styles.css'
-import * as S from './styled'
-import rocky from '../../images/rocky.png'
-import enjin from '../../images/enjin.png'
-import shiller from '../../images/shiller.png'
-import mushroom from '../../images/mushroom.png'
-import lips from '../../images/lips.png'
-import maltahead from '../../images/metalhead.png'
-import nftGold from '../../images/nft-card-golden.png'
 import ProgressBar from './ProgressBar'
 import { AccountContext } from '../../contexts/AccountProvider'
-
-const responsive = {
-    superLargeDesktop: {
-        breakpoint: { max: 4000, min: 3000 },
-        items: 5,
-    },
-    desktop: {
-        breakpoint: { max: 3000, min: 1024 },
-        items: 5,
-    },
-    tablet: {
-        breakpoint: { max: 1024, min: 464 },
-        items: 3,
-    },
-    mobile: {
-        breakpoint: { max: 464, min: 0 },
-        items: 2,
-    },
-}
+import Signup from './Signup'
+import Gallery from './Gallery'
+import TxBox from './TxBox'
 
 const Distribution = () => {
     const { infuraContract } = useContext(AccountContext)
@@ -58,149 +33,161 @@ const Distribution = () => {
     }, [infuraContract])
 
     return (
-        <S.DistributionWrapper>
-            <section className="distribution-section">
+        <DistributionWrapper>
+            <Section>
                 <Container>
                     <Row className="justify-content-center">
                         <Col xs="12" lg="1">
-                            <h2>
-                                <Button variant="outline-light">
+                            <Header>
+                                <LightButton variant="outline-light">
                                     {' '}
-                                    <span></span> Live
-                                </Button>
-                            </h2>
+                                    <Span></Span> Live
+                                </LightButton>
+                            </Header>
                         </Col>
                         <Col xs="12" lg="7">
-                            <h2>Distribution of CryptoGOGOs</h2>
+                            <Header>Distribution of CryptoGOGOs</Header>
                         </Col>
                     </Row>
                     <Row>
                         <Col xs="12" lg="3">
-                            <div className="tx-box">
-                                <div className="box-text">Amount of CryptoGOGOs</div>
-                                <div className="box-number">{totalAmount}%</div>
-                                <div className="box-label red">Sold</div>
-                            </div>
+                            <TxBox
+                                text="Amount of CryptoGOGOs"
+                                amount={totalAmount + '%'}
+                                label="Sold"
+                                isRedLabel
+                            />
                         </Col>
                         <Col xs="12" lg="3">
-                            <div className="tx-box">
-                                <div className="box-text">Max amount per tx</div>
-                                <div className="box-number">2</div>
-                                <div className="box-label">Tier 1</div>
-                            </div>
+                            <TxBox text="Max amount per tx" amount={2} label="Tier 1" />
                         </Col>
                         <Col xs="12" lg="3">
-                            <div className="tx-box">
-                                <div className="box-text">Max amount per tx</div>
-                                <div className="box-number">2</div>
-                                <div className="box-label">Tier 2</div>
-                            </div>
+                            <TxBox text="Max amount per tx" amount={2} label="Tier 2" />
                         </Col>
                         <Col xs="12" lg="3">
-                            <div className="tx-box">
-                                <div className="box-text">Max amount per tx</div>
-                                <div className="box-number small">
-                                    <small>Unlimited</small>
-                                </div>
-                                <div className="box-label ">Tier 3-6</div>
-                            </div>
+                            <TxBox
+                                text="Max amount per tx"
+                                amount={<small>Unlimited</small>}
+                                isSmallAmmount
+                                label="Tier 3-6"
+                            />
                         </Col>
                     </Row>
                     <ProgressBar totalSupply={totalSupply} />
                 </Container>
-                <Container className="recent-minted">
-                    <Row>
-                        <Col>
-                            <div className="text-center">
-                                <h4>Latest minted CryptoGogos</h4>
-                            </div>
-                        </Col>
-
-                        <Carousel
-                            containerClass="carousel-container"
-                            responsive={responsive}
-                            infinite="true"
-                            autoPlay
-                            autoPlaySpeed={3000}
-                            arrows>
-                            <Image
-                                draggable={false}
-                                style={{ width: '90%', height: '90%' }}
-                                src={rocky}
-                            />
-
-                            <Image
-                                draggable={false}
-                                style={{ width: '90%', height: '90%' }}
-                                src={mushroom}
-                            />
-                            <Image
-                                draggable={false}
-                                style={{ width: '90%', height: '90%' }}
-                                src={shiller}
-                            />
-                            <Image
-                                draggable={false}
-                                style={{ width: '90%', height: '90%' }}
-                                src={enjin}
-                            />
-
-                            <Image
-                                draggable={false}
-                                style={{ width: '90%', height: '90%' }}
-                                src={maltahead}
-                            />
-
-                            <Image
-                                draggable={false}
-                                style={{ width: '90%', height: '90%' }}
-                                src={lips}
-                            />
-                            <Image
-                                draggable={false}
-                                style={{ width: '90%', height: '90%' }}
-                                src={nftGold}
-                            />
-                        </Carousel>
-                        <Col>
-                            {' '}
-                            <Button>Gallery</Button>
-                        </Col>
-                    </Row>
-
-                    <Row>
-                        <Col>
-                            <div className="subscribe-box">
-                                <h2 className="">
-                                    Sign-up NOW for our <br />
-                                    pre-sale this weekend! 🚀
-                                </h2>
-
-                                <div className="subscribe-form">
-                                    <form action="">
-                                        <div className="form-group">
-                                            <input
-                                                type="email"
-                                                name=""
-                                                className="subscribe-email form-control form-control-lg"
-                                                placeholder="Your Email"
-                                            />{' '}
-                                            <br />
-                                            <button
-                                                type="submit"
-                                                className="btn btn-primary btn-lg">
-                                                Submit
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </Col>
-                    </Row>
-                </Container>
-            </section>
-        </S.DistributionWrapper>
+                <RecentMintedContainer>
+                    <Gallery />
+                    <Signup />
+                </RecentMintedContainer>
+            </Section>
+        </DistributionWrapper>
     )
 }
 
 export default Distribution
+
+const DistributionWrapper = styled.div`
+    .first,
+    .second,
+    .third,
+    .fourth,
+    .fifth,
+    .sixth {
+        display: block !important;
+    }
+    .milestone-end {
+        position: absolute;
+        top: -81px;
+        display: none;
+    }
+    .milestone-display {
+        display: block !important;
+    }
+    .in-progress .milestone.progressed {
+        top: -81px !important;
+        display: block !important;
+    }
+    .in-progress .milestone {
+        display: none;
+    }
+    .in-progress .milestone.first {
+        display: block !important;
+    }
+    .nft-distribute .progressed-bar {
+        height: 15px;
+        width: calc(100% - 62%);
+        display: block;
+        background-color: #ecfff4;
+        box-shadow: 0px 0px 20px #3cc071;
+        position: absolute;
+        margin-left: -2px;
+    }
+    .nft-distribute.in-progress .distribute-bar {
+        height: 15px !important;
+        width: calc(100% - 33px) !important;
+        display: block;
+        background-color: #964d85 !important;
+    }
+    .nft-distribute .progressed-bar {
+        display: none !important;
+    }
+    .nft-distribute.in-progress .progressed-bar {
+        display: block !important;
+    }
+    .nft-distribute .milestone.progressed {
+        display: none !important;
+    }
+    .nft-distribute.in-progress .milestone.progressed {
+        display: block !important;
+    }
+`
+const Section = styled.section`
+    margin-top: 50px;
+    margin-bottom: 50px !important;
+`
+
+const Span = styled.span`
+    width: 10px;
+    height: 10px;
+    background: greenyellow;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+`
+
+const LightButton = styled(Button)`
+    padding: 5px 25px;
+    border-radius: 12px;
+    border: 1px solid #9c4d83;
+    margin-right: 30px;
+    text-transform: uppercase;
+
+    background: transparent;
+    &:hover {
+        color: #fff;
+        background-color: #3108ed;
+        border-color: #f8f9fa;
+        border: 1px solid #3108ed;
+    }
+`
+
+const Header = styled.h2`
+    margin-bottom: 50px;
+
+    @media (max-width: 600px) {
+        margin-bottom: 28px;
+        font-size: 1.3rem;
+    }
+`
+
+const RecentMintedContainer = styled(Container)`
+    margin-top: 150px;
+    h4 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    @media (min-width: 1601px) {
+        margin-top: 13rem;
+        margin-bottom: 12rem;
+    }
+`
