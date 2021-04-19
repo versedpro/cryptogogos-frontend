@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 import 'react-multi-carousel/lib/styles.css'
+import SpaceParticles from '../DrawTrade/SpaceTravel/particles'
 import ProgressBar from './ProgressBar'
 import { AccountContext } from '../../contexts/AccountProvider'
 import Signup from './Signup'
-import Gallery from './Gallery'
+import Gallery from '../GogoList/Gallery'
 import TxBox from './TxBox'
 import * as S from './styled'
 
@@ -75,9 +76,12 @@ const Distribution = () => {
                     </Row>
                     <ProgressBar totalSupply={totalSupply} />
                 </Container>
+
                 <S.RecentMintedContainer>
+                    <div className="text-center">
+                        <h4>Latest minted CryptoGogos</h4>
+                    </div>
                     <Gallery totalSupply={totalSupply} />
-                    <Signup />
                 </S.RecentMintedContainer>
             </S.Section>
         </S.DistributionWrapper>

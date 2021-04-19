@@ -29,7 +29,7 @@ const MyCollection = () => {
                             <Container>
                                 <Row>
                                     <Col>
-                                        <h2 style={{ paddingTop: '5rem' }}>My Collections</h2>
+                                        <h2 style={{ paddingTop: '7rem' }}>My Collection</h2>
                                     </Col>
                                 </Row>
                             </Container>

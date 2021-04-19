@@ -127,11 +127,15 @@ export const SubscribeInput = styled.input`
     }
 `
 
-export const RecentMintedContainer = styled(Container)`
+export const RecentMintedContainer = styled.div`
+position:relative;
+background: black;
+padding: 60px 0;
+overflow: hidden;
     margin-top: 150px;
     h4 {
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 50px;
     }
     @media (min-width: 1601px) {
         margin-top: 13rem;

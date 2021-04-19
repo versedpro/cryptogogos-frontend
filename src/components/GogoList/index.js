@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
+import SpaceParticles from '../DrawTrade/SpaceTravel/particles'
 import * as S from './styled'
 import { Container, Row, Col, Image, Spinner } from 'react-bootstrap'
 import { getTokenList } from '../../utils/api'
@@ -51,6 +52,10 @@ const GogoList = ({ ownerAddress, tokenCount }) => {
         })
     }
 
+    const handleVideoClick = (tokenId) => () => {
+        window.open(`${process.env.REACT_APP_OPENSEA}/assets/${process.env.REACT_APP_CONTRACT_ADDRESS}/${tokenId}`)
+    }
+
     return (
         <S.GogoListWrapper>
             <section className="gallery-section">
@@ -60,10 +65,10 @@ const GogoList = ({ ownerAddress, tokenCount }) => {
                             <Col lg="3" key={item.tokenId}>
                                 <div className="video-container">
                                     <video
+                                        onClick={handleVideoClick(item.tokenId)}
                                         autoPlay
                                         playsInline
                                         muted
-                                        width="200px"
                                         src={item.metaData.image}
                                         onLoadedData={onLoadedVideo(item.tokenId)}
                                     />
