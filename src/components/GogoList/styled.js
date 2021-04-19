@@ -14,7 +14,6 @@ flex-direction: column;
     video {
     max-width: 300px;
     border-radius: 20px;
-    margin:0 40px;
     }
     input.subscribe-email {
         width: 50%;
