@@ -54,7 +54,7 @@ const Gallery = ({ totalSupply }) => {
                 arrows>
                 {tokenList.map(item => (
                     <div key={item.tokenId}>
-                        <video autoPlay playsInline muted width="300px" src={item.metaData.image} />
+                        <video autoPlay playsInline muted loop width="300px" src={item.metaData.image} />
                     </div>
                 ))}
             </Carousel>

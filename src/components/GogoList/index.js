@@ -68,6 +68,7 @@ const GogoList = ({ ownerAddress, tokenCount }) => {
                                         onClick={handleVideoClick(item.tokenId)}
                                         autoPlay
                                         playsInline
+                                        loop
                                         muted
                                         src={item.metaData.image}
                                         onLoadedData={onLoadedVideo(item.tokenId)}
