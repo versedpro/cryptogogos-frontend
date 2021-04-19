@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
+import LogRocket from 'logrocket';
+LogRocket.init('eqj099/cryptogogos');
 
 ReactDOM.render(
     <React.StrictMode>

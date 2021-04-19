@@ -3,6 +3,7 @@ import Web3 from 'web3'
 
 import { infuraProviderURL } from 'utils/constants'
 import { getNFTContract } from 'utils/contracts'
+import LogRocket from 'logrocket';
 
 export const AccountContext = createContext({
     infuraContract: null,
@@ -46,6 +47,10 @@ const AccountProvider = ({ children }) => {
         } else if (accounts[0] !== account) {
             setAccount(accounts[0])
             // Do any other work!
+            LogRocket.identify(accounts[0], {
+                address: accounts[0],
+                chain: process.env.REACT_APP_ETHEREUM_CHAIN_ID === 4 ? 'Rinkeby':'Mainnet'
+            });
         }
     }
 
