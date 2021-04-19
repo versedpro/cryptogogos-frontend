@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { GogoListWrapper } from './styled'
+import * as S from './styled'
 import { Container, Row, Col, Image, Spinner } from 'react-bootstrap'
 import { getTokenList } from '../../utils/api'
 import { getBalanceOfAccount, getTotalSupply } from '../../utils/contract'
@@ -52,7 +52,7 @@ const GogoList = ({ ownerAddress, tokenCount }) => {
     }
 
     return (
-        <GogoListWrapper>
+        <S.GogoListWrapper>
             <section className="gallery-section">
                 <Container>
                     <Row>
@@ -73,7 +73,7 @@ const GogoList = ({ ownerAddress, tokenCount }) => {
                     </Row>
                 </Container>
             </section>
-        </GogoListWrapper>
+        </S.GogoListWrapper>
     )
 }
 

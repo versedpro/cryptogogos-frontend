@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap'
 import footerImage from '../../images/svgs/footer.svg'
 import footerBgImage from '../../images/footer-bg.png'
 
-export const StyledLightButton = styled(Button)`
+export const LightButton = styled(Button)`
     background: transparent;
     border: 1px solid #fff;
     opacity: 0.5;

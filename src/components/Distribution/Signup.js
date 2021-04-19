@@ -1,21 +1,21 @@
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { StyledSubscribeBox, StyledSubscribeHeader, StyledSubscribeInput } from './styled'
+import * as S from './styled'
 
 const Signup = () => {
     return (
         <Row>
             <Col>
-                <StyledSubscribeBox>
-                    <StyledSubscribeHeader>
+                <S.SubscribeBox>
+                    <S.SubscribeHeader>
                         Sign-up NOW for our <br />
                         pre-sale this weekend! 🚀
-                    </StyledSubscribeHeader>
+                    </S.SubscribeHeader>
 
                     <div className="subscribe-form">
                         <form action="">
                             <div className="form-group">
-                                <StyledSubscribeInput
+                                <S.SubscribeInput
                                     type="email"
                                     name=""
                                     className="subscribe-email form-control form-control-lg"
@@ -28,7 +28,7 @@ const Signup = () => {
                             </div>
                         </form>
                     </div>
-                </StyledSubscribeBox>
+                </S.SubscribeBox>
             </Col>
         </Row>
     )

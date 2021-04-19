@@ -1,17 +1,17 @@
 import React from 'react'
-import { DrawErrorFullScreenWrapper, StyledParticles } from './styled'
+import * as S from './styled'
 
 const DrawError = ({ error }) => {
     return (
-        <DrawErrorFullScreenWrapper>
-            <StyledParticles />
+        <S.DrawErrorFullScreenWrapper>
+            <S.StyledParticles />
             <div className="error" style={{ zIndex: 6000 }}>
                 <div>
                     <h1>{error}</h1>
                     <p></p>
                 </div>
             </div>
-        </DrawErrorFullScreenWrapper>
+        </S.DrawErrorFullScreenWrapper>
     )
 }
 

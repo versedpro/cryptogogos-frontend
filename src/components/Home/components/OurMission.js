@@ -1,11 +1,11 @@
 import React from 'react'
 import photosImg from 'images/photos.png'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
-import { OurMissionSectionWrapper } from '../styled'
+import * as S from '../styled'
 export default class OurMission extends React.Component {
     render() {
         return (
-            <OurMissionSectionWrapper>
+            <S.OurMissionSectionWrapper>
                 <Container>
                     <Row>
                         <Col lg="1" className="quote">
@@ -46,7 +46,7 @@ export default class OurMission extends React.Component {
                         </Col>
                     </Row>
                 </Container>
-            </OurMissionSectionWrapper>
+            </S.OurMissionSectionWrapper>
         )
     }
 }
