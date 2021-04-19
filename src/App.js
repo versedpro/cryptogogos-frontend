@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect } from 'react'
 import './App.css'
 import 'react-multi-carousel/lib/styles.css'
 import MintCountown from 'components/MintCountown/MintCountdown'
@@ -13,8 +13,8 @@ import MyCollection from 'components/MyCollection'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import { useWallet, UseWalletProvider } from 'use-wallet'
+import SpaceTravel from './components/DrawTrade/SpaceTravel'
 import AccountProvider from './contexts/AccountProvider'
-import { requiredChainId } from 'utils/constants'
 
 function App() {
     const wallet = useWallet()

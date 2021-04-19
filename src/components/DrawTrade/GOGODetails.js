@@ -11,7 +11,7 @@ const GOGODetails = ({ metadata, tokenId }) => {
     setTimeout(() => setShowText(true), 5000)
     return (
         <GOGODetailsWrapper tribe={tribe}>
-            <video width="600px" playsInline muted loop controls={false} autoPlay={true}>
+            <video playsInline muted loop controls={false} autoPlay={true}>
                 <source src={metadata.image} type={'video/mp4'} />
             </video>
             {showText ? (

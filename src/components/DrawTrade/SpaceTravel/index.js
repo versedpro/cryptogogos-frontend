@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { vec3 } from 'gl-matrix'
 
-import { Wrapper, StyledCanvas } from './styled'
+import * as S from './styled'
 
 function SpaceTravel(props) {
     const ref = useRef()
@@ -132,10 +132,10 @@ function SpaceTravel(props) {
         }
     }, [ref.current])
     return (
-        <Wrapper>
-            <StyledCanvas ref={ref} />
+        <S.Wrapper>
+            <S.Canvas ref={ref} />
             {props.children}
-        </Wrapper>
+        </S.Wrapper>
     )
 }
 
