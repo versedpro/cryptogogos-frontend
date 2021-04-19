@@ -49,7 +49,7 @@ const AccountProvider = ({ children }) => {
             // Do any other work!
             LogRocket.identify(accounts[0], {
                 address: accounts[0],
-                chain: process.env.REACT_APP_ETHEREUM_CHAIN_ID === 4 ? 'Rinkeby':'Mainnet'
+                chain: process.env.REACT_APP_ETHEREUM_CHAIN_ID == 4 ? 'Rinkeby':'Mainnet'
             });
         }
     }
@@ -60,7 +60,13 @@ const AccountProvider = ({ children }) => {
         const contract = getNFTContract(provider)
         setWalletContract(contract)
         const accounts = await web3.eth.getAccounts()
-        if (accounts.length) setAccount(accounts[0])
+        if (accounts.length) {
+            setAccount(accounts[0])
+            LogRocket.identify(accounts[0], {
+                address: accounts[0],
+                chain: process.env.REACT_APP_ETHEREUM_CHAIN_ID == 4 ? 'Rinkeby':'Mainnet'
+            });
+        }
         setChainId(await web3.eth.getChainId())
 
         // Change watchers
