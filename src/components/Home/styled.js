@@ -44,6 +44,9 @@ export const OurMissionSectionWrapper = styled.section`
             font-size: 1.3rem;
             line-height: 1.5;
         }
+        & img {
+            width: 280px !important;
+        }
     }
     @media (max-width: 991px) {
         margin-top: 5rem;
