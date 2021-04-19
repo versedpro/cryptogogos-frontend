@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const StyledHeader = styled.h1`
+export const Header = styled.h1`
     font-family: 'Avenir Next Cyr Medium';
     font-size: 3rem;
     margin-top: 4rem;
@@ -15,7 +15,7 @@ export const StyledHeader = styled.h1`
     }
 `
 
-export const StyledSubheader = styled.h2`
+export const Subheader = styled.h2`
     font-family: 'Avenir Next Cyr Medium';
     font-size: 2rem;
     margin-top: 5rem;
@@ -31,25 +31,25 @@ export const StyledSubheader = styled.h2`
     }
 `
 
-export const StyledFaqBox = styled.div`
+export const FaqBox = styled.div`
     text-align: left;
-    font-size: 1.4rem;
+    font-size: 18px;
     background: white;
     border-radius: 0 6rem 6rem 6rem;
     padding: 2rem 5rem;
     @media (max-width: 991px) {
         border-radius: 0 5rem 5rem 5rem;
         padding: 1.5rem 4rem;
-        font-size: 1.1rem;
+        font-size: 16px;
     }
     @media (max-width: 600px) {
         border-radius: 0 4rem 4rem 4rem;
         padding: 1rem 3rem;
-        font-size: 0.9rem;
+        font-size: 14px;
     }
 `
 
-export const StyledBoldText = styled.p`
+export const BoldText = styled.p`
     font-family: 'HelveticaNeueCyr Bold';
     color: #222;
     margin-top: 2rem;
@@ -60,7 +60,7 @@ export const StyledBoldText = styled.p`
     }
 `
 
-export const StyledNormalText = styled.p`
+export const NormalText = styled.p`
     font-family: 'HelveticaNeueCyr Light';
     color: #222;
     margin-top: 2rem;
@@ -71,7 +71,7 @@ export const StyledNormalText = styled.p`
     }
 `
 
-export const StyledLinkText = styled.a`
+export const LinkText = styled.a`
     font-family: 'HelveticaNeueCyr Light';
     color: #ff1493;
     text-decoration: underline;
