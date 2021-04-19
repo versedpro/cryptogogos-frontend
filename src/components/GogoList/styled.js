@@ -1,19 +1,19 @@
 import styled from 'styled-components'
 
 export const GogoListWrapper = styled.div`
-position:relative;
+    position: relative;
     background-size: cover;
     background-position: center top;
-    background: rgb(0,0,0);
+    background: rgb(0, 0, 0);
     margin: 20px 0;
     padding: 40px 0;
-            overflow: hidden;
+    overflow: hidden;
 
-display: flex;
-flex-direction: column;
+    display: flex;
+    flex-direction: column;
     video {
-    max-width: 300px;
-    border-radius: 20px;
+        max-width: 300px;
+        border-radius: 20px;
     }
     input.subscribe-email {
         width: 50%;
@@ -50,9 +50,9 @@ flex-direction: column;
         padding: 1rem;
         text-align: -webkit-center;
     }
-    
+
     .zhigh {
-    position: relative;
-    z-index: 110000;
+        position: relative;
+        z-index: 110000;
     }
 `
