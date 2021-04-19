@@ -49,6 +49,7 @@ const Gallery = ({ totalSupply }) => {
                 responsive={responsive}
                 infinite="true"
                 autoPlay
+                playsInline
                 autoPlaySpeed={3000}
                 arrows>
                 {tokenList.map(item => (
