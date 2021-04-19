@@ -26,7 +26,7 @@ const Footer = () => {
                             <Col lg="5">
                                 <ul>
                                     <li>
-                                        <a href="#">Draw & Trade</a>
+                                        <a href="/draw-trade">Draw & Trade</a>
                                     </li>
                                     <li>
                                         <a href="leaderboard">Leaderboard</a>
