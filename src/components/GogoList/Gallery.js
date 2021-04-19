@@ -17,11 +17,11 @@ const responsive = {
     },
     tablet: {
         breakpoint: { max: tablet.max, min: tablet.min },
-        items: 3,
+        items: 2,
     },
     mobile: {
         breakpoint: { max: mobile.max, min: mobile.min },
-        items: 2,
+        items: 1,
     },
 }
 
@@ -44,12 +44,6 @@ const Gallery = ({ totalSupply }) => {
         setTokens([...tokenList])
     }
     return (
-        <Row>
-            <Col>
-                <div className="text-center">
-                    <h4>Latest minted CryptoGogos</h4>
-                </div>
-            </Col>
             <Carousel
                 containerClass="carousel-container"
                 responsive={responsive}
@@ -58,16 +52,11 @@ const Gallery = ({ totalSupply }) => {
                 autoPlaySpeed={3000}
                 arrows>
                 {tokenList.map(item => (
-                    <div className="video-container" key={item.tokenId}>
-                        <video autoPlay playsInline muted width="200px" src={item.metaData.image} />
+                    <div key={item.tokenId}>
+                        <video autoPlay playsInline muted width="300px" src={item.metaData.image} />
                     </div>
                 ))}
             </Carousel>
-            <Col>
-                {' '}
-                <Button>Gallery</Button>
-            </Col>
-        </Row>
     )
 }
 

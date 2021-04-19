@@ -49,7 +49,7 @@ const Header = () => {
                     <Nav.Link target="_blank" href="https://wiki.cryptogogos.com">
                         <b>Wiki →</b>
                     </Nav.Link>
-                    <Nav.Link href="#home">Draw & Trade</Nav.Link>
+                    <Nav.Link href="/draw-trade">Draw & Trade</Nav.Link>
                     <Nav.Link href="https://opensea.io/assets/cryptogogos">OpenSea</Nav.Link>
                     {/*<Nav.Link href="#link">Gallery</Nav.Link>*/}
                     {/*<Nav.Link href="#link">Leaderboard</Nav.Link>*/}
