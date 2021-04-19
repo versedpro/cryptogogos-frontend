@@ -1,6 +1,7 @@
 import { Button, Container, Image, Row } from 'react-bootstrap'
 import styled from 'styled-components'
 import distributeImage from '../../images/distribute.png'
+import variables from '../../theme/variables'
 
 export const DistributionWrapper = styled.div`
     .first,
@@ -143,6 +144,12 @@ export const StyledImage = styled(Image)`
 `
 
 export const StyledDistributionRow = styled(Row)`
+    @media (max-width: ${variables.breakpoints.mobile.value}px) {
+        .overflow-hidden {
+            overflow: hidden;
+        }
+    }
+
     .col-lg-2.col-12 {
         margin-left: 0 !important;
         margin-right: 0 !important;

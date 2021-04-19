@@ -6,11 +6,13 @@ import twitter from 'images/svgs/twitter.svg'
 import telegram from 'images/svgs/telegram.svg'
 import wallet from 'images/svgs/wallet.svg'
 import { NavLink } from 'react-router-dom'
-import { StyledButton } from './styled'
+import { useWallet } from 'use-wallet'
+
 //svg images
 import logo from 'images/svgs/logo.svg'
 
 const Header = () => {
+    const { account, connect } = useWallet()
     return (
         <Navbar expand="lg" className="pt-4">
             <Navbar.Brand to="/" exact="full">
@@ -56,11 +58,11 @@ const Header = () => {
                     </NavLink>
                     <Nav.Link href="https://wiki.cryptogogos.com/about/">About</Nav.Link>
                     <Nav.Link href="/faq">FAQ</Nav.Link>
-                    <Nav.Link href="#link">
-                        <StyledButton disabled variant="outline-light">
+                    <Nav.Link href="/mycollection">
+                        <Button variant="outline-light">
                             <Image src={wallet} />
                             My wallet
-                        </StyledButton>{' '}
+                        </Button>{' '}
                     </Nav.Link>
                 </Nav>
             </Navbar.Collapse>
