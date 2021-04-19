@@ -1,5 +1,5 @@
 import React from 'react'
-import { GOGODetailsWrapper } from './styled'
+import * as S from './styled'
 
 const GOGODetails = ({ metadata, tokenId }) => {
     const getTribe = ({ attributes }) => attributes.filter(t => t.trait_type === 'Tribe')[0].value
@@ -10,7 +10,7 @@ const GOGODetails = ({ metadata, tokenId }) => {
 
     setTimeout(() => setShowText(true), 5000)
     return (
-        <GOGODetailsWrapper tribe={tribe}>
+        <S.GOGODetailsWrapper tribe={tribe}>
             <video width="600px" playsInline muted loop controls={false} autoPlay={true}>
                 <source src={metadata.image} type={'video/mp4'} />
             </video>
@@ -38,7 +38,7 @@ const GOGODetails = ({ metadata, tokenId }) => {
             ) : (
                 <h1 className="Loading">Finalizing...</h1>
             )}
-        </GOGODetailsWrapper>
+        </S.GOGODetailsWrapper>
     )
 }
 

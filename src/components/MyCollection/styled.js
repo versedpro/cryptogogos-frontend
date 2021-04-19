@@ -12,7 +12,7 @@ export const MyCollectionWrapper = styled.div`
         }
     }
 `
-export const StyledNoMetamaskContainer = styled.section`
+export const NoMetamaskContainer = styled.section`
     h2 {
         font-size: 4rem;
     }

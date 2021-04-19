@@ -6,10 +6,10 @@ import twitter from '../../images/svgs/twitter.svg'
 import telegram from '../../images/svgs/telegram.svg'
 import wallet from '../../images/svgs/wallet.svg'
 import logo from '../../images/svgs/logo.svg'
-import { FooterWrapper, StyledLightButton } from './styled'
+import * as S from './styled'
 const Footer = () => {
     return (
-        <FooterWrapper>
+        <S.FooterWrapper>
             <Container>
                 <Row>
                     <Col lg="6">
@@ -55,10 +55,10 @@ const Footer = () => {
                                 </ul>
                             </Col>
                             <Col lg="5" className="right-footer">
-                                <StyledLightButton disabled variant="outline-light">
+                                <S.LightButton disabled variant="outline-light">
                                     <Image src={wallet} />
                                     My wallet
-                                </StyledLightButton>{' '}
+                                </S.LightButton>{' '}
                                 <ul className="footer-links">
                                     <li>
                                         <a href="https://discord.io/cryptogogos">
@@ -86,7 +86,7 @@ const Footer = () => {
                     </Col>
                 </Row>
             </Container>
-        </FooterWrapper>
+        </S.FooterWrapper>
     )
 }
 

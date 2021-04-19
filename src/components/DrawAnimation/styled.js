@@ -17,6 +17,6 @@ export const DrawAnimationWrapper = styled.div`
     }
 `
 
-export const StyledVideo = styled.video`
+export const Video = styled.video`
     transform: scale(${props => (props.isOpening ? 1 : 0)});
 `

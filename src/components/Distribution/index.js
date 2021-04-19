@@ -6,14 +6,7 @@ import { AccountContext } from '../../contexts/AccountProvider'
 import Signup from './Signup'
 import Gallery from './Gallery'
 import TxBox from './TxBox'
-import {
-    DistributionWrapper,
-    StyledSection,
-    StyledHeader,
-    StyledLightButton,
-    StyledSpan,
-    StyledRecentMintedContainer,
-} from './styled'
+import * as S from './styled'
 
 const Distribution = () => {
     const { infuraContract } = useContext(AccountContext)
@@ -40,20 +33,20 @@ const Distribution = () => {
     }, [infuraContract])
 
     return (
-        <DistributionWrapper>
-            <StyledSection>
+        <S.DistributionWrapper>
+            <S.Section>
                 <Container>
                     <Row className="justify-content-center">
                         <Col xs="12" lg="1">
-                            <StyledHeader>
-                                <StyledLightButton variant="outline-light">
+                            <S.Header>
+                                <S.LightButton variant="outline-light">
                                     {' '}
-                                    <StyledSpan></StyledSpan> Live
-                                </StyledLightButton>
-                            </StyledHeader>
+                                    <S.StyledSpan></S.StyledSpan> Live
+                                </S.LightButton>
+                            </S.Header>
                         </Col>
                         <Col xs="12" lg="7">
-                            <StyledHeader>Distribution of CryptoGOGOs</StyledHeader>
+                            <S.Header>Distribution of CryptoGOGOs</S.Header>
                         </Col>
                     </Row>
                     <Row>
@@ -82,12 +75,12 @@ const Distribution = () => {
                     </Row>
                     <ProgressBar totalSupply={totalSupply} />
                 </Container>
-                <StyledRecentMintedContainer>
+                <S.RecentMintedContainer>
                     <Gallery totalSupply={totalSupply} />
                     <Signup />
-                </StyledRecentMintedContainer>
-            </StyledSection>
-        </DistributionWrapper>
+                </S.RecentMintedContainer>
+            </S.Section>
+        </S.DistributionWrapper>
     )
 }
 

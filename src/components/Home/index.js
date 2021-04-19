@@ -3,15 +3,15 @@ import 'react-multi-carousel/lib/styles.css'
 import Distribution from 'components/Distribution'
 import Heading from './components/Heading'
 import OurMission from './components/OurMission'
-import { HomeWrapper } from './styled'
+import * as S from './styled'
 
 function Home() {
     return (
-        <HomeWrapper>
+        <S.HomeWrapper>
             <Heading />
             <OurMission />
             <Distribution />
-        </HomeWrapper>
+        </S.HomeWrapper>
     )
 }
 

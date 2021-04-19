@@ -11,7 +11,6 @@ import { useWallet } from 'use-wallet'
 import { AccountContext } from 'contexts/AccountProvider'
 import useAccount from 'hooks/useAccount'
 import SpaceTravel from './SpaceTravel'
-import { StyledFullscreen, DrawTradeWrapper, StyledNoMetamaskContainer } from './styled'
 
 const DrawTrade = () => {
     const { connect } = useWallet()
@@ -103,13 +102,13 @@ const DrawTrade = () => {
     return (
         <div className="draw-trade">
             {account ? (
-                <DrawTradeWrapper>
+                <S.DrawTradeWrapper>
                     {!isCorrectChain && (
                         <p className="text-red-500">Please select the correct chain</p>
                     )}
                     <div>
                         {isOpening ? (
-                            <StyledFullscreen>
+                            <S.StyledFullscreen>
                                 <SpaceTravel />
                                 <Particles
                                     params={{
@@ -156,7 +155,7 @@ const DrawTrade = () => {
                                         </h2>
                                     </div>
                                 )}
-                            </StyledFullscreen>
+                            </S.StyledFullscreen>
                         ) : (
                             <div>
                                 <section className="heading-section space-ship">
@@ -233,10 +232,10 @@ const DrawTrade = () => {
                             </div>
                         )}
                     </div>
-                </DrawTradeWrapper>
+                </S.DrawTradeWrapper>
             ) : (
                 <Container>
-                    <StyledNoMetamaskContainer className="heading-section">
+                    <S.StyledNoMetamaskContainer className="heading-section">
                         <Container>
                             <Row>
                                 <Col style={{ paddingTop: '3rem' }}>
@@ -285,7 +284,7 @@ const DrawTrade = () => {
                                 </Col>
                             </Row>
                         </Container>
-                    </StyledNoMetamaskContainer>
+                    </S.StyledNoMetamaskContainer>
                     <div className="no-meta-mask text-center"></div>
                 </Container>
             )}

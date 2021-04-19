@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react'
 import { Container, Row, Col, Form } from 'react-bootstrap'
-import { LeaderboardWrapper } from './styled'
+import * as S from './styled'
 import { GuardSpinner } from 'react-spinners-kit'
 import TextTruncate from 'react-text-truncate'
 import { getLeaderboardList } from 'utils/api'
@@ -34,7 +34,7 @@ const Leaderboard = () => {
     }
 
     return (
-        <LeaderboardWrapper>
+        <S.LeaderboardWrapper>
             <section className="title-section">
                 <h2>Leaderboard</h2>
             </section>
@@ -110,7 +110,7 @@ const Leaderboard = () => {
                     </div>
                 )}
             </section>
-        </LeaderboardWrapper>
+        </S.LeaderboardWrapper>
     )
 }
 
