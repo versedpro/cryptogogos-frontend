@@ -38,7 +38,7 @@ const ProgressBar = ({ totalSupply }) => {
 
     return (
         <StyledDistributionRow>
-            <Col xs="12" lg="2">
+            <Col xs="12" lg="2" className={'overflow-hidden'}>
                 <StyledNftDistribute
                     className={`nft-distribute ${
                         milestone >= 1 ? 'active  in-progress first-distribute' : ''
