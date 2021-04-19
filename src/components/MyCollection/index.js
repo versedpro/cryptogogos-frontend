@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
-import { MyCollectionWrapper, StyledNoMetamaskContainer } from './styled'
+import * as S from './styled'
 
 import { useWallet } from 'use-wallet'
 import { AccountContext } from 'contexts/AccountProvider'
@@ -23,7 +23,7 @@ const MyCollection = () => {
     return (
         <div className="draw-trade">
             {account ? (
-                <MyCollectionWrapper>
+                <S.MyCollectionWrapper>
                     <div>
                         <section className="heading-section">
                             <Container>
@@ -36,9 +36,9 @@ const MyCollection = () => {
                         </section>
                         <GogoList ownerAddress={account} tokenCount={12}></GogoList>
                     </div>
-                </MyCollectionWrapper>
+                </S.MyCollectionWrapper>
             ) : (
-                <StyledNoMetamaskContainer className="heading-section">
+                <S.NoMetamaskContainer className="heading-section">
                     <Container>
                         <Row>
                             <Col style={{ paddingTop: '3rem' }}>
@@ -65,7 +65,7 @@ const MyCollection = () => {
                             </Col>
                         </Row>
                     </Container>
-                </StyledNoMetamaskContainer>
+                </S.NoMetamaskContainer>
             )}
         </div>
     )

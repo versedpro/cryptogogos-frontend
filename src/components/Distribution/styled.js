@@ -1,6 +1,7 @@
 import { Button, Container, Image, Row } from 'react-bootstrap'
 import styled from 'styled-components'
 import distributeImage from '../../images/distribute.png'
+import variables from '../../theme/variables'
 
 export const DistributionWrapper = styled.div`
     .first,
@@ -58,7 +59,7 @@ export const DistributionWrapper = styled.div`
     }
 `
 
-export const StyledSection = styled.section`
+export const Section = styled.section`
     margin-top: 50px;
     margin-bottom: 50px !important;
 `
@@ -72,7 +73,7 @@ export const StyledSpan = styled.span`
     margin-right: 8px;
 `
 
-export const StyledLightButton = styled(Button)`
+export const LightButton = styled(Button)`
     padding: 5px 25px;
     border-radius: 12px;
     border: 1px solid #9c4d83;
@@ -88,7 +89,7 @@ export const StyledLightButton = styled(Button)`
     }
 `
 
-export const StyledHeader = styled.h2`
+export const Header = styled.h2`
     margin-bottom: 50px;
 
     @media (max-width: 600px) {
@@ -97,7 +98,7 @@ export const StyledHeader = styled.h2`
     }
 `
 
-export const StyledSubscribeHeader = styled(StyledHeader)`
+export const SubscribeHeader = styled(Header)`
     font-size: 50px;
     @media (max-width: 600px) {
         font-size: 40px;
@@ -109,14 +110,14 @@ export const StyledSubscribeHeader = styled(StyledHeader)`
     }
 `
 
-export const StyledSubscribeBox = styled.div`
+export const SubscribeBox = styled.div`
     margin-top: 250px;
     @media (max-width: 991px) {
         margin-top: 80px;
     }
 `
 
-export const StyledSubscribeInput = styled.input`
+export const SubscribeInput = styled.input`
     @media (max-width: 600px) {
         width: 90% !important;
         margin: 0 auto;
@@ -126,7 +127,7 @@ export const StyledSubscribeInput = styled.input`
     }
 `
 
-export const StyledRecentMintedContainer = styled(Container)`
+export const RecentMintedContainer = styled(Container)`
     margin-top: 150px;
     h4 {
         text-align: center;
@@ -142,7 +143,13 @@ export const StyledImage = styled(Image)`
     height: 90%;
 `
 
-export const StyledDistributionRow = styled(Row)`
+export const DistributionRow = styled(Row)`
+    @media (max-width: ${variables.breakpoints.mobile.value}px) {
+        .overflow-hidden {
+            overflow: hidden;
+        }
+    }
+
     .col-lg-2.col-12 {
         margin-left: 0 !important;
         margin-right: 0 !important;
@@ -151,7 +158,7 @@ export const StyledDistributionRow = styled(Row)`
     }
 `
 
-export const StyledNftDistribute = styled.div`
+export const NftDistribute = styled.div`
     background-image: url(${distributeImage});
     background-repeat: no-repeat;
     background-position: right;
@@ -220,13 +227,13 @@ export const StyledNftDistribute = styled.div`
     }
 `
 
-export const StyledNftNumbers = styled.div`
+export const NftNumbers = styled.div`
     color: ${p => (p.isWhite ? 'white' : '#98568d')};
     font-family: 'HelveticaNeueCyr Black';
     font-size: 20px;
 `
 
-export const StyledNftPrice = styled.div`
+export const NftPrice = styled.div`
     color: ${p => (p.isWhite ? 'white' : '#98568d')};
     font-family: 'HelveticaNeueCyr Black';
     font-size: 18px;
@@ -245,17 +252,17 @@ export const RootWrapper = styled.div`
     }
 `
 
-export const StyledBoxText = styled.div`
+export const BoxText = styled.div`
     font-family: 'HelveticaNeueCyr Bold';
 `
 
-export const StyledBoxNumber = styled.div`
+export const BoxNumber = styled.div`
     font-family: 'HelveticaNeueCyr Black';
     font-size: ${p => (p.variant === 'small' ? '30px' : '2.5rem')};
     line-height: 58px;
 `
 
-export const StyledBoxLabel = styled.div`
+export const BoxLabel = styled.div`
     position: absolute;
     right: 10px;
     bottom: 18px;

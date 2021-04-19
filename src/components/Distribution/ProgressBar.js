@@ -3,12 +3,7 @@ import { Col, Image } from 'react-bootstrap'
 import 'react-multi-carousel/lib/styles.css'
 import milestoneImg from '../../images/svgs/distribute-milestone.svg'
 import milestonProgressImg from '../../images/svgs/mileston-progress.svg'
-import {
-    StyledDistributionRow,
-    StyledNftDistribute,
-    StyledNftNumbers,
-    StyledNftPrice,
-} from './styled'
+import * as S from './styled'
 
 const ProgressBar = ({ totalSupply }) => {
     const [milestoneAmount, setMilestoneAmount] = useState(0)
@@ -37,9 +32,9 @@ const ProgressBar = ({ totalSupply }) => {
     }, [totalSupply])
 
     return (
-        <StyledDistributionRow>
-            <Col xs="12" lg="2">
-                <StyledNftDistribute
+        <S.DistributionRow>
+            <Col xs="12" lg="2" className={'overflow-hidden'}>
+                <S.NftDistribute
                     className={`nft-distribute ${
                         milestone >= 1 ? 'active  in-progress first-distribute' : ''
                     } ${milestone == 1 && 'extra-white'}`}>
@@ -63,14 +58,14 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <StyledNftPrice isWhite isActive>
+                    <S.NftPrice isWhite isActive>
                         0.05 ETH
-                    </StyledNftPrice>
-                    <StyledNftNumbers isWhite>150 NFTs</StyledNftNumbers>
-                </StyledNftDistribute>
+                    </S.NftPrice>
+                    <S.NftNumbers isWhite>150 NFTs</S.NftNumbers>
+                </S.NftDistribute>
             </Col>
             <Col xs="12" lg="2">
-                <StyledNftDistribute
+                <S.NftDistribute
                     className={`nft-distribute ${
                         milestone >= 2 ? 'active  in-progress first-distribute' : ''
                     } ${milestone == 2 && 'extra-white'}`}>
@@ -94,12 +89,12 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <StyledNftPrice>0.07 ETH</StyledNftPrice>
-                    <StyledNftNumbers>150 NFTs</StyledNftNumbers>
-                </StyledNftDistribute>
+                    <S.NftPrice>0.07 ETH</S.NftPrice>
+                    <S.NftNumbers>150 NFTs</S.NftNumbers>
+                </S.NftDistribute>
             </Col>
             <Col xs="12" lg="2">
-                <StyledNftDistribute
+                <S.NftDistribute
                     className={`nft-distribute ${
                         milestone >= 3 ? 'active  in-progress first-distribute' : ''
                     } ${milestone == 3 && 'extra-white'}`}>
@@ -123,12 +118,12 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <StyledNftPrice>0.1 ETH</StyledNftPrice>
-                    <StyledNftNumbers>850 NFTs</StyledNftNumbers>
-                </StyledNftDistribute>
+                    <S.NftPrice>0.1 ETH</S.NftPrice>
+                    <S.NftNumbers>850 NFTs</S.NftNumbers>
+                </S.NftDistribute>
             </Col>
             <Col xs="12" lg="2">
-                <StyledNftDistribute
+                <S.NftDistribute
                     className={`nft-distribute ${
                         milestone >= 4 ? 'active  in-progress first-distribute' : ''
                     } ${milestone == 4 && 'extra-white'}`}>
@@ -152,12 +147,12 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <StyledNftPrice>0.15 ETH</StyledNftPrice>
-                    <StyledNftNumbers>2000 NFTs</StyledNftNumbers>
-                </StyledNftDistribute>
+                    <S.NftPrice>0.15 ETH</S.NftPrice>
+                    <S.NftNumbers>2000 NFTs</S.NftNumbers>
+                </S.NftDistribute>
             </Col>
             <Col xs="12" lg="2">
-                <StyledNftDistribute
+                <S.NftDistribute
                     className={`nft-distribute ${
                         milestone >= 5 ? 'active  in-progress first-distribute extra-white' : ''
                     }`}>
@@ -181,12 +176,12 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <StyledNftPrice>0.2 ETH</StyledNftPrice>
-                    <StyledNftNumbers>4000 NFTs</StyledNftNumbers>
-                </StyledNftDistribute>
+                    <S.NftPrice>0.2 ETH</S.NftPrice>
+                    <S.NftNumbers>4000 NFTs</S.NftNumbers>
+                </S.NftDistribute>
             </Col>
             <Col xs="12" lg="2">
-                <StyledNftDistribute
+                <S.NftDistribute
                     className={`nft-distribute ${
                         milestone >= 6 ? 'active  in-progress first-distribute extra-white' : ''
                     }`}>
@@ -210,11 +205,11 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <StyledNftPrice>1 ETH</StyledNftPrice>
-                    <StyledNftNumbers>627 NFTs</StyledNftNumbers>
-                </StyledNftDistribute>
+                    <S.NftPrice>1 ETH</S.NftPrice>
+                    <S.NftNumbers>627 NFTs</S.NftNumbers>
+                </S.NftDistribute>
             </Col>
-        </StyledDistributionRow>
+        </S.DistributionRow>
     )
 }
 

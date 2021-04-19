@@ -1,14 +1,14 @@
-import { RootWrapper, StyledBoxText, StyledBoxNumber, StyledBoxLabel } from './styled'
+import * as S from './styled'
 
 const TxBox = props => {
     return (
-        <RootWrapper>
-            <StyledBoxText>{props.text}</StyledBoxText>
-            <StyledBoxNumber variant={props.isSmallAmmount ? 'small' : null}>
+        <S.RootWrapper>
+            <S.BoxText>{props.text}</S.BoxText>
+            <S.BoxNumber variant={props.isSmallAmmount ? 'small' : null}>
                 {props.amount}
-            </StyledBoxNumber>
-            <StyledBoxLabel variant={props.isRedLabel ? 'red' : null}>{props.label}</StyledBoxLabel>
-        </RootWrapper>
+            </S.BoxNumber>
+            <S.BoxLabel variant={props.isRedLabel ? 'red' : null}>{props.label}</S.BoxLabel>
+        </S.RootWrapper>
     )
 }
 

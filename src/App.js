@@ -12,17 +12,10 @@ import Leaderboard from 'components/Leaderboard'
 import MyCollection from 'components/MyCollection'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import { useWallet, UseWalletProvider } from 'use-wallet'
-import SpaceTravel from './components/DrawTrade/SpaceTravel'
+import { UseWalletProvider } from 'use-wallet'
 import AccountProvider from './contexts/AccountProvider'
 
 function App() {
-    const wallet = useWallet()
-
-    useEffect(() => {
-        wallet.connect('injected')
-    }, [])
-
     return (
         <Router>
             <div className="main-body text-center">

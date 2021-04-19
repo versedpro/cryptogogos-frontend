@@ -1,11 +1,18 @@
 import styled from 'styled-components'
+import variables from '../../theme/variables'
 
 export const MyCollectionWrapper = styled.div`
     .heading-section h2 {
         font-size: 4rem;
     }
+
+    @media (max-width: ${variables.breakpoints.mobile.value}px) {
+        h2 {
+            font-size: 2.5rem !important;
+        }
+    }
 `
-export const StyledNoMetamaskContainer = styled.section`
+export const NoMetamaskContainer = styled.section`
     h2 {
         font-size: 4rem;
     }
