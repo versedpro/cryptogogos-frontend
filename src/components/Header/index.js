@@ -16,7 +16,7 @@ const Header = () => {
     return (
         <Navbar expand="lg" className="pt-4">
             <Navbar.Brand to="/" exact="full">
-                <Image src={logo} />
+                <a href="/"><Image src={logo} /></a>
             </Navbar.Brand>
             <ul className="header-links">
                 <li>
