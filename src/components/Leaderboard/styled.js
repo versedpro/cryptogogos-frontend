@@ -9,6 +9,7 @@ export const LeaderboardWrapper = styled.div`
     }
     .list-sort-section {
         margin-top: 4rem;
+        margin-bottom: 4rem;
         .container .row {
             display: flex;
             align-items: center;
@@ -48,7 +49,9 @@ export const LeaderboardWrapper = styled.div`
         
     }
     .list-show-section {
-        margin-top: 4rem;
+        width: 90%;
+        max-width: 1200px;
+        margin: auto;
         .list-header {
             font-size: 12px;
             margin-bottom: 1rem;
@@ -57,7 +60,6 @@ export const LeaderboardWrapper = styled.div`
             }
         }
         .list-body {
-            padding: 10px;
             .list-content {
                 color: black;
                 background-color: rgba(255, 255, 255, 1);
@@ -69,6 +71,9 @@ export const LeaderboardWrapper = styled.div`
                 align-items: center;
                 div:nth-child(2) {
                     text-align: left;
+                }
+                div:nth-child(3) {
+                    text-align: center;
                 }
                 a {
                     color: black;

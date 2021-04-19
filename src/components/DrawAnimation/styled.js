@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const Wrapper = styled.div`
+export const DrawAnimationWrapper = styled.div`
     position: fixed;
     top: 0;
     left: 0;
@@ -17,6 +17,6 @@ export const Wrapper = styled.div`
     }
 `
 
-export const Vid = styled.video`
+export const Video = styled.video`
     transform: scale(${props => (props.isOpening ? 1 : 0)});
 `

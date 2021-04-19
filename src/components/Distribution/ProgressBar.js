@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
-import { Row, Col, Image } from 'react-bootstrap'
+import { Col, Image } from 'react-bootstrap'
 import 'react-multi-carousel/lib/styles.css'
 import milestoneImg from '../../images/svgs/distribute-milestone.svg'
 import milestonProgressImg from '../../images/svgs/mileston-progress.svg'
+import * as S from './styled'
 
 const ProgressBar = ({ totalSupply }) => {
     const [milestoneAmount, setMilestoneAmount] = useState(0)
@@ -31,9 +32,9 @@ const ProgressBar = ({ totalSupply }) => {
     }, [totalSupply])
 
     return (
-        <Row className="distribution-row">
-            <Col xs="12" lg="2">
-                <div
+        <S.DistributionRow>
+            <Col xs="12" lg="2" className={'overflow-hidden'}>
+                <S.NftDistribute
                     className={`nft-distribute ${
                         milestone >= 1 ? 'active  in-progress first-distribute' : ''
                     } ${milestone == 1 && 'extra-white'}`}>
@@ -57,12 +58,14 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <div className="nft-price">0.05 ETH</div>
-                    <div className="nft-numbers">150 NFTs</div>
-                </div>
+                    <S.NftPrice isWhite isActive>
+                        0.05 ETH
+                    </S.NftPrice>
+                    <S.NftNumbers isWhite>150 NFTs</S.NftNumbers>
+                </S.NftDistribute>
             </Col>
             <Col xs="12" lg="2">
-                <div
+                <S.NftDistribute
                     className={`nft-distribute ${
                         milestone >= 2 ? 'active  in-progress first-distribute' : ''
                     } ${milestone == 2 && 'extra-white'}`}>
@@ -86,12 +89,12 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <div className="nft-price">0.07 ETH</div>
-                    <div className="nft-numbers">150 NFTs</div>
-                </div>
+                    <S.NftPrice>0.07 ETH</S.NftPrice>
+                    <S.NftNumbers>150 NFTs</S.NftNumbers>
+                </S.NftDistribute>
             </Col>
             <Col xs="12" lg="2">
-                <div
+                <S.NftDistribute
                     className={`nft-distribute ${
                         milestone >= 3 ? 'active  in-progress first-distribute' : ''
                     } ${milestone == 3 && 'extra-white'}`}>
@@ -115,12 +118,12 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <div className="nft-price">0.1 ETH</div>
-                    <div className="nft-numbers">850 NFTs</div>
-                </div>
+                    <S.NftPrice>0.1 ETH</S.NftPrice>
+                    <S.NftNumbers>850 NFTs</S.NftNumbers>
+                </S.NftDistribute>
             </Col>
             <Col xs="12" lg="2">
-                <div
+                <S.NftDistribute
                     className={`nft-distribute ${
                         milestone >= 4 ? 'active  in-progress first-distribute' : ''
                     } ${milestone == 4 && 'extra-white'}`}>
@@ -144,12 +147,12 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <div className="nft-price">0.15 ETH</div>
-                    <div className="nft-numbers">2000 NFTs</div>
-                </div>
+                    <S.NftPrice>0.15 ETH</S.NftPrice>
+                    <S.NftNumbers>2000 NFTs</S.NftNumbers>
+                </S.NftDistribute>
             </Col>
             <Col xs="12" lg="2">
-                <div
+                <S.NftDistribute
                     className={`nft-distribute ${
                         milestone >= 5 ? 'active  in-progress first-distribute extra-white' : ''
                     }`}>
@@ -173,12 +176,12 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <div className="nft-price">0.2 ETH</div>
-                    <div className="nft-numbers">4000 NFTs</div>
-                </div>
+                    <S.NftPrice>0.2 ETH</S.NftPrice>
+                    <S.NftNumbers>4000 NFTs</S.NftNumbers>
+                </S.NftDistribute>
             </Col>
             <Col xs="12" lg="2">
-                <div
+                <S.NftDistribute
                     className={`nft-distribute ${
                         milestone >= 6 ? 'active  in-progress first-distribute extra-white' : ''
                     }`}>
@@ -202,11 +205,11 @@ const ProgressBar = ({ totalSupply }) => {
                         style={{ left: `calc(${milestoneAmount}% - 121px)` }}>
                         <Image src={milestonProgressImg} />
                     </div>
-                    <div className="nft-price">1 ETH</div>
-                    <div className="nft-numbers">627 NFTs</div>
-                </div>
+                    <S.NftPrice>1 ETH</S.NftPrice>
+                    <S.NftNumbers>627 NFTs</S.NftNumbers>
+                </S.NftDistribute>
             </Col>
-        </Row>
+        </S.DistributionRow>
     )
 }
 

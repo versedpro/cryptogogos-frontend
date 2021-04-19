@@ -6,11 +6,13 @@ import twitter from 'images/svgs/twitter.svg'
 import telegram from 'images/svgs/telegram.svg'
 import wallet from 'images/svgs/wallet.svg'
 import { NavLink } from 'react-router-dom'
+import { useWallet } from 'use-wallet'
 
 //svg images
 import logo from 'images/svgs/logo.svg'
 
 const Header = () => {
+    const { account, connect } = useWallet()
     return (
         <Navbar expand="lg" className="pt-4">
             <Navbar.Brand to="/" exact="full">
@@ -51,11 +53,13 @@ const Header = () => {
                     <Nav.Link href="https://opensea.io/assets/cryptogogos">OpenSea</Nav.Link>
                     {/*<Nav.Link href="#link">Gallery</Nav.Link>*/}
                     {/*<Nav.Link href="#link">Leaderboard</Nav.Link>*/}
-                    <NavLink className="nav-link" to="leaderboard">Leaderboard</NavLink>
+                    <NavLink className="nav-link" to="leaderboard">
+                        Leaderboard
+                    </NavLink>
                     <Nav.Link href="https://wiki.cryptogogos.com/about/">About</Nav.Link>
-                    <Nav.Link href="https://wiki.cryptogogos.com/faq">FAQ</Nav.Link>
-                    <Nav.Link href="#link">
-                        <Button disabled style={{ opacity: 0.5 }} variant="outline-light">
+                    <Nav.Link href="/faq">FAQ</Nav.Link>
+                    <Nav.Link href="/mycollection">
+                        <Button variant="outline-light">
                             <Image src={wallet} />
                             My wallet
                         </Button>{' '}

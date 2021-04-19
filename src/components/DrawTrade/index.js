@@ -1,55 +1,33 @@
-import React, { useEffect, useContext } from 'react'
-import Particles from 'react-particles-js'
-import Web3 from 'web3'
+import React, { useState, useEffect, useContext } from 'react'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 import { confirmMint, createMintRequest, getTokenMetadata } from 'utils/api'
 import DrawError from './DrawError'
 import metamaskLogo from '../../images/metamask-logo.png'
 import * as S from './styled'
-import drawBtn from 'images/button_draw.png'
-import tradeBtn from 'images/button_trade.png'
 import GOGODetails from './GOGODetails'
 
 import { useWallet } from 'use-wallet'
 import { AccountContext } from 'contexts/AccountProvider'
+import useAccount from 'hooks/useAccount'
+import SpaceTravel from './SpaceTravel'
+import { StyledNoMetamaskContainer } from './styled'
 
 const DrawTrade = () => {
     const { connect } = useWallet()
-    const { web3Container, walletContract } = useContext(AccountContext)
-    const [error, setError] = React.useState(null)
-    const [signature, setSignature] = React.useState(false)
-    const [price, setPrice] = React.useState()
-    const [account, setAccount] = React.useState()
-    const [metadata, setMetaData] = React.useState({})
-    const [isOpening, setIsOpening] = React.useState(false)
-    const [tokenId, setTokenId] = React.useState(null)
-
-    const handleAccountsChanged = accounts => {
-        if (accounts.length === 0) {
-            setAccount(null)
-            console.log('Please connect to MetaMask.')
-        } else if (accounts[0] !== account) {
-            setAccount(accounts[0])
-            // Do any other work!
-        }
-    }
+    const { web3, walletContract } = useContext(AccountContext)
+    const { isCorrectChain, account } = useAccount()
+    const [error, setError] = useState('')
+    const [errorObject, setErrorObject] = useState('')
+    const [metadata, setMetaData] = useState({})
+    const [isOpening, setIsOpening] = useState(false)
+    const [tokenId, setTokenId] = useState(null)
 
     useEffect(() => {
         connect('injected')
     }, [])
 
-    useEffect(async () => {
-        console.log(web3Container)
-        if (web3Container) {
-            const accounts = await web3Container.eth.getAccounts()
-            setAccount(accounts[0])
-            window.ethereum.on('accountsChanged', handleAccountsChanged)
-        }
-    }, [web3Container])
-
     const getPackPrice = async () => {
         const mintPrice = await walletContract.methods.getNFTPrice().call()
-        setPrice(mintPrice)
         return mintPrice
     }
     const handleConnect = () => {
@@ -61,13 +39,21 @@ const DrawTrade = () => {
     }
     const handleDrawCardClicked = async () => {
         setIsOpening('Connecting Metamask...')
-        const web3 = new Web3(window.ethereum)
-        try {
-            const {
-                data: { signature },
-            } = await createMintRequest(account)
-            setSignature(signature)
+        let signature, _tokenId
 
+        // Start minting block
+        try {
+            const { data } = await createMintRequest(account)
+            signature = data.signature
+        } catch (err) {
+            console.log(err)
+            setError('Our servers have encountered an unexpected error')
+            setErrorObject(err)
+            return
+        }
+
+        // Minting on blockchain block
+        try {
             const price = await getPackPrice()
             await walletContract.methods
                 .mint()
@@ -80,39 +66,57 @@ const DrawTrade = () => {
                     setIsOpening('Bringing A GOGO to Planet Earth 🌍...')
                 })
                 .on('error', err => {
-                    console.log('error')
+                    throw err
                 })
 
             const balance = await walletContract.methods.balanceOf(account).call()
-            const _tokenId = await walletContract.methods
-                .tokenOfOwnerByIndex(account, balance - 1)
-                .call()
+            _tokenId = await walletContract.methods.tokenOfOwnerByIndex(account, balance - 1).call()
             setTokenId(_tokenId)
             setIsOpening('Grooming your GOGO ⚡️...')
-            await confirmMint(account, _tokenId, signature)
+        } catch (err) {
+            console.log(err)
+            setError('Error while minting. Please check browser console and refresh')
+            setErrorObject(err)
+            return
+        }
 
+        // confirmMint block
+        try {
+            await confirmMint(account, _tokenId, signature)
+        } catch (err) {
+            console.log(err)
+            setError('Our servers have encountered an unexpected error')
+            setErrorObject(err)
+            return
+        }
+
+        // metadata block
+        try {
             const { data: metadata } = await getTokenMetadata(_tokenId)
 
             setMetaData(metadata)
         } catch (err) {
-            setError('Error while minting')
+            console.log(err)
+            setError(
+                'Error while fetching metadata from our servers. Please check browser console and refresh',
+            )
+            setErrorObject(err)
+            return
         }
     }
-    if (error) return <DrawError error={error} />
+    if (error) return <DrawError error={error} errorObject={errorObject} />
 
     return (
         <div className="draw-trade">
             {account ? (
                 <S.DrawTradeWrapper>
+                    {!isCorrectChain && (
+                        <p className="text-red-500">Please select the correct chain</p>
+                    )}
                     <div>
-                        <S.Fullscreen
-                            style={{
-                                opacity: isOpening ? 1 : 0,
-                                zIndex: isOpening ? 5000 : -20,
-                            }}>
-                            <div>
-                                <Particles></Particles>
-
+                        {isOpening ? (
+                            <S.FullScreen>
+                                <SpaceTravel />
                                 {metadata.image ? (
                                     <GOGODetails tokenId={tokenId} metadata={metadata} />
                                 ) : (
@@ -124,78 +128,93 @@ const DrawTrade = () => {
                                                 top: '50%',
                                                 left: '50%',
                                                 transform: 'translate(-50%,-50%)',
+                                                zIndex: 5005,
                                             }}>
                                             {isOpening}
                                         </h2>
                                     </div>
                                 )}
-                            </div>
-                        </S.Fullscreen>
-                        <section className="heading-section space-ship">
-                            <Container>
-                                <Row>
-                                    <Col>
-                                        <h2 style={{ paddingTop: '5rem' }}>CryptoGogo Spaceship</h2>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col style={{ paddingTop: '2rem' }}>
-                                        <Button
-                                            style={{ background: '#fe2afe', marginRight: '1rem' }}
-                                            onClick={handleDrawCardClicked}>
-                                            Draw
-                                        </Button>{' '}
-                                        <Button style={{ marginLeft: '1rem' }} variant="primary">
-                                            Trade
-                                        </Button>{' '}
-                                    </Col>
-                                </Row>
-                            </Container>
-                        </section>
-                        <section className="terms-section">
-                            <Container>
-                                <Row>
-                                    <Col lg="1"></Col>
-                                    <Col lg="10" xs="12">
-                                        <div className="terms text-left">
-                                            <div className="terms-title">
-                                                <h4>Terms</h4>
-                                            </div>
-                                            <div className="terms-content">
-                                                <p>
-                                                    In 2021 the world became like in 1984. The human
-                                                    race got enslaved to nonsense NFT Art and bad
-                                                    Collectibles. Ugly Kitties and terrible Punks
-                                                    mesmerized humankind and stole their money.
-                                                    Seeking revenge for the unjust treatment of the
-                                                    true meaning of NFTs, the CryptoGOGOs are coming
-                                                    the far way from PLANET GOGO in the Metaverse to
-                                                    start a revolution. Alongside the GOGO-Rebellion
-                                                    (CryptoGOGO-Collectors), they bring back freedom
-                                                    and power to humankind by taking over the NFT
-                                                    WORLD.
-                                                </p>
+                            </S.FullScreen>
+                        ) : (
+                            <div>
+                                <section className="heading-section space-ship">
+                                    <Container>
+                                        <Row>
+                                            <Col>
+                                                <h2 style={{ paddingTop: '5rem' }}>
+                                                    CryptoGogo Spaceship
+                                                </h2>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col style={{ paddingTop: '2rem' }}>
+                                                <Button
+                                                    disabled={!isCorrectChain}
+                                                    style={{
+                                                        background: '#fe2afe',
+                                                        marginRight: '1rem',
+                                                    }}
+                                                    onClick={handleDrawCardClicked}>
+                                                    Draw
+                                                </Button>{' '}
+                                                <Button
+                                                    style={{ marginLeft: '1rem' }}
+                                                    variant="primary">
+                                                    Trade
+                                                </Button>{' '}
+                                            </Col>
+                                        </Row>
+                                    </Container>
+                                </section>
+                                <section className="terms-section">
+                                    <Container>
+                                        <Row>
+                                            <Col lg="1"></Col>
+                                            <Col lg="10" xs="12">
+                                                <div className="terms text-left">
+                                                    <div className="terms-title">
+                                                        <h4>Terms</h4>
+                                                    </div>
+                                                    <div className="terms-content">
+                                                        <p>
+                                                            In 2021 the world became like in 1984.
+                                                            The human race got enslaved to nonsense
+                                                            NFT Art and bad Collectibles. Ugly
+                                                            Kitties and terrible Punks mesmerized
+                                                            humankind and stole their money. Seeking
+                                                            revenge for the unjust treatment of the
+                                                            true meaning of NFTs, the CryptoGOGOs
+                                                            are coming the far way from PLANET GOGO
+                                                            in the Metaverse to start a revolution.
+                                                            Alongside the GOGO-Rebellion
+                                                            (CryptoGOGO-Collectors), they bring back
+                                                            freedom and power to humankind by taking
+                                                            over the NFT WORLD.
+                                                        </p>
 
-                                                <p>
-                                                    In 2021 the world became like in 1984. The human
-                                                    race got enslaved to nonsense NFT Art and bad
-                                                    Collectibles. Ugly Kitties and terrible Punks
-                                                    mesmerized humankind and stole their money.
-                                                    Seeking revenge for the unjust treatment of the
-                                                    true meaning of NFTs,
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </Col>
-                                    <Col lg="1"></Col>
-                                </Row>
-                            </Container>
-                        </section>
+                                                        <p>
+                                                            In 2021 the world became like in 1984.
+                                                            The human race got enslaved to nonsense
+                                                            NFT Art and bad Collectibles. Ugly
+                                                            Kitties and terrible Punks mesmerized
+                                                            humankind and stole their money. Seeking
+                                                            revenge for the unjust treatment of the
+                                                            true meaning of NFTs,
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </Col>
+                                            <Col lg="1"></Col>
+                                        </Row>
+                                    </Container>
+                                </section>
+                            </div>
+                        )}
                     </div>
                 </S.DrawTradeWrapper>
             ) : (
                 <Container>
-                    <S.NoMetamaskContainer className="heading-section">
+                    <StyledNoMetamaskContainer className="heading-section">
                         <Container>
                             <Row>
                                 <Col style={{ paddingTop: '3rem' }}>
@@ -244,7 +263,7 @@ const DrawTrade = () => {
                                 </Col>
                             </Row>
                         </Container>
-                    </S.NoMetamaskContainer>
+                    </StyledNoMetamaskContainer>
                     <div className="no-meta-mask text-center"></div>
                 </Container>
             )}
