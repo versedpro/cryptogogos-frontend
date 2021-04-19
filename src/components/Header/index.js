@@ -59,7 +59,7 @@ const Header = () => {
                     <Nav.Link href="https://wiki.cryptogogos.com/about/">About</Nav.Link>
                     <Nav.Link href="https://wiki.cryptogogos.com/faq">FAQ</Nav.Link>
                     <Nav.Link href="/mycollection">
-                        <Button disabled={account ? false : true} variant="outline-light">
+                        <Button variant="outline-light">
                             <Image src={wallet} />
                             My wallet
                         </Button>{' '}
