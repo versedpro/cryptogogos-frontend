@@ -10,6 +10,7 @@ import maltahead from '../../images/metalhead.png'
 import nftGold from '../../images/nft-card-golden.png'
 import variables from '../../theme/variables'
 import { StyledImage } from './styled'
+import GogoList from '../GogoList'
 
 const { superLargeDesktop, desktop, tablet, mobile } = variables.breakpoints
 const responsive = {
@@ -46,13 +47,14 @@ const Gallery = () => {
                 autoPlay
                 autoPlaySpeed={3000}
                 arrows>
-                <StyledImage draggable={false} src={rocky} />
+                {/* <StyledImage draggable={false} src={rocky} />
                 <StyledImage draggable={false} src={mushroom} />
                 <StyledImage draggable={false} src={shiller} />
                 <StyledImage draggable={false} src={enjin} />
                 <StyledImage draggable={false} src={maltahead} />
                 <StyledImage draggable={false} src={lips} />
-                <StyledImage draggable={false} src={nftGold} />
+                <StyledImage draggable={false} src={nftGold} /> */}
+                <GogoList tokenCount={10}></GogoList>
             </Carousel>
             <Col>
                 {' '}
