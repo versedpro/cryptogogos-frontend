@@ -83,7 +83,7 @@ const Distribution = () => {
                     <ProgressBar totalSupply={totalSupply} />
                 </Container>
                 <StyledRecentMintedContainer>
-                    <Gallery />
+                    <Gallery totalSupply={totalSupply} />
                     <Signup />
                 </StyledRecentMintedContainer>
             </StyledSection>
