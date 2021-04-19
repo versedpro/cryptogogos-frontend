@@ -1,16 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Col, Row, Button } from 'react-bootstrap'
 import Carousel from 'react-multi-carousel'
-import rocky from '../../images/rocky.png'
-import enjin from '../../images/enjin.png'
-import shiller from '../../images/shiller.png'
-import mushroom from '../../images/mushroom.png'
-import lips from '../../images/lips.png'
-import maltahead from '../../images/metalhead.png'
-import nftGold from '../../images/nft-card-golden.png'
 import variables from '../../theme/variables'
-import { StyledImage } from './styled'
-import GogoList from '../GogoList'
+import { getTokenList } from '../../utils/api'
+import { AccountContext } from 'contexts/AccountProvider'
 
 const { superLargeDesktop, desktop, tablet, mobile } = variables.breakpoints
 const responsive = {
@@ -32,7 +25,24 @@ const responsive = {
     },
 }
 
-const Gallery = () => {
+const Gallery = ({ totalSupply }) => {
+    const { infuraContract } = useContext(AccountContext)
+    const [tokenList, setTokens] = useState([])
+
+    useEffect(() => {
+        getTokens()
+    }, [totalSupply])
+
+    const getTokens = async () => {
+        const tokenList = await getTokenList({
+            balance: totalSupply,
+            contract: infuraContract && infuraContract.methods,
+            tokenCount: 10,
+            ownerAddress: null,
+        })
+
+        setTokens([...tokenList])
+    }
     return (
         <Row>
             <Col>
@@ -47,14 +57,11 @@ const Gallery = () => {
                 autoPlay
                 autoPlaySpeed={3000}
                 arrows>
-                {/* <StyledImage draggable={false} src={rocky} />
-                <StyledImage draggable={false} src={mushroom} />
-                <StyledImage draggable={false} src={shiller} />
-                <StyledImage draggable={false} src={enjin} />
-                <StyledImage draggable={false} src={maltahead} />
-                <StyledImage draggable={false} src={lips} />
-                <StyledImage draggable={false} src={nftGold} /> */}
-                <GogoList tokenCount={10}></GogoList>
+                {tokenList.map(item => (
+                    <div className="video-container" key={item.tokenId}>
+                        <video autoPlay playsInline muted width="200px" src={item.metaData.image} />
+                    </div>
+                ))}
             </Carousel>
             <Col>
                 {' '}
