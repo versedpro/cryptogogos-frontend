@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Container, Row, Col, Button, Image } from 'react-bootstrap'
+import { Container, Row, Col, Button, Image, OverlayTrigger, Tooltip } from 'react-bootstrap'
 import { confirmMint, createMintRequest, getTokenMetadata } from 'utils/api'
 import DrawError from './DrawError'
 import metamaskLogo from '../../images/metamask-logo.png'
@@ -157,11 +157,24 @@ const DrawTrade = () => {
                                                     onClick={handleDrawCardClicked}>
                                                     Draw
                                                 </Button>{' '}
-                                                <Button
-                                                    style={{ marginLeft: '1rem' }}
-                                                    variant="primary">
-                                                    Trade
-                                                </Button>{' '}
+                                                <OverlayTrigger
+                                                    overlay={
+                                                        <Tooltip id="tooltip-disabled">
+                                                            Coming soon!
+                                                        </Tooltip>
+                                                    }>
+                                                    <span>
+                                                        <Button
+                                                            disabled
+                                                            style={{
+                                                                pointerEvents: 'none',
+                                                                marginLeft: '1rem',
+                                                            }}
+                                                            variant="primary">
+                                                            Trade
+                                                        </Button>
+                                                    </span>
+                                                </OverlayTrigger>
                                             </Col>
                                         </Row>
                                     </Container>
