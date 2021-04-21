@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Button } from 'react-bootstrap'
 import footerImage from '../../images/svgs/footer.svg'
 import footerBgImage from '../../images/footer-bg.png'
+import variables from '../../theme/variables'
 
 export const LightButton = styled(Button)`
     background: transparent;
@@ -102,5 +103,8 @@ export const FooterWrapper = styled.section`
         background-position: center bottom;
         min-height: 300px;
         background-repeat: no-repeat;
+    }
+    @media (max-width: ${variables.breakpoints.desktop.value}px) and (min-width: 1601px) {
+        min-height: 340px;
     }
 `

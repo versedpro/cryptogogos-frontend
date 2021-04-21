@@ -124,7 +124,7 @@ export const DrawTradeWrapper = styled.div`
     }
 
     section.terms-section {
-        padding-top: 30rem;
+        padding-top: 40rem;
     }
     section .terms-title {
         opacity: 0.9;
@@ -146,6 +146,12 @@ export const DrawTradeWrapper = styled.div`
 
         section.terms-section {
             padding-top: 22rem;
+        }
+    }
+
+    @media (max-width: ${variables.breakpoints.desktop.value}px) and (min-width: 1441px) {
+        section.terms-section {
+            padding-top: 60rem;
         }
     }
 `
